@@ -7,7 +7,8 @@ import Sidebar from "@/components/Sidebar";
  */
 
 export const metadata = {
-  title: "Admin • Elevare Tech",
+  title: "Admin Dashboard",
+  robots: { index: false, follow: false },
 };
 
 export default function AdminLayout({

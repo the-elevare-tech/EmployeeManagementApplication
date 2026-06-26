@@ -119,7 +119,7 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="/blog"
+                  href="/projects"
                   className="hover:text-primary transition-colors"
                 >
                   Projects

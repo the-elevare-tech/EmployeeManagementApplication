@@ -4,8 +4,9 @@ import  Header  from "@/components/header"
 import { Footer } from "@/components/footer"
 
 export const metadata = {
-  title: "Careers • Elevare Tech",
-  description: "Explore job opportunities at Elevare Tech.",
+  title: "Careers",
+  description:
+    "Join Elevare Tech. Explore open positions and grow your career in software development and technology.",
 };
 
 export default function CarrerLayout({ children }: { children: ReactNode }) {

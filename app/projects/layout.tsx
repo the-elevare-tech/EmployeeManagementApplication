@@ -4,8 +4,9 @@ import  Header  from "@/components/header"
 import { Footer } from "@/components/footer"
 
 export const metadata = {
-  title: "Projects • Elevare Tech",
-  description: "Explore our innovative projects and solutions.",
+  title: "Projects",
+  description:
+    "See Elevare Tech's portfolio of web apps, dashboards, and custom software solutions.",
 };
 
 export default function ProjectsLayout({ children }: { children: ReactNode }) {

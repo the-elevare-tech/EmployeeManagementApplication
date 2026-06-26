@@ -7,10 +7,27 @@ import { Suspense } from "react";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Elevare Tech - Innovative Technology Solutions",
+  metadataBase: new URL("https://www.elevaretech.site"),
+  title: {
+    default: "Elevare Tech - Innovative Technology Solutions",
+    template: "%s | Elevare Tech",
+  },
   description:
-    "Leading technology company providing cutting-edge solutions for modern businesses",
-  generator: "v0.app",
+    "Elevare Tech empowers businesses with innovative technology solutions — web development, UI/UX design, AI automation, and custom software.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    siteName: "Elevare Tech",
+    title: "Elevare Tech - Innovative Technology Solutions",
+    description:
+      "We empower businesses with innovative technology solutions, transforming digital challenges into seamless, scalable experiences.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Elevare Tech - Innovative Technology Solutions",
+    description:
+      "We empower businesses with innovative technology solutions, transforming digital challenges into seamless, scalable experiences.",
+  },
 };
 
 export default function RootLayout({

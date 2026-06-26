@@ -4,8 +4,9 @@ import  Header  from "@/components/header"
 import { Footer } from "@/components/footer"
 
 export const metadata = {
-  title: "Services • Elevare Tech",
-  description: "Explore our services at Elevare Tech.",
+  title: "Services",
+  description:
+    "Web development, UI/UX design, AI automation, and custom software solutions from Elevare Tech.",
 };
 
 export default function ServicesLayout({ children }: { children: ReactNode }) {

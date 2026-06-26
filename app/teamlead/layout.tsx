@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 export const metadata = {
-  title: "Internee • Elevare Tech",
+  title: "Team Lead Dashboard",
+  robots: { index: false, follow: false },
 };
 
 export default function TeamLeadLayout({

@@ -7,7 +7,8 @@ import Sidebar from "@/components/Sidebar";
  */
 
 export const metadata = {
-  title: "Internee • Elevare Tech",
+  title: "Intern Dashboard",
+  robots: { index: false, follow: false },
 };
 
 export default function InterneeLayout({

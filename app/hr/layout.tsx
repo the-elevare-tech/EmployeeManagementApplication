@@ -1,6 +1,7 @@
 import Sidebar from "@/components/Sidebar";
 export const metadata = {
-  title: "HR • Elevare Tech",
+  title: "HR Dashboard",
+  robots: { index: false, follow: false },
 };
 
 export default function HRLayout({
