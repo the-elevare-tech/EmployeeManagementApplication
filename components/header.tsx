@@ -22,7 +22,7 @@ export default function Header() {
     { href: "/about", label: "About" },
     { href: "/services", label: "Services" },
     { href: "/projects", label: "Projects" },
-    // { href: "/careers", label: "Careers" },
+    { href: "/careers", label: "Careers" },
     { href: "/contact", label: "Contact" },
   ];
 
@@ -34,7 +34,7 @@ export default function Header() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center jhttps://search.google.com/search-consoleustify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center">
           <Image
