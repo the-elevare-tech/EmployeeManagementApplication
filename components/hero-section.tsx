@@ -1,60 +1,136 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
+import { TypeAnimation } from "react-type-animation";
+import { ArrowDown } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function HeroSection() {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  // Generate random particles
+  const particles = Array.from({ length: 15 }).map((_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    animationDuration: `${6 + Math.random() * 4}s`,
+    animationDelay: `${Math.random() * 2}s`,
+  }));
+
   return (
-    <section
-      className="relative py-20 md:py-32 overflow-hidden"
-      aria-labelledby="hero-heading"
-    >
-      {/* Gradient + Circuit Background */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-accent/5 to-transparent" />
+    <section className="relative min-h-screen flex flex-col items-center justify-center pt-20 overflow-hidden">
+      {/* Subtle animated grid background */}
+      <div className="absolute inset-0 bg-dot-grid opacity-[0.04] pointer-events-none" />
+
+      {/* Radial blue glow behind heading */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(ellipse 800px 400px at 50% 30%, rgba(56,189,248,0.10) 0%, transparent 70%)",
+        }}
+      />
+
+      {/* Floating particles */}
+      {particles.map((p) => (
         <div
-          className="absolute inset-0 opacity-20"
+          key={p.id}
+          className="absolute w-1 h-1 bg-[#38BDF8] rounded-full opacity-0 pointer-events-none"
           style={{
-            backgroundImage: "url('/bg.jpg')", // add your circuit SVG in public/images
-            backgroundSize: "cover",
-            backgroundPosition: "center",
+            left: p.left,
+            top: p.top,
+            animation: `float ${p.animationDuration} ease-in-out infinite`,
+            animationDelay: p.animationDelay,
           }}
         />
-      </div>
+      ))}
 
-      <div className="container relative">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Heading */}
-          <h1
-            id="hero-heading"
-            className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-balance mb-6"
+      <div className="max-w-7xl mx-auto px-6 relative z-10 w-full flex-grow flex flex-col justify-center">
+        <motion.div
+          className="flex flex-col items-center text-center max-w-4xl mx-auto"
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          <motion.div variants={itemVariants} className="mb-8">
+            <Badge variant="eyebrow">✦ AI and automation — now live</Badge>
+          </motion.div>
+
+          <motion.h1
+            variants={itemVariants}
+            className="text-5xl md:text-7xl font-semibold tracking-[-0.04em] text-white leading-[1.1] mb-8"
           >
-            Elevate Your Business with{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">
-              Cutting-Edge Technology
-            </span>
-          </h1>
+            Technology that <span className="text-[#38BDF8]">elevates</span> your business
+          </motion.h1>
 
-          {/* Subheading */}
-          <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-2xl mx-auto leading-relaxed">
-            Transform your digital landscape with our innovative solutions. We
-            deliver scalable, secure, and intelligent technology that drives
-            growth and efficiency.
-          </p>
+          <motion.div
+            variants={itemVariants}
+            className="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed mb-10 h-[60px]"
+          >
+            {mounted && (
+              <TypeAnimation
+                sequence={[
+                  "We turn complex digital challenges into scalable solutions.",
+                  2000,
+                  "We build intelligent systems that learn and adapt.",
+                  2000,
+                  "We engineer bespoke solutions for ambitious businesses.",
+                  2000,
+                ]}
+                wrapper="span"
+                speed={50}
+                repeat={Infinity}
+              />
+            )}
+          </motion.div>
 
-          {/* CTA Button */}
-          <div className="flex justify-center">
-            <Button
-              size="lg"
-              className="bg-accent hover:bg-accent/90 text-accent-foreground shadow-lg rounded-xl px-8 py-6 text-lg"
-              aria-label="Start your journey with us"
-            >
-              Start Your Journey
-              <ArrowRight className="ml-2 h-5 w-5" aria-hidden="true" />
+          <motion.div variants={itemVariants} className="flex flex-col sm:flex-row items-center gap-4">
+            <Button size="lg" className="btn-primary rounded-full px-8 h-12 text-base font-medium border-0 before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-transparent before:via-[#38BDF8] before:to-transparent before:animate-shimmer before:opacity-30 before:rounded-full">
+              Start your journey
             </Button>
-          </div>
-        </div>
+            <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base border-white/10 hover:bg-white/5 transition-colors">
+              See our work <span className="ml-2">→</span>
+            </Button>
+          </motion.div>
+        </motion.div>
       </div>
+
+      {/* Scroll indicator */}
+      <motion.div 
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-slate-500 animate-bounce-slow"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 1 }}
+      >
+        <ArrowDown size={24} />
+      </motion.div>
     </section>
   );
 }

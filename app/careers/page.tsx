@@ -1,132 +1,161 @@
+// "use client";
+
+// import { motion } from "framer-motion";
+// import { fadeUp, stagger } from "@/lib/animations";
+// import { CultureGrid } from "@/components/careers/CultureGrid";
+// import { ApplicationProcess } from "@/components/careers/ApplicationProcess";
+// import { ApplicationForm } from "@/components/careers/ApplicationForm";
+
+// export default function CareersPage() {
+//   return (
+//     <>
+//       <section className="pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto text-center">
+//         <motion.div initial="hidden" animate="show" variants={stagger(0, 0.1)}>
+//           <motion.div variants={fadeUp} className="text-label mb-6">
+//             Join us
+//           </motion.div>
+//           <motion.h1 variants={fadeUp} className="text-white mb-6 max-w-4xl mx-auto">
+//             Build real things with a passionate team
+//           </motion.h1>
+//           <motion.p variants={fadeUp} className="text-text-2 text-lg md:text-xl max-w-3xl mx-auto">
+//             We&apos;re a young, ambitious company that ships real products for real clients. If you care deeply about your craft, we&apos;d love to meet you.
+//           </motion.p>
+//         </motion.div>
+//       </section>
+
+//       <CultureGrid />
+
+//       <section className="py-24 border-t border-border bg-surface-2/20">
+//         <div className="max-w-3xl mx-auto px-6 lg:px-12">
+//           <motion.div
+//             initial="hidden"
+//             whileInView="show"
+//             viewport={{ once: true, margin: "-50px" }}
+//             variants={fadeUp}
+//             className="text-center mb-10"
+//           >
+//             <h2 className="text-white mb-3">Open applications</h2>
+//             <p className="text-text-2 text-sm">
+//               No fixed roles open right now — but great people are always welcome. Submit your application below.
+//             </p>
+//           </motion.div>
+
+//           <motion.div
+//             initial="hidden"
+//             whileInView="show"
+//             viewport={{ once: true, margin: "-50px" }}
+//             variants={fadeUp}
+//           >
+//             <ApplicationForm />
+//           </motion.div>
+//         </div>
+//       </section>
+
+//       <ApplicationProcess />
+//     </>
+//   );
+// }
 "use client";
 
 import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { fadeUp, stagger } from "@/lib/animations";
+import { CultureGrid } from "@/components/careers/CultureGrid";
+import { ApplicationProcess } from "@/components/careers/ApplicationProcess";
+import { ApplicationForm } from "@/components/careers/ApplicationForm";
 
-type Job = {
-  id: number;
-  title: string;
-  location: string;
-  type: string;
-  description: string;
-  applyLink: string;
-};
-
-const jobs: Job[] = [
-  {
-    id: 1,
-    title: "Frontend Developer (React.js)",
-    location: "Remote / Pakistan",
-    type: "Internship / Full-Time",
-    description:
-      "Work on building responsive web applications with React.js, collaborate with designers and backend team.",
-    applyLink: "mailto:hr@elevaretech.site?subject=Application%20Frontend%20Developer",
-  },
-  {
-    id: 2,
-    title: "Backend Developer (Python/FastAPI)",
-    location: "Remote / Pakistan",
-    type: "Internship / Full-Time",
-    description:
-      "Develop and maintain scalable APIs, handle databases, and optimize backend services.",
-    applyLink: "mailto:hr@elevaretech.site?subject=Application%20Backend%20Developer",
-  },
-  {
-    id: 3,
-    title: "Flutter Developer",
-    location: "Remote / Pakistan",
-    type: "Internship / Full-Time",
-    description:
-      "Build cross-platform mobile applications, integrate APIs, and collaborate with design team.",
-    applyLink: "mailto:hr@elevaretech.site?subject=Application%20Flutter%20Developer",
-  },
-];
-
-export default function Careers() {
-  const [selectedJob, setSelectedJob] = useState<Job | null>(null);
+export default function CareersPage() {
+  const [formOpen, setFormOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 mt-16">
-      {/* Hero Section */}
-      <section className="text-center py-20 px-6 bg-gradient-to-r from-[#022f62] to-[#50b4f1] text-white">
-        <h1 className="text-5xl md:text-6xl font-bold mb-4">Join Our Team</h1>
-        <p className="max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
-          Elevare Tech is looking for passionate professionals and interns to build innovative software solutions.
-        </p>
+    <>
+      {/* Hero */}
+      <section className="pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto text-center">
+        <motion.div initial="hidden" animate="show" variants={stagger(0, 0.1)}>
+          <motion.div variants={fadeUp} className="text-label mb-6">
+            Join us
+          </motion.div>
+          <motion.h1 variants={fadeUp} className="text-white mb-6 max-w-4xl mx-auto">
+            Build real things with a passionate team
+          </motion.h1>
+          <motion.p
+            variants={fadeUp}
+            className="text-text-2 text-lg md:text-xl max-w-3xl mx-auto"
+          >
+            We&apos;re a young, ambitious company that ships real products for
+            real clients. If you care deeply about your craft, we&apos;d love to
+            meet you.
+          </motion.p>
+        </motion.div>
       </section>
 
-      {/* Why Work With Us */}
-      <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#022f62] mb-8 text-center">Why Work With Us</h2>
-        <div className="grid md:grid-cols-3 gap-8 text-center">
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="font-semibold text-xl mb-2">Innovative Projects</h3>
-            <p className="text-gray-700">Work on cutting-edge technologies and real-world projects that impact thousands of users.</p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="font-semibold text-xl mb-2">Career Growth</h3>
-            <p className="text-gray-700">Continuous learning, mentorship, and opportunities to advance your career in tech.</p>
-          </div>
-          <div className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition">
-            <h3 className="font-semibold text-xl mb-2">Flexible Environment</h3>
-            <p className="text-gray-700">Remote-friendly, flexible hours, and a supportive team culture to help you thrive.</p>
-          </div>
+      {/* Culture grid — unchanged */}
+      <CultureGrid />
+
+      {/* Open applications */}
+      <section className="py-24 border-t border-border bg-surface-2/20">
+        <div className="max-w-3xl mx-auto px-6 lg:px-12">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={fadeUp}
+            className="text-center mb-10"
+          >
+            <h2 className="text-white mb-3">Open applications</h2>
+            <p className="text-text-2 text-sm mb-8">
+              No fixed roles open right now — but great people are always
+              welcome.
+            </p>
+
+            {/* Button — hidden when form is open */}
+            <AnimatePresence>
+              {!formOpen && (
+                <motion.button
+                  key="apply-btn"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -8 }}
+                  transition={{ duration: 0.2 }}
+                  onClick={() => setFormOpen(true)}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-lg btn-primary text-white text-sm font-medium"
+                >
+                  Send an open application →
+                </motion.button>
+              )}
+            </AnimatePresence>
+          </motion.div>
+
+          {/* Form — slides down when open */}
+          <AnimatePresence>
+            {formOpen && (
+              <motion.div
+                key="application-form"
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.4, ease: "easeInOut" }}
+                className="overflow-hidden"
+              >
+                {/* Cancel button */}
+                <div className="flex justify-end mb-4">
+                  <button
+                    onClick={() => setFormOpen(false)}
+                    className="text-xs text-white/30 hover:text-white/60 transition-colors flex items-center gap-1.5"
+                  >
+                    ✕ Cancel
+                  </button>
+                </div>
+
+                <ApplicationForm />
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </section>
 
-      {/* Open Positions */}
-      <section className="py-16 px-6 max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-[#022f62] mb-8 text-center">Open Positions</h2>
-        <div className="grid md:grid-cols-3 gap-8">
-          {jobs.map((job) => (
-            <div
-              key={job.id}
-              className="bg-white p-6 rounded-xl shadow hover:shadow-lg transition cursor-pointer"
-              onClick={() => setSelectedJob(job)}
-            >
-              <h3 className="font-semibold text-xl mb-2">{job.title}</h3>
-              <p className="text-gray-600 mb-1">{job.location}</p>
-              <p className="text-gray-500 mb-3">{job.type}</p>
-              <button className="text-[#50b4f1] font-semibold underline">View Details</button>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* Job Modal */}
-      {selectedJob && (
-        <div className="fixed inset-0 shadow-2xl  flex items-center justify-center z-50">
-          <div className="bg-white p-8 rounded-xl max-w-lg w-full relative">
-            <button
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-800 font-bold text-xl"
-              onClick={() => setSelectedJob(null)}
-            >
-              ×
-            </button>
-            <h3 className="text-2xl font-bold text-[#022f62] mb-4">{selectedJob.title}</h3>
-            <p className="text-gray-600 mb-2">{selectedJob.location}</p>
-            <p className="text-gray-500 mb-4">{selectedJob.type}</p>
-            <p className="text-gray-700 mb-6">{selectedJob.description}</p>
-            <a
-              href={selectedJob.applyLink}
-              className="bg-[#022f62] hover:bg-[#50b4f1] text-white px-6 py-3 rounded font-semibold transition"
-            >
-              Apply Now
-            </a>
-          </div>
-        </div>
-      )}
-
-      {/* Call to Action */}
-      <section className="py-16 px-6 bg-gray-100 text-center">
-        <h2 className="text-3xl font-bold text-[#022f62] mb-4">Can't Find the Right Role?</h2>
-        <p className="text-gray-700 mb-6">Send us your resume and we’ll reach out when a position matches your skills.</p>
-        <a
-          href="mailto:hr@elevaretech.site?subject=General%20Application"
-          className="bg-[#022f62] hover:bg-[#50b4f1] text-white px-8 py-4 rounded font-semibold transition"
-        >
-          Submit Resume
-        </a>
-      </section>
-    </div>
+      {/* Application process — unchanged */}
+      <ApplicationProcess />
+    </>
   );
 }

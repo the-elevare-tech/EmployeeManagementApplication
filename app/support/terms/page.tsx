@@ -1,65 +1,81 @@
 "use client";
 
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
+import { COMPANY } from "@/lib/constants";
+
 export default function TermsOfService() {
+  const sections = [
+    {
+      title: "Acceptance of Terms",
+      body: "By accessing our website or using our services, you agree to these Terms of Service and applicable laws.",
+    },
+    {
+      title: "Services Provided",
+      body: "Elevare Tech provides software development, web and mobile applications, AI automation, data solutions, and related IT services as described on our website. Delivery is governed by project agreements.",
+    },
+    {
+      title: "Payment & Billing",
+      body: "Payment terms are specified in project agreements. Fees are due as agreed. Refunds are handled per the terms of each individual contract.",
+    },
+    {
+      title: "Intellectual Property",
+      body: "Unless explicitly assigned in a contract, Elevare Tech retains ownership of pre-existing tools, frameworks, and methodologies. Client-specific deliverables are assigned per project agreement.",
+    },
+    {
+      title: "Limitations of Liability",
+      body: "We are not liable for indirect or consequential damages arising from use of our services. Maximum liability is limited to fees paid for the specific service in question.",
+    },
+    {
+      title: "Changes to Terms",
+      body: "We may update these terms periodically. Continued use of our services after changes constitutes acceptance of the updated terms.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen mt-18 bg-gray-50 text-gray-800">
-      <section className="text-center py-16 px-6 bg-gray-100">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#022f62] mb-4">Terms of Service</h1>
-        <p className="max-w-2xl mx-auto text-gray-600 text-lg md:text-xl leading-relaxed">
-          These Terms of Service govern your use of our software development services. By using our services, you agree to these terms.
-        </p>
-      </section>
-
-      <section className="container mx-auto py-16 px-6 max-w-4xl space-y-8">
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">1. Acceptance of Terms</h2>
-          <p className="text-gray-700">
-            By accessing our website or using our services, you agree to comply with these Terms of Service and any applicable laws or regulations.
+    <div className="pt-28 pb-24 px-6 lg:px-12">
+      <div className="max-w-3xl mx-auto">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-12">
+          <p className="text-label mb-4">Legal</p>
+          <h1 className="text-white mb-4">Terms of Service</h1>
+          <p className="text-text-2 leading-relaxed">
+            These terms govern your use of Elevare Tech&apos;s website and services.
           </p>
-        </div>
+          <p className="text-text-3 text-sm mt-4">Last updated: January 2025</p>
+        </motion.div>
 
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">2. Services Provided</h2>
-          <p className="text-gray-700">
-            We provide software development, web and mobile application services, AI and data solutions, and other IT services as described on our website. Service delivery depends on project agreements and contracts.
-          </p>
-        </div>
+        <div className="space-y-10">
+          {sections.map((section, i) => (
+            <motion.div
+              key={section.title}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              transition={{ delay: i * 0.05 }}
+            >
+              <h2 className="text-white text-xl mb-3">{section.title}</h2>
+              <p className="text-text-2 leading-relaxed">{section.body}</p>
+            </motion.div>
+          ))}
 
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">3. Payment & Billing</h2>
-          <p className="text-gray-700">
-            Payment terms for services will be specified in project agreements. All fees are due as agreed and are non-refundable unless otherwise stated.
-          </p>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
+            <h2 className="text-white text-xl mb-3">Contact Us</h2>
+            <p className="text-text-2 leading-relaxed">
+              Questions about these terms? Visit our{" "}
+              <Link href="/contact" className="text-brand hover:underline">
+                contact page
+              </Link>{" "}
+              or email{" "}
+              <a href={`mailto:${COMPANY.email}`} className="text-brand hover:underline">
+                {COMPANY.email}
+              </a>
+              .
+            </p>
+          </motion.div>
         </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">4. Intellectual Property</h2>
-          <p className="text-gray-700">
-            All content, code, and materials provided by our company remain the property of our company unless explicitly assigned to the client through a contract.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">5. Limitations of Liability</h2>
-          <p className="text-gray-700">
-            We are not liable for any indirect, incidental, or consequential damages arising from the use of our services. Our maximum liability is limited to the fees paid for the services rendered.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">6. Changes to Terms</h2>
-          <p className="text-gray-700">
-            We may update these Terms of Service periodically. Changes will be posted on this page, and continued use of our services constitutes acceptance of the updated terms.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">7. Contact Us</h2>
-          <p className="text-gray-700">
-            For questions about these terms, contact us at <a href="mailto:info@elevaretech.site" className="text-[#50b4f1] underline">info@elevaretech.site</a>.
-          </p>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }

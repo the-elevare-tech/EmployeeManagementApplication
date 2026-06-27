@@ -1,33 +1,26 @@
-import { Button } from "@/components/ui/button"
-import { Mail } from "lucide-react"
-import Link from "next/link" // use react-router-dom's Link if using CRA
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export function CTASection() {
   return (
-    <section className="py-20 bg-gradient-to-r from-primary to-accent text-primary-foreground">
-      <div className="container">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-3xl md:text-4xl font-bold text-balance mb-6">
-            Ready to Transform Your Business?
-          </h2>
-          <p className="text-lg md:text-xl opacity-90 text-pretty mb-8 leading-relaxed">
-            Join hundreds of companies that trust Elevare Tech to deliver innovative solutions. 
-            Let's discuss how we can elevate your technology infrastructure.
-          </p>
-          <div className="flex justify-center">
-            <Link href="/contact">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white text-white hover:bg-white hover:text-primary bg-transparent"
-              >
-                <Mail className="mr-2 h-4 w-4" />
-                Contact Sales
-              </Button>
-            </Link>
-          </div>
+    <section className="bg-[#0C1929] py-24 border-y border-white/5">
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white mb-8">
+          Ready to transform your business?
+        </h2>
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <Link href="/contact">
+            <Button size="lg" className="rounded-full px-8 h-12 text-base w-full sm:w-auto">
+              Contact sales
+            </Button>
+          </Link>
+          <Link href="/projects">
+            <Button size="lg" variant="outline" className="rounded-full px-8 h-12 text-base w-full sm:w-auto">
+              View our projects <span className="ml-2">→</span>
+            </Button>
+          </Link>
         </div>
       </div>
     </section>
-  )
+  );
 }

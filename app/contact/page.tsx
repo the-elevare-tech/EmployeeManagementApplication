@@ -1,92 +1,112 @@
 "use client";
 
-import { useState } from "react";
-import emailjs from "@emailjs/browser";
-
-// Fetch EmailJS env variables
-const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
-const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!;
-const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!;
+import { motion } from "framer-motion";
+import { fadeUp, stagger } from "@/lib/animations";
+import { ContactForm } from "@/components/contact/ContactForm";
+import { FAQ } from "@/components/contact/FAQ";
+import { Mail, MapPin, Clock, Phone, Linkedin, Facebook, Zap } from "lucide-react";
+import { COMPANY } from "@/lib/constants";
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-  const [status, setStatus] = useState<string>("");
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.id]: e.target.value });
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setStatus("Sending...");
-
-    emailjs.send(SERVICE_ID, TEMPLATE_ID, formData, PUBLIC_KEY)
-      .then(() => {
-        setStatus("Message sent successfully!");
-        setFormData({ name: "", email: "", message: "" });
-      })
-      .catch(() => {
-        setStatus("Failed to send message. Please try again.");
-      });
-  };
-
   return (
-    <div className="min-h-screen bg-white text-gray-800 py-16 px-6 mt-10">
-      <h1 className="text-4xl md:text-5xl font-bold text-[#022f62] mb-6 text-center">
-        Contact Us
-      </h1>
-      <p className="text-center max-w-xl mx-auto text-gray-600 mb-12">
-        Have a question or need support? Fill out the form below and we'll get back to you as soon as possible.
-      </p>
+    <>
+      <section className="pb-24 max-w-7xl mx-auto px-6 lg:px-12 pt-32">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={stagger(0, 0.1)}
+            className="lg:col-span-5 space-y-10"
+          >
+            <motion.div variants={fadeUp}>
+              <h1 className="text-white mb-4">Get in touch</h1>
+              <p className="text-text-2 text-lg">
+                Whether you have a project in mind or a question about our services — reach out here. This is the only place to contact us directly.
+              </p>
+            </motion.div>
 
-      <form 
-        className="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow-lg space-y-6 border border-gray-200"
-        onSubmit={handleSubmit}
-      >
-        <div>
-          <label className="block mb-2 font-medium" htmlFor="name">Name</label>
-          <input 
-            type="text" 
-            id="name" 
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your Name" 
-            className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#50b4f1]"
-            required
-          />
+            <motion.div
+              variants={fadeUp}
+              className="inline-flex items-center gap-2 bg-brand/10 text-brand text-sm font-medium px-4 py-2 rounded-full border border-brand/20"
+            >
+              <Zap size={16} /> We typically respond within 24 hours
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="space-y-8">
+              
+
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
+                  <Phone className="text-brand" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium mb-1">Phone</h4>
+                  <a href={COMPANY.phoneHref} className="text-text-2 hover:text-brand transition-colors">
+                    {COMPANY.phone}
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
+                  <MapPin className="text-brand" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium mb-1">Location</h4>
+                  <p className="text-text-2">{COMPANY.location} · Serving clients globally</p>
+                </div>
+              </div>
+
+              <div className="flex gap-4">
+                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
+                  <Clock className="text-brand" size={20} />
+                </div>
+                <div>
+                  <h4 className="text-white font-medium mb-1">Availability</h4>
+                  <p className="text-text-2">{COMPANY.hours}</p>
+                </div>
+              </div>
+            </motion.div>
+
+            <motion.div variants={fadeUp} className="pt-6 border-t border-border">
+              <h4 className="text-white font-medium mb-4">Socials</h4>
+              <div className="flex items-center gap-4">
+                <a
+                  href={COMPANY.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-2 hover:text-brand transition-all hover:scale-125 border border-border"
+                  aria-label="LinkedIn"
+                >
+                  <Linkedin size={18} />
+                </a>
+                <a
+                  href={COMPANY.facebook}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-2 hover:text-brand transition-all hover:scale-125 border border-border"
+                  aria-label="Facebook"
+                >
+                  <Facebook size={18} />
+                </a>
+              </div>
+            </motion.div>
+          </motion.div>
+
+          <motion.div
+            initial="hidden"
+            whileInView="show"
+            viewport={{ once: true }}
+            variants={fadeUp}
+            className="lg:col-span-7"
+          >
+            <ContactForm />
+          </motion.div>
         </div>
-        <div>
-          <label className="block mb-2 font-medium" htmlFor="email">Email</label>
-          <input 
-            type="email" 
-            id="email" 
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Your Email" 
-            className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#50b4f1]"
-            required
-          />
-        </div>
-        <div>
-          <label className="block mb-2 font-medium" htmlFor="message">Message</label>
-          <textarea 
-            id="message" 
-            rows={5} 
-            value={formData.message}
-            onChange={handleChange}
-            placeholder="Your Message" 
-            className="w-full p-3 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-[#50b4f1]"
-            required
-          />
-        </div>
-        <button 
-          type="submit" 
-          className="w-full bg-[#50b4f1] text-white font-semibold py-3 rounded-md hover:bg-[#38a1e0] transition-colors"
-        >
-          Send Message
-        </button>
-        {status && <p className="text-center mt-2 text-green-500">{status}</p>}
-      </form>
-    </div>
+      </section>
+
+      <FAQ />
+    </>
   );
 }

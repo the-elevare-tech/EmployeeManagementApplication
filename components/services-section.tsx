@@ -1,136 +1,99 @@
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import {
-  Zap,
-  Code,
-  Database,
-  Smartphone,
-  MonitorSmartphone,
-  Palette,
-} from "lucide-react";
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+"use client";
 
-const services = [
-  {
-    icon: MonitorSmartphone,
-    title: "Web Development",
-    description:
-      "Modern, scalable websites and web applications tailored to your business needs.",
-  },
-  {
-    icon: Palette,
-    title: "UI/UX Design",
-    description:
-      "Intuitive and visually appealing designs focused on delivering seamless user experiences.",
-  },
-  {
-    icon: Zap,
-    title: "AI & Automation",
-    description:
-      "Intelligent automation and AI-powered solutions to streamline your workflows.",
-  },
-  {
-    icon: Code,
-    title: "Custom Development",
-    description:
-      "Tailored software solutions built to meet your specific business requirements.",
-  },
-  {
-    icon: Database,
-    title: "Data Analytics",
-    description:
-      "Transform raw data into actionable insights with advanced analytics platforms.",
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile Solutions",
-    description:
-      "Native and cross-platform mobile applications for iOS and Android.",
-  },
-];
+import { motion } from "framer-motion";
+import { Code2, Layout, Cpu, Wrench, BarChart3, Smartphone } from "lucide-react";
+import { Card, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { SectionTag } from "@/components/ui/section-tag";
 
 export function ServicesSection() {
-  return (
-    <section id="services" className="py-10 bg-muted/30 ">
-      <div className="container">
-        {/* Section Heading */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-balance mb-4">
-            Our Technology Services
-          </h2>
-          <p className="text-lg text-muted-foreground text-pretty max-w-2xl mx-auto">
-            Comprehensive technology solutions designed to accelerate your
-            digital transformation
-          </p>
-        </div>
+  const services = [
+    {
+      title: "Web development",
+      description: "Fast, secure, and scalable web applications tailored to your specific business needs and goals.",
+      icon: Code2,
+      color: "text-[#38BDF8]",
+    },
+    {
+      title: "UI/UX design",
+      description: "Intuitive, accessible, and stunning user experiences that delight your customers and drive engagement.",
+      icon: Layout,
+      color: "text-[#A78BFA]",
+    },
+    {
+      title: "AI and automation",
+      description: "Intelligent systems that automate workflows, generate insights, and propel your business forward.",
+      icon: Cpu,
+      color: "text-[#38BDF8]",
+    },
+    {
+      title: "Custom development",
+      description: "Bespoke software solutions engineered from the ground up to solve your most complex challenges.",
+      icon: Wrench,
+      color: "text-[#FCD34D]",
+    },
+    {
+      title: "Data analytics",
+      description: "Actionable insights and robust dashboards that turn your raw data into strategic business value.",
+      icon: BarChart3,
+      color: "text-[#34D399]",
+    },
+    {
+      title: "Mobile solutions",
+      description: "High-performance native and cross-platform mobile apps for iOS and Android devices.",
+      icon: Smartphone,
+      color: "text-[#FB7185]",
+    },
+  ];
 
-        {/* Service Cards */}
-        <div className="container w-full mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <Card
-                key={index}
-                className="h-full flex flex-col border-border hover:border-accent/60 transition-all duration-300 group hover:shadow-lg hover:-translate-y-1"
-              >
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" as const } },
+  };
+
+  return (
+    <section className="py-24 max-w-7xl mx-auto px-6" id="services">
+      <div className="mb-16">
+        <SectionTag>Services</SectionTag>
+        <h2 className="text-3xl md:text-5xl font-semibold tracking-[-0.03em] text-white">
+          Everything you need to go digital
+        </h2>
+      </div>
+
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+      >
+        {services.map((service, index) => {
+          const Icon = service.icon;
+          return (
+            <motion.div key={index} variants={cardVariants}>
+              <Card className="h-full group cursor-pointer border-transparent bg-[#161B24] border-white/5 transition-all hover:border-white/14">
                 <CardHeader>
-                  <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                    <service.icon className="h-6 w-6 text-accent" />
+                  <div className={`mb-6 p-3 rounded-xl bg-white/5 w-fit group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
+                    <Icon className="w-6 h-6" strokeWidth={1.5} />
                   </div>
-                  <CardTitle className="text-xl font-semibold">
-                    {service.title}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent className="flex-grow">
-                  <CardDescription className="text-base leading-relaxed">
+                  <CardTitle className="text-xl text-white mb-2">{service.title}</CardTitle>
+                  <CardDescription className="text-slate-400 text-base leading-relaxed">
                     {service.description}
                   </CardDescription>
-                </CardContent>
+                </CardHeader>
               </Card>
-            ))}
-          </div>
-        </div>
-
-        {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4 md:px-8">
-          {services.map((service, index) => (
-            <Card
-              key={index}
-              className="border-border hover:border-accent/60 transition-all duration-300 group hover:shadow-lg hover:-translate-y-1"
-            >
-              <CardHeader>
-                <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-                  <service.icon className="h-6 w-6 text-accent" />
-                </div>
-                <CardTitle className="text-xl font-semibold">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base leading-relaxed">
-                  {service.description}
-                </CardDescription>
-              </CardContent>
-            </Card>
-          ))}
-        </div> */}
-
-        {/* See More Button */}
-        <div className="mt-12 flex justify-center">
-          <Link href="/services">
-            <Button variant="outline" size="lg" className="group">
-              See More
-              <span className="ml-2 transition-transform group-hover:translate-x-1">
-                →
-              </span>
-            </Button>
-          </Link>
-        </div>
-      </div>
+            </motion.div>
+          );
+        })}
+      </motion.div>
     </section>
   );
 }

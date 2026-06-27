@@ -1,58 +1,77 @@
 "use client";
 
+import Link from "next/link";
+import { motion } from "framer-motion";
+import { fadeUp } from "@/lib/animations";
+import { COMPANY } from "@/lib/constants";
+
 export default function PrivacyPolicy() {
+  const sections = [
+    {
+      title: "Information We Collect",
+      body: "We collect information you provide when contacting us through our contact form — such as your name, email, company, and project details. We also collect anonymous usage data to improve our website.",
+    },
+    {
+      title: "How We Use Information",
+      body: "Information is used solely to respond to inquiries, deliver services, and improve our website. We do not sell your personal data to third parties.",
+    },
+    {
+      title: "Cookies & Tracking",
+      body: "We may use cookies and analytics tools to understand how visitors use our site. You can control cookie preferences through your browser settings.",
+    },
+    {
+      title: "Data Security",
+      body: "We implement industry-standard security measures to protect your data from unauthorized access, disclosure, or misuse.",
+    },
+    {
+      title: "Changes to This Policy",
+      body: "We may update this Privacy Policy from time to time. Updates will be posted on this page with a revised date.",
+    },
+  ];
+
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-800 mt-18">
-      <section className="text-center py-16 px-6 bg-gray-100">
-        <h1 className="text-4xl md:text-5xl font-bold text-[#022f62] mb-4">Privacy Policy</h1>
-        <p className="max-w-2xl mx-auto text-gray-600 text-lg md:text-xl leading-relaxed">
-          Your privacy is important to us. This Privacy Policy explains how we collect, use, and protect your information.
-        </p>
-      </section>
-
-      <section className="container mx-auto py-16 px-6 max-w-4xl space-y-8">
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">1. Information We Collect</h2>
-          <p className="text-gray-700">
-            We may collect personal information like your name, email, and company details when you contact us or use our services. We also collect non-personal information to improve our website and services.
+    <div className="pt-28 pb-24 px-6 lg:px-12">
+      <div className="max-w-3xl mx-auto">
+        <motion.div initial="hidden" animate="show" variants={fadeUp} className="mb-12">
+          <p className="text-label mb-4">Legal</p>
+          <h1 className="text-white mb-4">Privacy Policy</h1>
+          <p className="text-text-2 leading-relaxed">
+            Your privacy matters to us. This policy explains how Elevare Tech collects, uses, and protects your information.
           </p>
-        </div>
+          <p className="text-text-3 text-sm mt-4">Last updated: January 2025</p>
+        </motion.div>
 
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">2. How We Use Information</h2>
-          <p className="text-gray-700">
-            Information collected is used to provide our services, respond to inquiries, improve user experience, and communicate updates. We do not sell your data to third parties.
-          </p>
-        </div>
+        <div className="space-y-10">
+          {sections.map((section, i) => (
+            <motion.div
+              key={section.title}
+              initial="hidden"
+              whileInView="show"
+              viewport={{ once: true }}
+              variants={fadeUp}
+              transition={{ delay: i * 0.05 }}
+            >
+              <h2 className="text-white text-xl mb-3">{section.title}</h2>
+              <p className="text-text-2 leading-relaxed">{section.body}</p>
+            </motion.div>
+          ))}
 
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">3. Cookies & Tracking</h2>
-          <p className="text-gray-700">
-            We may use cookies and similar technologies to enhance website functionality and analyze usage patterns. You can control cookie preferences through your browser settings.
-          </p>
+          <motion.div initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp}>
+            <h2 className="text-white text-xl mb-3">Contact Us</h2>
+            <p className="text-text-2 leading-relaxed">
+              Questions about this policy? Reach us through our{" "}
+              <Link href="/contact" className="text-brand hover:underline">
+                contact page
+              </Link>{" "}
+              or email{" "}
+              <a href={`mailto:${COMPANY.email}`} className="text-brand hover:underline">
+                {COMPANY.email}
+              </a>
+              .
+            </p>
+          </motion.div>
         </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">4. Data Security</h2>
-          <p className="text-gray-700">
-            We implement industry-standard security measures to protect your data from unauthorized access, disclosure, or misuse.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">5. Changes to This Policy</h2>
-          <p className="text-gray-700">
-            We may update this Privacy Policy periodically. Updates will be posted on this page, and the date of revision will be noted.
-          </p>
-        </div>
-
-        <div>
-          <h2 className="text-2xl font-semibold text-[#022f62] mb-2">6. Contact Us</h2>
-          <p className="text-gray-700">
-            For questions about this policy, please contact us at <a href="mailto:info@elevaretech.site" className="text-[#50b4f1] underline">info@elevaretech.site</a>.
-          </p>
-        </div>
-      </section>
+      </div>
     </div>
   );
 }
