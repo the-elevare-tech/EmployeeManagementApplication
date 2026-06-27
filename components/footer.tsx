@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { Facebook, Linkedin, Youtube, Instagram } from "lucide-react";
 
 export function Footer() {
@@ -9,13 +10,15 @@ export function Footer() {
           {/* Logo and Description */}
           <div className="space-y-6">
             <div className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Elevare Tech"
-                width={140}
-                height={40}
-                className="h-12 w-auto"
-              />
+              <Link href="/">
+                <Image
+                  src="/logo.png"
+                  alt="Elevare Tech"
+                  width={140}
+                  height={40}
+                  className="h-12 w-auto"
+                />
+              </Link>
             </div>
             <p className="text-sm text-muted-foreground leading-relaxed text-justify">
               We empower businesses with innovative technology solutions,
@@ -63,36 +66,24 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Services</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a
-                  href="/services/cloud"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/services" className="hover:text-primary transition-colors">
                   Web Development
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/cybersecurity"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/services" className="hover:text-primary transition-colors">
                   UI/UX Design
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/ai-automation"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/services" className="hover:text-primary transition-colors">
                   AI & Automation
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/services/custom-development"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/services" className="hover:text-primary transition-colors">
                   Custom Development
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -102,36 +93,24 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Company</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a
-                  href="/about"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/about" className="hover:text-primary transition-colors">
                   About Us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/careers"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/careers" className="hover:text-primary transition-colors">
                   Careers
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/projects"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/projects" className="hover:text-primary transition-colors">
                   Projects
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/contact"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/contact" className="hover:text-primary transition-colors">
                   Contact
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -141,28 +120,19 @@ export function Footer() {
             <h3 className="font-semibold mb-4">Support</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
               <li>
-                <a
-                  href="/support/help-center"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/support/help-center" className="hover:text-primary transition-colors">
                   Help Center
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/support/privacy"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/support/privacy" className="hover:text-primary transition-colors">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="/support/terms"
-                  className="hover:text-primary transition-colors"
-                >
+                <Link href="/support/terms" className="hover:text-primary transition-colors">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
