@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { PROJECTS } from "@/lib/projects";
 
 const baseUrl = "https://www.elevaretech.site";
 
@@ -10,15 +11,23 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/projects", changeFrequency: "monthly" as const, priority: 0.8 },
     { path: "/careers", changeFrequency: "weekly" as const, priority: 0.8 },
     { path: "/contact", changeFrequency: "monthly" as const, priority: 0.9 },
-    { path: "/support/help-center", changeFrequency: "monthly" as const, priority: 0.5 },
     { path: "/support/privacy", changeFrequency: "yearly" as const, priority: 0.3 },
     { path: "/support/terms", changeFrequency: "yearly" as const, priority: 0.3 },
   ];
 
-  return publicPages.map(({ path, changeFrequency, priority }) => ({
+  const staticEntries = publicPages.map(({ path, changeFrequency, priority }) => ({
     url: `${baseUrl}${path}`,
     lastModified: new Date(),
     changeFrequency,
     priority,
   }));
+
+  const projectEntries = PROJECTS.map((project) => ({
+    url: `${baseUrl}/projects/${project.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
+  return [...staticEntries, ...projectEntries];
 }
