@@ -12,36 +12,42 @@ export function ServicesSection() {
       description: "Fast, secure, and scalable web applications tailored to your specific business needs and goals.",
       icon: Code2,
       color: "text-[#38BDF8]",
+      image: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "UI/UX design",
       description: "Intuitive, accessible, and stunning user experiences that delight your customers and drive engagement.",
       icon: Layout,
       color: "text-[#A78BFA]",
+      image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
     },
     {
-      title: "AI and automation",
-      description: "Intelligent systems that automate workflows, generate insights, and propel your business forward.",
+      title: "AI & Automation",
+      description: "Intelligent systems that automate workflows, develop custom AI agents, and reduce manual effort.",
       icon: Cpu,
       color: "text-[#38BDF8]",
+      image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "Custom development",
       description: "Bespoke software solutions engineered from the ground up to solve your most complex challenges.",
       icon: Wrench,
       color: "text-[#FCD34D]",
+      image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "Data analytics",
       description: "Actionable insights and robust dashboards that turn your raw data into strategic business value.",
       icon: BarChart3,
       color: "text-[#34D399]",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
     },
     {
       title: "Mobile solutions",
       description: "High-performance native and cross-platform mobile apps for iOS and Android devices.",
       icon: Smartphone,
       color: "text-[#FB7185]",
+      image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
     },
   ];
 
@@ -79,12 +85,25 @@ export function ServicesSection() {
           const Icon = service.icon;
           return (
             <motion.div key={index} variants={cardVariants}>
-              <Card className="h-full group cursor-pointer border-transparent bg-[#161B24] border-white/5 transition-all hover:border-white/14">
-                <CardHeader>
-                  <div className={`mb-6 p-3 rounded-xl bg-white/5 w-fit group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
-                    <Icon className="w-6 h-6" strokeWidth={1.5} />
+              <Card className="relative h-full min-h-[280px] group cursor-pointer border-transparent bg-[#161B24] border-white/5 transition-all hover:border-white/20 overflow-hidden">
+                {/* Background Image */}
+                <div className="absolute inset-0 z-0">
+                  <img 
+                    src={service.image} 
+                    alt={service.title} 
+                    className="w-full h-full object-cover opacity-40 group-hover:opacity-60 transition-all duration-700 group-hover:scale-105" 
+                  />
+                  <div className="absolute inset-0 bg-[#161B24]/70 group-hover:bg-[#161B24]/50 transition-colors duration-700" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#161B24] via-[#161B24]/60 to-transparent" />
+                </div>
+
+                <CardHeader className="relative z-10 flex flex-col h-full justify-end pb-8">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className={`p-3 rounded-xl bg-white/5 backdrop-blur-sm border border-white/10 group-hover:scale-110 transition-transform duration-300 ${service.color}`}>
+                      <Icon className="w-6 h-6" strokeWidth={1.5} />
+                    </div>
+                    <CardTitle className="text-xl text-white m-0">{service.title}</CardTitle>
                   </div>
-                  <CardTitle className="text-xl text-white mb-2">{service.title}</CardTitle>
                   <CardDescription className="text-slate-400 text-base leading-relaxed">
                     {service.description}
                   </CardDescription>

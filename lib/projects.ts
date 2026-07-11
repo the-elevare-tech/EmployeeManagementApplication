@@ -20,16 +20,78 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
+    slug: "ai-research-automation-platform",
+    title: "AI Research Automation Platform",
+    category: "Artificial Intelligence",
+    filterCategory: "AI",
+    year: "2026",
+    desc: "Multi-agent AI platform that automates research, analysis, and report generation with human approval workflows.",
+    longDesc:
+      "An enterprise-grade research automation platform powered by LangGraph and FastAPI. The system coordinates multiple AI agents to plan research tasks, gather information from the web, analyze findings, identify knowledge gaps, and generate structured reports with citations. A human-in-the-loop workflow ensures quality and control before final report delivery.",
+    tech: ["Python", "LangGraph", "FastAPI", "Groq", "Tavily", "PostgreSQL"],
+    accentColor: "#8B5CF6",
+    preview: {
+      type: "image",
+      src: "/projects/r.png",
+      alt: "AI Research Automation Platform",
+    },
+    gallery: [
+      { type: "image", src: "/projects/r1.png", alt: "Planner workflow" },
+      { type: "image", src: "/projects/r2.png", alt: "Generated report" },
+      { type: "image", src: "/projects/r3.png", alt: "Generated report" },
+      { type: "image", src: "/projects/r4.png", alt: "Generated report" },
+    ],
+    highlights: [
+      "Multi-agent orchestration",
+      "Human-in-the-loop approval",
+      "Automated web research",
+      "AI-generated reports with citations",
+    ],
+    results: [
+      { label: "AI Agents", value: "4" },
+      { label: "Research Workflow", value: "Automated" },
+      { label: "Report Quality", value: "Citation-Based" },
+    ],
+  },
+  {
+    slug: "enterprise-knowledge-platform",
+    title: "Enterprise Knowledge Platform",
+    category: "Artificial Intelligence",
+    filterCategory: "AI",
+    year: "2026",
+    desc: "Enterprise document intelligence platform using Retrieval-Augmented Generation for accurate AI-powered knowledge retrieval.",
+    longDesc:
+      "A Retrieval-Augmented Generation platform enabling organizations to search and interact with internal documents through natural language. Documents are processed, embedded, and stored in a vector database, allowing AI to provide accurate answers with source citations while reducing hallucinations.",
+    tech: ["Python", "FastAPI", "LangChain", "Qdrant", "Groq", "PostgreSQL"],
+    accentColor: "#3B82F6",
+    preview: {
+      type: "image",
+      src: "/projects/rag.png",
+      alt: "Enterprise Knowledge Platform",
+    },
+    highlights: [
+      "Document ingestion pipeline",
+      "Vector search with Qdrant",
+      "AI-powered question answering",
+      "Source citations for every response",
+    ],
+    results: [
+      { label: "Vector Search", value: "Semantic" },
+      { label: "Document Support", value: "PDF" },
+      { label: "Response Accuracy", value: "Citation-Based" },
+    ],
+  },
+  {
     slug: "resume-screener",
     title: "Infra - AI Resume Screener for Recruiters",
     category: "Web Development",
     filterCategory: "Web",
     year: "2025",
     desc: "AI-powered recruitment platform that automatically analyzes resumes, matches candidates to job descriptions, and explains hiring decisions using LLMs.",
-  
+
     longDesc:
       "Infra is an intelligent AI Resume Screener built to streamline the recruitment process. Recruiters can upload resumes individually or in bulk along with a job description. The system extracts structured candidate information, evaluates skills and experience against job requirements using Large Language Models, generates match scores with detailed reasoning, and ranks applicants automatically. The platform significantly reduces manual screening time while providing transparent AI-generated hiring insights.",
-  
+
     tech: [
       "Python",
       "FastAPI",
@@ -41,16 +103,16 @@ export const PROJECTS: Project[] = [
       "Redis",
       "TailwindCSS"
     ],
-  
+
     accentColor: "#2563EB",
-  
+
     preview: {
       type: "video",
       src: "/projects/infra.mp4",
     },
-  
-    
-  
+
+
+
     highlights: [
       "AI-powered resume parsing",
       "Job description matching",
@@ -63,7 +125,7 @@ export const PROJECTS: Project[] = [
       "Structured candidate extraction",
       "Production-ready architecture"
     ],
-  
+
     results: [
       {
         label: "Resume screening time",
@@ -85,12 +147,12 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     filterCategory: "Web",
     year: "2025",
-  
+
     desc: "AI-powered deepfake detection system that identifies manipulated videos using ConvNeXt-Tiny and provides visual explanations through Grad-CAM.",
-  
+
     longDesc:
       "DeepFake detector is an AI-based deepfake detection system designed to identify manipulated facial videos using deep learning. The system extracts representative video frames, preprocesses facial regions, and classifies videos as real or fake using a fine-tuned ConvNeXt-Tiny model. To improve transparency and trust, Grad-CAM visualizations highlight the regions that influenced the model's prediction, enabling users to understand why a video was classified as manipulated. The project focuses entirely on visual analysis without relying on audio or lip-sync features.",
-  
+
     tech: [
       "Python",
       "PyTorch",
@@ -101,15 +163,15 @@ export const PROJECTS: Project[] = [
       "Pandas",
       "Matplotlib"
     ],
-  
+
     accentColor: "#7C3AED",
-  
+
     preview: {
       type: "image",
       src: "/projects/deepfake-detection.png",
       alt: "Deepfake Detection Dashboard"
     },
-  
+
     gallery: [
       {
         type: "image",
@@ -127,7 +189,7 @@ export const PROJECTS: Project[] = [
         alt: "Grad-CAM Visualization"
       }
     ],
-  
+
     highlights: [
       "Visual-only deepfake detection",
       "ConvNeXt-Tiny transfer learning",
@@ -140,7 +202,7 @@ export const PROJECTS: Project[] = [
       "GPU-accelerated inference",
       "Research-oriented architecture"
     ],
-  
+
     results: [
       {
         label: "Detection",
@@ -222,12 +284,12 @@ export const PROJECTS: Project[] = [
     category: "Mobile Development",
     filterCategory: "Mobile",
     year: "2025",
-  
+
     desc: "AI-powered Flutter fitness app that creates personalized workout plans, tracks progress, and helps users achieve their fitness goals.",
-  
+
     longDesc:
       "FitAI is a cross-platform fitness application built with Flutter for Android and iOS. The app uses AI to generate personalized workout recommendations based on user goals, fitness level, and available equipment. Users can track workouts, monitor progress, view exercise demonstrations, and receive intelligent suggestions to improve consistency and performance. Firebase powers authentication, cloud storage, and real-time synchronization across devices.",
-  
+
     tech: [
       "Flutter",
       "Dart",
@@ -236,15 +298,15 @@ export const PROJECTS: Project[] = [
       "Provider",
       "SQLite"
     ],
-  
+
     accentColor: "#22C55E",
-  
+
     preview: {
       type: "image",
       src: "/projects/fitai-preview.png",
       alt: "FitAI Mobile App Dashboard"
     },
-  
+
     gallery: [
       {
         type: "image",
@@ -267,7 +329,7 @@ export const PROJECTS: Project[] = [
         alt: "Fitness Community"
       }
     ],
-  
+
     highlights: [
       "AI-generated workout plans",
       "Personalized fitness recommendations",
@@ -280,7 +342,7 @@ export const PROJECTS: Project[] = [
       "Cross-platform Flutter application",
       "Responsive mobile UI"
     ],
-  
+
     results: [
       {
         label: "Platforms",
@@ -302,12 +364,12 @@ export const PROJECTS: Project[] = [
     category: "Web Development",
     filterCategory: "Web",
     year: "2025",
-  
+
     desc: "Modern travel platform that helps users discover destinations, plan trips, and explore curated travel experiences.",
-  
+
     longDesc:
       "WanderBlaze is a modern travel planning platform designed to simplify trip discovery and itinerary planning. Users can explore destinations, browse curated travel packages, view detailed information about attractions, and organize personalized trips through an intuitive interface. Built with a responsive, performance-focused architecture, the platform delivers a seamless experience across desktop and mobile devices.",
-  
+
     tech: [
       "Next.js",
       "TypeScript",
@@ -316,14 +378,14 @@ export const PROJECTS: Project[] = [
       "Framer Motion",
       "Supabase"
     ],
-  
+
     accentColor: "#0EA5E9",
-  
+
     preview: {
       type: "video",
       src: "/projects/wanderblaze.mp4",
     },
-  
+
     highlights: [
       "Destination discovery",
       "Interactive travel packages",
@@ -336,7 +398,7 @@ export const PROJECTS: Project[] = [
       "Mobile-friendly design",
       "Scalable component architecture"
     ],
-  
+
     results: [
       {
         label: "Platform",
@@ -352,7 +414,7 @@ export const PROJECTS: Project[] = [
       }
     ]
   },
- 
+
   {
     slug: "business-intelligence-dashboard",
     title: "Business Intelligence Dashboards",
@@ -385,7 +447,7 @@ export const PROJECTS: Project[] = [
       { label: "Decision speed", value: "+40%" },
     ],
   },
-  
+
 ];
 
 export function getProjectBySlug(slug: string): Project | undefined {

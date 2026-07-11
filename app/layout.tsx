@@ -7,6 +7,7 @@ import { CursorGlow } from "@/components/layout/CursorGlow";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
+import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -96,7 +97,8 @@ export default function RootLayout({
           <main className="flex-1 mt-16">{children}</main>
         </PageTransition>
         <Footer />
-    <Analytics />
+        <WhatsAppButton />
+        <Analytics />
       </body>
     </html>
   );
