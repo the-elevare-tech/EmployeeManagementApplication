@@ -62,7 +62,7 @@ export default function TaskPage() {
   const getButtonLabel = (status: TaskStatus) => {
     if (status === "Pending") return "Start";
     if (status === "In Progress") return "Complete";
-    return "—";
+    return "-";
   };
 
   return (

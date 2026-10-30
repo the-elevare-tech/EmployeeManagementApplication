@@ -59,7 +59,7 @@ function ChatVisual() {
         </ul>
       </div>
       <div className="ml-auto w-fit rounded-2xl rounded-br-md bg-gradient-to-br from-brand-deep to-indigo px-3.5 py-2 text-white">
-        Looks good — send them
+        Looks good, send them
       </div>
       <div className="flex items-center gap-1 pl-1">
         {[0, 1, 2].map((i) => (
@@ -157,7 +157,7 @@ const services = [
   {
     id: "web-development",
     title: "Web development",
-    desc: "Marketing sites, portals and SaaS platforms on Next.js — fast, secure and easy for your team to update.",
+    desc: "Marketing sites, portals and SaaS platforms on Next.js. Fast, secure and easy for your team to update.",
     icon: Code2,
     visual: <CodeVisual />,
     span: "lg:col-span-2",
@@ -214,7 +214,7 @@ export function ServicesGrid() {
             <span className="text-silver">One team for your entire product</span>
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-lg text-text-2">
-            Design, engineering, AI and support under one roof — so nothing gets lost between agencies.
+            Design, engineering, AI and support under one roof, so nothing gets lost between agencies.
           </p>
         </div>
 

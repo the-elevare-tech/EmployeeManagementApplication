@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, type MotionValue } from "framer-motion";
 
 const TEXT =
-  "We're engineers from Faisalabad building software for companies around the world. We design it, build it, automate it and stand behind it — so you can focus on growing your business.";
+  "We're engineers from Faisalabad building software for companies around the world. We design it, build it, automate it and stand behind it, so you can focus on growing your business.";
 const ACCENT = new Set(["design", "build", "automate"]);
 
 function Word({ children, progress, range, accent }: { children: string; progress: MotionValue<number>; range: [number, number]; accent: boolean }) {

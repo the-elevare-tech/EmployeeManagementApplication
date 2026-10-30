@@ -13,7 +13,7 @@ export const COMPANY = {
   location: "Faisalabad, Pakistan",
   foundedYear: 2025,
   copyrightYear: new Date().getFullYear(),
-  hours: "2:00 PM – 12:00 AM PKT (UTC+5)",
+  hours: "2:00 PM to 12:00 AM PKT (UTC+5)",
   linkedin: "https://linkedin.com/company/elevare-tech",
   email: "hr@elevaretech.site",
   facebook: "https://facebook.com/people/Elevare-Tech/61579593726351",

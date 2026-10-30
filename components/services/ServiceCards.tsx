@@ -21,7 +21,7 @@ const services: Service[] = [
   {
     id: "web-development",
     title: "Web Development",
-    desc: "Fast, secure, and scalable web applications — from marketing sites to complex SaaS platforms.",
+    desc: "Fast, secure, and scalable web applications, from marketing sites to complex SaaS platforms.",
     features: ["Custom CMS", "SEO architecture", "PWA support", "Performance optimization"],
     tech: ["Next.js", "React", "Node.js", "PostgreSQL"],
     icon: Code2,
@@ -51,7 +51,7 @@ const services: Service[] = [
   {
     id: "custom-development",
     title: "Custom Development",
-    desc: "Bespoke software — ERPs, internal tools, marketplaces, and more.",
+    desc: "Bespoke software: ERPs, internal tools, marketplaces, and more.",
     features: ["Requirements analysis", "Agile sprints", "Documentation", "Handoff support"],
     tech: ["Python", "Django", "React", "PostgreSQL"],
     icon: Wrench,

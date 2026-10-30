@@ -181,7 +181,7 @@ export function CTAStrip() {
                 <span className="text-electric">Let&apos;s talk it through.</span>
               </h2>
               <p className="mx-auto mt-6 max-w-lg text-lg text-text-2 lg:mx-0">
-                Talk directly with our engineers. You&apos;ll leave with a rough plan, a timeline and a price range — whether or not
+                Talk directly with our engineers. You&apos;ll leave with a rough plan, a timeline and a price range, whether or not
                 you work with us.
               </p>
               <ul className="mx-auto mt-7 grid max-w-lg gap-2.5 text-left text-[15px] text-text-2 sm:grid-cols-2 lg:mx-0">

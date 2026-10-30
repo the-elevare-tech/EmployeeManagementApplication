@@ -14,7 +14,7 @@ export function MissionVision() {
     {
       icon: Eye,
       title: "Vision",
-      text: "A world where every business — regardless of size — has access to cutting-edge technology built to their exact needs.",
+      text: "A world where every business, regardless of size, has access to cutting-edge technology built to their exact needs.",
     },
     {
       icon: Heart,

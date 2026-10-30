@@ -9,15 +9,15 @@ export function FAQ() {
   const faqs = [
     {
       q: "How quickly can you start on a project?",
-      a: "Typically within 1–2 weeks of finalizing the scope and agreement."
+      a: "Typically within 1-2 weeks of finalizing the scope and agreement."
     },
     {
       q: "Do you work with international clients?",
-      a: "Yes — we serve clients globally and are comfortable with remote collaboration across time zones."
+      a: "Yes, we serve clients globally and are comfortable with remote collaboration across time zones."
     },
     {
       q: "What's your typical project timeline?",
-      a: "Small projects: 2–4 weeks. Medium: 1–3 months. Large/enterprise: 3–6 months. We'll give you a clear timeline before starting."
+      a: "Small projects: 2-4 weeks. Medium: 1-3 months. Large/enterprise: 3-6 months. We'll give you a clear timeline before starting."
     },
     {
       q: "Do you offer post-launch support?",
@@ -25,7 +25,7 @@ export function FAQ() {
     },
     {
       q: "How do you handle project pricing?",
-      a: "We offer fixed-price, milestone-based billing. You'll know the full cost upfront — no surprises."
+      a: "We offer fixed-price, milestone-based billing. You'll know the full cost upfront, with no surprises."
     }
   ];
 

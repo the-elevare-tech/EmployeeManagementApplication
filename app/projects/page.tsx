@@ -2,7 +2,7 @@
 
 import { PageHero } from "@/components/layout/PageHero";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/animations";
 import { CTAStrip } from "@/components/home/CTAStrip";
@@ -14,6 +14,13 @@ const FILTER_TABS = ["All", "Client work", "In-house products", ...Array.from(ne
 
 export default function ProjectsPage() {
   const [activeTab, setActiveTab] = useState<string>("All");
+
+  // Support links like /projects?tab=in-house or ?tab=client
+  useEffect(() => {
+    const t = new URLSearchParams(window.location.search).get("tab");
+    if (t === "in-house") setActiveTab("In-house products");
+    if (t === "client") setActiveTab("Client work");
+  }, []);
 
   const filteredProjects =
     activeTab === "All"

@@ -179,9 +179,9 @@
 //             <option value="" disabled>
 //               Select level
 //             </option>
-//             <option>0–1 years (Fresh / Junior)</option>
-//             <option>1–3 years (Mid-level)</option>
-//             <option>3–5 years (Senior)</option>
+//             <option>0-1 years (Fresh / Junior)</option>
+//             <option>1-3 years (Mid-level)</option>
+//             <option>3-5 years (Senior)</option>
 //             <option>5+ years (Lead)</option>
 //           </select>
 //           {errors.experience && <p className="text-coral text-xs mt-1">{errors.experience.message}</p>}
@@ -479,9 +479,9 @@ export function ApplicationForm() {
             <option value="" disabled>
               Select level
             </option>
-            <option>0–1 years</option>
-            <option>1–3 years</option>
-            <option>3–5 years</option>
+            <option>0-1 years</option>
+            <option>1-3 years</option>
+            <option>3-5 years</option>
             <option>5+ years</option>
           </select>
         </div>

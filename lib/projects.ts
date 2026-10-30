@@ -49,7 +49,7 @@ export const PROJECTS: Project[] = [
     ],
     results: [
       { label: "Languages", value: "8" },
-      { label: "Delivered", value: "Sep – Oct 2026" },
+      { label: "Delivered", value: "Sep to Oct 2026" },
       { label: "Status", value: "Live & handed over" },
     ],
     confidential: true,
@@ -61,9 +61,9 @@ export const PROJECTS: Project[] = [
     category: "Client Project · E-commerce",
     filterCategory: "Web",
     year: "2026",
-    desc: "An online tyre store for a company based in France — Next.js storefront, Django backend and an admin panel the team uses to run the business.",
+    desc: "An online tyre store for a company based in France, with a Next.js storefront, Django backend and an admin panel the team uses to run the business.",
     longDesc:
-      "An e-commerce platform for a company based in France that sells tyres online. The customer-facing storefront is built with Next.js, the business logic and data live in a Django backend, and an admin panel connected to the website lets the company's team manage products, prices, news and orders — every change appears on the storefront immediately. Client details are kept confidential.",
+      "An e-commerce platform for a company based in France that sells tyres online. The customer-facing storefront is built with Next.js, the business logic and data live in a Django backend, and an admin panel connected to the website lets the company's team manage products, prices, news and orders, and every change appears on the storefront immediately. Client details are kept confidential.",
     tech: ["Next.js", "React", "Django", "Python", "REST API"],
     accentColor: "#FCD34D",
     preview: { type: "image", src: "/projects/tyre-cover.webp", alt: "Online tyre store" },
@@ -81,7 +81,7 @@ export const PROJECTS: Project[] = [
     ],
     results: [
       { label: "Stack", value: "Next.js + Django" },
-      { label: "Delivered", value: "Nov 2025 – Feb 2026" },
+      { label: "Delivered", value: "Nov 2025 to Feb 2026" },
       { label: "Scope", value: "Store + backend + admin" },
     ],
     confidential: true,
@@ -95,7 +95,7 @@ export const PROJECTS: Project[] = [
     year: "2025",
     desc: "Zapier + Klaviyo lifecycle emails triggered by Shopify store events, built for a Shopify store owner in the USA.",
     longDesc:
-      "A lifecycle email marketing automation for a US-based Shopify store owner. Shopify webhook events (cart creation, orders, customer inactivity) flow through Zapier and a Python transformation layer into Klaviyo, triggering personalised sequences for abandoned carts, post-purchase follow-ups, win-backs and browse abandonment — within minutes of each customer action. Client details are kept confidential.",
+      "A lifecycle email marketing automation for a US-based Shopify store owner. Shopify webhook events (cart creation, orders, customer inactivity) flow through Zapier and a Python transformation layer into Klaviyo, triggering personalised sequences for abandoned carts, post-purchase follow-ups, win-backs and browse abandonment within minutes of each customer action. Client details are kept confidential.",
     tech: ["Zapier", "Klaviyo", "Shopify API", "Python", "HTML email"],
     accentColor: "#34D399",
     preview: { type: "image", src: "/projects/shopify-automation-cover.webp", alt: "Shopify → Zapier → Klaviyo automation flow" },
@@ -123,7 +123,7 @@ export const PROJECTS: Project[] = [
     year: "2025",
     desc: "A “Financial X-Ray” model that turns a fabrication company's monthly P&L into margins, cash flow, a weighted sales pipeline, a what-if simulator and a 7-chart dashboard.",
     longDesc:
-      "A financial decision-support model for an international steel fabrication and installation company with three divisions. From the company's Profit & Loss data across six cost categories, the model calculates monthly performance, forecasts the next 12 months, values the sales pipeline by win probability, and lets management test what-if changes to labor efficiency, material costs and headcount — all summarised on one KPI dashboard, with a data table ready for Power BI. Client details are kept confidential.",
+      "A financial decision-support model for an international steel fabrication and installation company with three divisions. From the company's Profit & Loss data across six cost categories, the model calculates monthly performance, forecasts the next 12 months, values the sales pipeline by win probability, and lets management test what-if changes to labor efficiency, material costs and headcount, all summarised on one KPI dashboard, with a data table ready for Power BI. Client details are kept confidential.",
     tech: ["Excel", "Financial Modeling", "What-If Analysis", "Named Ranges", "Excel Charts", "Power BI-ready data"],
     accentColor: "#FB923C",
     preview: { type: "image", src: "/projects/financial-model-cover.webp", alt: "Financial X-Ray KPI dashboard (sample data)" },

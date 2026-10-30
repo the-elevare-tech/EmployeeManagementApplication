@@ -17,8 +17,8 @@ const SERVICES = [
   ...SERVICE_LIST.map((x) => ({ value: x.title, label: x.short.charAt(0).toUpperCase() + x.short.slice(1), icon: x.icon })),
   { value: "Other", label: "Something else", icon: HelpCircle },
 ];
-const BUDGETS = ["Under $500", "$500 – $2,000", "$2,000 – $10,000", "$10,000+", "Let's discuss"];
-const TIMELINES = ["As soon as possible", "Within 1–3 months", "3+ months", "Just exploring"];
+const BUDGETS = ["Under $500", "$500 to $2,000", "$2,000 to $10,000", "$10,000+", "Let's discuss"];
+const TIMELINES = ["As soon as possible", "Within 1-3 months", "3+ months", "Just exploring"];
 
 const schema = z.object({
   from_name: z.string().min(2, "Please enter your name"),
@@ -27,7 +27,7 @@ const schema = z.object({
   service: z.string().min(1, "Choose the service you need"),
   budget: z.string().min(1, "Choose a budget range"),
   timeline: z.string().optional(),
-  message: z.string().min(20, "Tell us a little more — at least 20 characters"),
+  message: z.string().min(20, "Tell us a little more (at least 20 characters)"),
 });
 type FormData = z.infer<typeof schema>;
 

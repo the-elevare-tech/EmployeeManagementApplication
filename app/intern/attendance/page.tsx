@@ -355,7 +355,7 @@ export default function AttendancePage() {
                     <td className="py-2">{a.end}</td>
                     <td className="py-2">{a.hours}</td>
                     <td className="py-2">{a.tasksDone}</td>
-                    <td className="py-2">{a.note || "—"}</td>
+                    <td className="py-2">{a.note || "-"}</td>
                     <td className="py-2">
                       <div className="flex items-center gap-2">
                         <button

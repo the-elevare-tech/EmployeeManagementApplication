@@ -2,7 +2,7 @@ import Sidebar from "@/components/Sidebar";
 // import Header from "@/components/Header";
 
 /**
- * Internee layout — used for all /internee routes.
+ * Internee layout: used for all /internee routes.
  * Put this file at app/internee/layout.tsx
  */
 

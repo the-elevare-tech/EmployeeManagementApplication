@@ -1,11 +1,11 @@
 /**
- * Elevare Tech working hours: 2:00 PM – 12:00 AM PKT (UTC+5), every day.
- * That is 09:00 – 19:00 UTC. All conversions are computed live with Intl,
+ * Elevare Tech working hours: 2:00 PM to 12:00 AM PKT (UTC+5), every day.
+ * That is 09:00 to 19:00 UTC. All conversions are computed live with Intl,
  * so daylight saving in other cities is always correct.
  */
 export const OPEN_UTC_HOUR = 9;
 export const CLOSE_UTC_HOUR = 19;
-export const HOURS_LABEL = "2:00 PM – 12:00 AM PKT (UTC+5)";
+export const HOURS_LABEL = "2:00 PM to 12:00 AM PKT (UTC+5)";
 
 export const CITIES = [
   { city: "Faisalabad", zone: "Asia/Karachi", code: "PKT" },
@@ -25,9 +25,9 @@ export function formatTime(d: Date, timeZone?: string) {
   return new Intl.DateTimeFormat("en-US", { hour: "numeric", minute: "2-digit", timeZone }).format(d);
 }
 
-/** "2:00 PM – 12:00 AM" in the given zone (undefined = visitor's own zone). */
+/** "2:00 PM to 12:00 AM" in the given zone (undefined = visitor's own zone). */
 export function rangeIn(timeZone?: string, base = new Date()) {
-  return `${formatTime(todayAtUtc(OPEN_UTC_HOUR, base), timeZone)} – ${formatTime(todayAtUtc(CLOSE_UTC_HOUR, base), timeZone)}`;
+  return `${formatTime(todayAtUtc(OPEN_UTC_HOUR, base), timeZone)} to ${formatTime(todayAtUtc(CLOSE_UTC_HOUR, base), timeZone)}`;
 }
 
 export function isOpen(now = new Date()) {

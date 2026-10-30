@@ -23,7 +23,7 @@
 //   show: { transition: { staggerChildren: staggerAmt, delayChildren: delay } }
 // });
 
-// /** Alias — many components import this name */
+// /** Alias: many components import this name */
 // export const staggerContainer = stagger;
 import type { Variants } from "framer-motion";
 
@@ -97,5 +97,5 @@ export const stagger = (
   },
 });
 
-/** Alias — many components import this name */
+/** Alias: many components import this name */
 export const staggerContainer = stagger;

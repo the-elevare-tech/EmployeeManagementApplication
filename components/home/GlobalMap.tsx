@@ -121,7 +121,7 @@ export function GlobalMap({ className = "" }: { className?: string }) {
             <path key={i} d={d} fill="#6366F1" fillOpacity="0.16" stroke="#818CF8" strokeOpacity="0.35" strokeWidth="0.7" vectorEffect="non-scaling-stroke" />
           ))}
 
-          {/* Pakistan — home */}
+          {/* Pakistan: home */}
           <path d={SHAPES.PK} fill="#38BDF8" fillOpacity="0.38" stroke="#7DD3FC" strokeWidth="1.2" vectorEffect="non-scaling-stroke" filter={`url(#${uid}-glow)`} />
 
           {/* light band sweeping across the land */}

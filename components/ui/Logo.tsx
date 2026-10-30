@@ -1,5 +1,5 @@
 interface LogoProps {
-  /** Mark height in px — width scales from 43:49 aspect ratio */
+  /** Mark height in px: width scales from 43:49 aspect ratio */
   size?: number;
   className?: string;
   variant?: "nav" | "footer";

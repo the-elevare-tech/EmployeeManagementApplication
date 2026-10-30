@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!s) return {};
   return {
     title: { absolute: `${s.title} Services | Elevare Tech` },
-    description: `${s.tagline} ${s.summary} Elevare Tech — Faisalabad, Pakistan, serving clients worldwide.`,
+    description: `${s.tagline} ${s.summary} Elevare Tech, Faisalabad, Pakistan, serving clients worldwide.`,
     alternates: { canonical: `/services/${s.slug}` },
     openGraph: { title: `${s.title} | Elevare Tech`, description: s.tagline, images: [s.image ?? s.shot] },
   };

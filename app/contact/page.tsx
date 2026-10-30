@@ -17,9 +17,9 @@ const channels = [
 ];
 
 const nextSteps = [
-  { title: "We read your brief", desc: "An engineer reviews it — not a sales bot." },
+  { title: "We read your brief", desc: "An engineer reviews it, not a sales bot." },
   { title: "Reply within 24 hours", desc: "With questions or a time for a free call." },
-  { title: "Proposal in 2–3 days", desc: "Fixed scope, timeline and price." },
+  { title: "Proposal in 2-3 days", desc: "Fixed scope, timeline and price." },
 ];
 
 export default function ContactPage() {

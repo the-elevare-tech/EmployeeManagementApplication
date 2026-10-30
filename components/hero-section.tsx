@@ -80,7 +80,7 @@ export function HeroSection() {
           animate="visible"
         >
           <motion.div variants={itemVariants} className="mb-8">
-            <Badge variant="eyebrow">✦ AI and automation — now live</Badge>
+            <Badge variant="eyebrow">✦ AI and automation now live</Badge>
           </motion.div>
 
           <motion.h1

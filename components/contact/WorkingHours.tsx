@@ -55,7 +55,7 @@ export function WorkingHours() {
             <span className="text-text-2">
               {c.city} <span className="font-mono text-[11px] text-text-3">{c.code}</span>
             </span>
-            <span className="whitespace-nowrap font-mono text-[12px] text-text-1 sm:text-[13px]">{now ? rangeIn(c.zone, now) : "—"}</span>
+            <span className="whitespace-nowrap font-mono text-[12px] text-text-1 sm:text-[13px]">{now ? rangeIn(c.zone, now) : "-"}</span>
           </li>
         ))}
       </ul>

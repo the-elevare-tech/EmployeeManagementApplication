@@ -18,7 +18,7 @@ export function CultureGrid() {
     },
     {
       title: "Real ownership",
-      desc: "You'll own your work end-to-end — from scoping to deployment.",
+      desc: "You'll own your work end-to-end, from scoping to deployment.",
       icon: Rocket
     },
     {

@@ -22,7 +22,7 @@ type Intern = {
   name: string;
   tasksCompleted: number;
   tasksPending: number;
-  performance: number; // percentage 0–100
+  performance: number; // percentage 0-100
 };
 
 type Project = {

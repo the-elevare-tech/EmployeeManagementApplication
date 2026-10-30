@@ -151,7 +151,7 @@ export function HomeHero() {
           transition={{ duration: 0.8, delay: 0.25, ease }}
           className="mx-auto mt-7 max-w-2xl text-lg text-text-2 sm:text-xl"
         >
-          Web platforms, AI automation and mobile apps — engineered in Pakistan, shipped to clients across the Gulf,
+          Web platforms, AI automation and mobile apps, engineered in Pakistan, shipped to clients across the Gulf,
           Europe, North America and Australia.
         </motion.p>
 

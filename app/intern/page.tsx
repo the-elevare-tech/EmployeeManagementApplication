@@ -191,7 +191,7 @@ export default function InterneeDashboardPage() {
             {projects.length}
           </div>
           <div className="text-xs text-slate-400 mt-2">
-            Lead: {projects[0]?.leadName || "—"}
+            Lead: {projects[0]?.leadName || "-"}
           </div>
         </div>
       </section>

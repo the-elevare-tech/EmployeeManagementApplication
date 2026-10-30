@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
   const sections = [
     {
       title: "Information We Collect",
-      body: "We collect information you provide when contacting us through our contact form — such as your name, email, company, and project details. We also collect anonymous usage data to improve our website.",
+      body: "We collect information you provide when contacting us through our contact form, such as your name, email, company, and project details. We also collect anonymous usage data to improve our website.",
     },
     {
       title: "How We Use Information",

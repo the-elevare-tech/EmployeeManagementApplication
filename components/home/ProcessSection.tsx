@@ -16,7 +16,7 @@ const steps = [
   {
     icon: PenTool,
     title: "Design & prototype",
-    time: "Weeks 1–3",
+    time: "Weeks 1-3",
     desc: "Wireframes, then a clickable prototype. You approve every screen before code is written.",
     cmd: "elevare design --prototype",
     out: ["✓ 24 screens in Figma", "✓ Clickable prototype shared", "✓ Approved by you"],
@@ -24,7 +24,7 @@ const steps = [
   {
     icon: Code2,
     title: "Build in sprints",
-    time: "Weeks 3–10",
+    time: "Weeks 3-10",
     desc: "Short sprints with a working demo every week, so you always see real progress.",
     cmd: "elevare build --sprints 4 --demo weekly",
     out: ["✓ Sprint 1  auth + dashboard", "✓ Sprint 2  payments + admin", "✓ 312 tests passing"],
@@ -78,7 +78,7 @@ function Terminal({ active }: { active: number }) {
           <span className="h-2.5 w-2.5 rounded-full bg-amber/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-green/80" />
         </div>
-        <span className="font-mono text-xs text-text-3">~/your-project — zsh</span>
+        <span className="font-mono text-xs text-text-3">~/your-project: zsh</span>
         <span className="w-10" />
       </div>
       <div className="min-h-[380px] space-y-5 p-6 font-mono text-[13px] leading-6">

@@ -36,7 +36,7 @@
 //           >
 //             <h2 className="text-white mb-3">Open applications</h2>
 //             <p className="text-text-2 text-sm">
-//               No fixed roles open right now — but great people are always welcome. Submit your application below.
+//               No fixed roles open right now, but great people are always welcome. Submit your application below.
 //             </p>
 //           </motion.div>
 
@@ -78,7 +78,7 @@ export default function CareersPage() {
         description="We ship real products for real clients. If you care deeply about your craft, we would love to meet you."
       />
 
-      {/* Culture grid — unchanged */}
+      {/* Culture grid: unchanged */}
       <CultureGrid />
 
       {/* Open applications */}
@@ -93,11 +93,11 @@ export default function CareersPage() {
           >
             <h2 className="text-white mb-3">Open applications</h2>
             <p className="text-text-2 text-sm mb-8">
-              No fixed roles open right now — but great people are always
+              No fixed roles open right now, but great people are always
               welcome.
             </p>
 
-            {/* Button — hidden when form is open */}
+            {/* Button: hidden when form is open */}
             <AnimatePresence>
               {!formOpen && (
                 <motion.button
@@ -115,7 +115,7 @@ export default function CareersPage() {
             </AnimatePresence>
           </motion.div>
 
-          {/* Form — slides down when open */}
+          {/* Form: slides down when open */}
           <AnimatePresence>
             {formOpen && (
               <motion.div
@@ -143,7 +143,7 @@ export default function CareersPage() {
         </div>
       </section>
 
-      {/* Application process — unchanged */}
+      {/* Application process: unchanged */}
       <ApplicationProcess />
     </>
   );

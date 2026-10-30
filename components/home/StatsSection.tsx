@@ -3,11 +3,11 @@
 import { motion } from "framer-motion";
 import { BadgeDollarSign, MessagesSquare, MonitorPlay, LifeBuoy, ShieldCheck, Globe2 } from "lucide-react";
 
-/** "Why Elevare" — commitments, as a bento grid */
+/** "Why Elevare": commitments, as a bento grid */
 const items = [
   { icon: BadgeDollarSign, title: "Fixed price, agreed up front", desc: "A written scope and one number before work starts. Changes are quoted before they're made.", span: "md:col-span-2" },
   { icon: MessagesSquare, title: "Talk to the builders", desc: "No account managers. Your project lead is an engineer on the team.", span: "" },
-  { icon: MonitorPlay, title: "Weekly demos", desc: "Every sprint ends with something you can click through — not a status report.", span: "" },
+  { icon: MonitorPlay, title: "Weekly demos", desc: "Every sprint ends with something you can click through, not a status report.", span: "" },
   { icon: LifeBuoy, title: "30 days of support", desc: "Bug fixes and small changes after launch are included. Retainers are optional.", span: "" },
   { icon: ShieldCheck, title: "Built to scale", desc: "Clean, documented code on modern infrastructure that grows with you.", span: "" },
   { icon: Globe2, title: "Works in your time zone", desc: "PKT overlaps the Gulf, Europe and US mornings, so meetings fit your day.", span: "md:col-span-3" },
@@ -24,7 +24,7 @@ export function StatsSection() {
               <span className="text-silver">Small team. Senior work. No surprises.</span>
             </h2>
             <p className="mt-5 text-lg text-text-2">
-              Founded in 2025 by software engineers who wanted to work directly with clients — the way we&apos;d want an agency to
+              Founded in 2025 by software engineers who wanted to work directly with clients, the way we&apos;d want an agency to
               work with us.
             </p>
           </div>

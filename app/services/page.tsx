@@ -27,7 +27,7 @@ export default function ServicesPage() {
         label="What we do"
         title="End-to-end technology"
         highlight="services that ship."
-        description="Strategy, design, engineering, AI and support — ten services, one senior team, from first idea to production."
+        description="Strategy, design, engineering, AI and support. Ten services, one senior team, from first idea to production."
       >
         <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-2">
           {SERVICES.map((s) => {

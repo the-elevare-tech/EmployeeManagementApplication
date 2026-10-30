@@ -17,7 +17,7 @@ export function CEOMessage() {
         >
           <Quote className="text-brand w-12 h-12 absolute -top-4 -left-6 bg-bg px-2 opacity-50" />
           <p className="text-2xl md:text-3xl text-slate-300 leading-relaxed font-light mb-8">
-            "At Elevare Tech, we believe that technology should work for people — not the other way around. Every project we take on is a chance to make someone's business more efficient, more scalable, and more impactful. We're not just a vendor; we're a long-term partner in your growth."
+            "At Elevare Tech, we believe that technology should work for people, not the other way around. Every project we take on is a chance to make someone's business more efficient, more scalable, and more impactful. We're not just a vendor; we're a long-term partner in your growth."
           </p>
           
           <div className="flex items-center gap-4 mt-8">
