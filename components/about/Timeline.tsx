@@ -15,7 +15,7 @@ export function Timeline() {
 
   return (
     <section className="py-24 max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
-      <div className="relative pl-8 border-l border-white/10 space-y-12">
+      <div className="relative pl-8 border-l border-border space-y-12">
         {milestones.map((milestone, idx) => (
           <motion.div
             key={milestone.year}
@@ -26,9 +26,9 @@ export function Timeline() {
             className="relative"
           >
             {/* Timeline Dot */}
-            <div className="absolute -left-[37px] top-1.5 w-3 h-3 bg-[#38BDF8] rounded-full shadow-[0_0_12px_rgba(56,189,248,0.5)]" />
-            <h3 className="text-[#38BDF8] font-semibold text-xl mb-2">{milestone.year}</h3>
-            <p className="text-slate-400">{milestone.text}</p>
+            <div className="absolute -left-[37px] top-1.5 w-3 h-3 bg-brand rounded-full shadow-[0_0_12px_rgba(56,189,248,0.5)]" />
+            <h3 className="text-brand font-semibold text-xl mb-2">{milestone.year}</h3>
+            <p className="text-text-2">{milestone.text}</p>
           </motion.div>
         ))}
       </div>
@@ -38,26 +38,26 @@ export function Timeline() {
         whileInView="show"
         viewport={{ once: true }}
         variants={fadeUp}
-        className="card p-12 bg-[#161B24] border border-[#38BDF8]/20 rounded-3xl shadow-2xl relative overflow-hidden"
+        className="card p-12 bg-surface border border-brand/20 rounded-3xl shadow-2xl relative overflow-hidden"
       >
-        <div className="absolute inset-0 bg-gradient-to-br from-[#38BDF8]/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-transparent pointer-events-none" />
         <h3 className="text-2xl text-white font-medium mb-8">Our impact in numbers</h3>
         <ul className="space-y-6">
           <li className="flex items-center gap-4">
-            <span className="text-4xl text-[#38BDF8] font-bold">5</span>
-            <span className="text-slate-400 font-medium">years of building</span>
+            <span className="text-4xl text-brand font-bold">5</span>
+            <span className="text-text-2 font-medium">years of building</span>
           </li>
           <li className="flex items-center gap-4">
-            <span className="text-4xl text-[#38BDF8] font-bold">200+</span>
-            <span className="text-slate-400 font-medium">projects</span>
+            <span className="text-4xl text-brand font-bold">200+</span>
+            <span className="text-text-2 font-medium">projects</span>
           </li>
           <li className="flex items-center gap-4">
-            <span className="text-4xl text-[#38BDF8] font-bold">15+</span>
-            <span className="text-slate-400 font-medium">team members</span>
+            <span className="text-4xl text-brand font-bold">15+</span>
+            <span className="text-text-2 font-medium">team members</span>
           </li>
           <li className="flex items-center gap-4">
-            <span className="text-4xl text-[#38BDF8] font-bold">30+</span>
-            <span className="text-slate-400 font-medium">countries</span>
+            <span className="text-4xl text-brand font-bold">30+</span>
+            <span className="text-text-2 font-medium">countries</span>
           </li>
         </ul>
       </motion.div>

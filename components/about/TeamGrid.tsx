@@ -27,7 +27,7 @@ export function TeamGrid() {
           <h2 className="text-3xl md:text-4xl font-semibold text-white mb-4 tracking-[-0.02em]">
             The people behind the work
           </h2>
-          <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+          <p className="text-text-2 text-lg max-w-2xl mx-auto">
             Our team of specialists is dedicated to delivering excellence across every project.
           </p>
         </motion.div>
@@ -46,23 +46,23 @@ export function TeamGrid() {
                 hidden: { opacity: 0, rotateY: 90 },
                 show: { opacity: 1, rotateY: 0, transition: { duration: 0.5, ease: "easeOut" } }
               }}
-              className="card p-6 bg-[#161B24] border border-white/5 rounded-2xl card-hover flex flex-col items-center text-center"
+              className="card p-6 bg-surface border border-border rounded-2xl card-hover flex flex-col items-center text-center"
             >
-              <div className="w-24 h-24 rounded-full bg-[#1E2530] border-2 border-white/5 flex items-center justify-center text-white font-medium text-2xl mb-4 shrink-0 shadow-lg">
+              <div className="w-24 h-24 rounded-full bg-surface-2 border-2 border-border flex items-center justify-center text-white font-medium text-2xl mb-4 shrink-0 shadow-lg">
                 {member.initials}
               </div>
               <h3 className="text-lg font-semibold text-white mb-1">{member.name}</h3>
-              <p className="text-[#38BDF8] text-sm font-medium mb-4">{member.role}</p>
+              <p className="text-brand text-sm font-medium mb-4">{member.role}</p>
               
               <div className="flex gap-2 mb-6">
                 {member.skills.map(skill => (
-                  <span key={skill} className="px-3 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-white/10">
+                  <span key={skill} className="px-3 py-1 bg-white/5 text-slate-300 text-xs rounded-full border border-border">
                     {skill}
                   </span>
                 ))}
               </div>
 
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-slate-500 hover:text-[#38BDF8] transition-colors mt-auto">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-text-3 hover:text-brand transition-colors mt-auto">
                 <Linkedin size={20} />
               </a>
             </motion.div>

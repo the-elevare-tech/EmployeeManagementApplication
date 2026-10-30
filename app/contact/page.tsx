@@ -1,107 +1,148 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/lib/animations";
+import { Mail, MapPin, Phone, MessageCircle, Linkedin, Facebook, ArrowUpRight } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
+import { WorkingHours } from "@/components/contact/WorkingHours";
 import { FAQ } from "@/components/contact/FAQ";
-import { Mail, MapPin, Clock, Phone, Linkedin, Facebook, Zap } from "lucide-react";
-import { COMPANY } from "@/lib/constants";
+import { COMPANY, CONTACT } from "@/lib/constants";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const channels = [
+  { icon: Mail, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, external: false, wide: true },
+  { icon: MessageCircle, label: "WhatsApp", value: COMPANY.phone, href: CONTACT.whatsapp, external: true },
+  { icon: Phone, label: "Phone", value: COMPANY.phone, href: COMPANY.phoneHref, external: false },
+  { icon: MapPin, label: "Office", value: "Faisalabad, Pakistan · serving clients worldwide", href: undefined, external: false, wide: true },
+];
+
+const nextSteps = [
+  { title: "We read your brief", desc: "An engineer reviews it — not a sales bot." },
+  { title: "Reply within 24 hours", desc: "With questions or a time for a free call." },
+  { title: "Proposal in 2–3 days", desc: "Fixed scope, timeline and price." },
+];
 
 export default function ContactPage() {
   return (
     <>
-      <section className="pb-24 max-w-7xl mx-auto px-6 lg:px-12 pt-32">
-        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20">
+      <section className="relative -mt-16 overflow-hidden pt-36 pb-24 lg:pt-40">
+        <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+          <div className="aurora-drift absolute left-[5%] top-[10%] h-[380px] w-[380px] rounded-full bg-brand/15 blur-[110px]" />
+          <div className="aurora-drift-2 absolute right-[5%] top-[30%] h-[420px] w-[420px] rounded-full bg-indigo/20 blur-[120px]" />
+        </div>
+
+        <div className="container-x grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+          {/* left column */}
           <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={stagger(0, 0.1)}
-            className="lg:col-span-5 space-y-10"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease }}
+            className="order-2 min-w-0 space-y-8 lg:order-none lg:col-span-5"
           >
-            <motion.div variants={fadeUp}>
-              <h1 className="text-white mb-4">Get in touch</h1>
-              <p className="text-text-2 text-lg">
-                Whether you have a project in mind or a question about our services — reach out here. This is the only place to contact us directly.
+            <div className="hidden lg:block">
+              <span className="text-label">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_#38BDF8]" /> Contact
+              </span>
+              <h1 className="mt-5 text-[clamp(2.4rem,4.6vw,3.75rem)]">
+                <span className="text-silver">Let&apos;s build</span>
+                <br />
+                <span className="text-electric">something great.</span>
+              </h1>
+              <p className="mt-5 max-w-md text-lg text-text-2">
+                Tell us about your project, or ask a question. You&apos;ll hear back from an engineer, not a salesperson.
               </p>
-            </motion.div>
+            </div>
 
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 bg-brand/10 text-brand text-sm font-medium px-4 py-2 rounded-full border border-brand/20"
-            >
-              <Zap size={16} /> We typically respond within 24 hours
-            </motion.div>
-
-            <motion.div variants={fadeUp} className="space-y-8">
-              
-
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
-                  <Phone className="text-brand" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-white font-medium mb-1">Phone</h4>
-                  <a href={COMPANY.phoneHref} className="text-text-2 hover:text-brand transition-colors">
-                    {COMPANY.phone}
+            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+              {channels.map((c) => {
+                const Icon = c.icon;
+                const inner = (
+                  <>
+                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-brand/15 to-indigo/15 text-brand">
+                      <Icon size={17} />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-xs text-text-3">{c.label}</span>
+                      <span className="block break-words text-sm text-text-1">{c.value}</span>
+                    </span>
+                    {c.href && <ArrowUpRight size={15} className="shrink-0 text-text-3 transition-colors group-hover:text-brand" />}
+                  </>
+                );
+                const cls = `card group flex items-center gap-3 rounded-2xl p-3.5 ${"wide" in c && c.wide ? "sm:col-span-2" : ""}`;
+                return c.href ? (
+                  <a key={c.label} href={c.href} className={cls} {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
+                    {inner}
                   </a>
-                </div>
-              </div>
+                ) : (
+                  <div key={c.label} className={cls}>
+                    {inner}
+                  </div>
+                );
+              })}
+            </div>
 
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
-                  <MapPin className="text-brand" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-white font-medium mb-1">Location</h4>
-                  <p className="text-text-2">{COMPANY.location} · Serving clients globally</p>
-                </div>
-              </div>
+            <WorkingHours />
 
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-surface flex items-center justify-center shrink-0 border border-border">
-                  <Clock className="text-brand" size={20} />
-                </div>
-                <div>
-                  <h4 className="text-white font-medium mb-1">Availability</h4>
-                  <p className="text-text-2">{COMPANY.hours}</p>
-                </div>
-              </div>
-            </motion.div>
+            <div className="glass-strong rounded-2xl p-5">
+              <p className="font-medium text-text-1">What happens next</p>
+              <ol className="mt-4 space-y-4">
+                {nextSteps.map((s, i) => (
+                  <li key={s.title} className="flex gap-3">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand/40 bg-brand/10 font-mono text-[11px] text-brand">
+                      {i + 1}
+                    </span>
+                    <div>
+                      <p className="text-sm text-text-1">{s.title}</p>
+                      <p className="text-sm text-text-3">{s.desc}</p>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            </div>
 
-            <motion.div variants={fadeUp} className="pt-6 border-t border-border">
-              <h4 className="text-white font-medium mb-4">Socials</h4>
-              <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
+              <span className="text-sm text-text-3">Follow us</span>
+              {[
+                { icon: Linkedin, href: COMPANY.linkedin, label: "LinkedIn" },
+                { icon: Facebook, href: COMPANY.facebook, label: "Facebook" },
+              ].map(({ icon: Icon, href, label }) => (
                 <a
-                  href={COMPANY.linkedin}
+                  key={label}
+                  href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-2 hover:text-brand transition-all hover:scale-125 border border-border"
-                  aria-label="LinkedIn"
+                  aria-label={`Elevare Tech on ${label}`}
+                  className="flex h-9 w-9 items-center justify-center rounded-xl border border-border text-text-2 transition-colors hover:border-brand/50 hover:text-brand"
                 >
-                  <Linkedin size={18} />
+                  <Icon size={16} />
                 </a>
-                <a
-                  href={COMPANY.facebook}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full bg-surface flex items-center justify-center text-text-2 hover:text-brand transition-all hover:scale-125 border border-border"
-                  aria-label="Facebook"
-                >
-                  <Facebook size={18} />
-                </a>
-              </div>
-            </motion.div>
+              ))}
+            </div>
           </motion.div>
 
+          {/* form */}
           <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            variants={fadeUp}
-            className="lg:col-span-7"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease }}
+            className="order-1 min-w-0 lg:order-none lg:col-span-7"
           >
-            <ContactForm />
+            <div className="lg:sticky lg:top-24">
+            <div className="mb-8 lg:hidden">
+              <span className="text-label">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand shadow-[0_0_8px_#38BDF8]" /> Contact
+              </span>
+              <h1 className="mt-5 text-[clamp(2.4rem,4.6vw,3.75rem)]">
+                <span className="text-silver">Let&apos;s build</span>
+                <br />
+                <span className="text-electric">something great.</span>
+              </h1>
+              <p className="mt-5 max-w-md text-lg text-text-2">
+                Tell us about your project, or ask a question. You&apos;ll hear back from an engineer, not a salesperson.
+              </p>
+            </div>
+              <ContactForm />
+            </div>
           </motion.div>
         </div>
       </section>

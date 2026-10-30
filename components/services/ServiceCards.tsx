@@ -35,7 +35,7 @@ const services: Service[] = [
     features: ["User research", "Wireframing", "Prototyping", "Design systems"],
     tech: ["Figma", "Framer", "Adobe XD"],
     icon: Palette,
-    color: "#A78BFA",
+    color: "#818CF8",
     image: "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -45,7 +45,7 @@ const services: Service[] = [
     features: ["Custom AI Agents", "LLM integration", "n8n pipelines", "RAG systems"],
     tech: ["Python", "FastAPI", "LangChain", "n8n"],
     icon: Bot,
-    color: "#2DD4BF",
+    color: "#A78BFA",
     image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -55,7 +55,7 @@ const services: Service[] = [
     features: ["Requirements analysis", "Agile sprints", "Documentation", "Handoff support"],
     tech: ["Python", "Django", "React", "PostgreSQL"],
     icon: Wrench,
-    color: "#FCD34D",
+    color: "#38BDF8",
     image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -65,7 +65,7 @@ const services: Service[] = [
     features: ["ETL pipelines", "Interactive dashboards", "KPI tracking", "Predictive analytics"],
     tech: ["Python", "Metabase", "Power BI", "SQL"],
     icon: BarChart3,
-    color: "#34D399",
+    color: "#818CF8",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
   },
   {
@@ -75,7 +75,7 @@ const services: Service[] = [
     features: ["Flutter cross-platform", "Push notifications", "App Store deployment", "Offline support"],
     tech: ["Flutter", "React Native", "Firebase"],
     icon: Smartphone,
-    color: "#FB7185",
+    color: "#A78BFA",
     image: "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80",
   },
 ];
@@ -102,7 +102,7 @@ export function ServiceCards() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true, margin: "-60px" }}
-        className="grid grid-cols-1 md:grid-cols-2 gap-5"
+        className="grid grid-cols-1 md:grid-cols-2 gap-4"
       >
         {services.map((service, index) => {
           const Icon = service.icon;
@@ -113,9 +113,8 @@ export function ServiceCards() {
               key={service.id}
               id={service.id}
               variants={fadeUp}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20 }}
-              className="card group rounded-xl overflow-hidden border border-white/8 bg-surface relative scroll-mt-24"
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+              className="card group rounded-3xl overflow-hidden relative scroll-mt-28"
             >
               <AnimatePresence>
                 {isHighlighted && (
@@ -124,54 +123,44 @@ export function ServiceCards() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.3 }}
-                    className="absolute inset-0 z-20 pointer-events-none rounded-xl border-2 border-[#38BDF8]"
+                    className="absolute inset-0 z-20 pointer-events-none rounded-3xl border-2 border-brand"
                     style={{ boxShadow: "0 0 25px rgba(56, 189, 248, 0.35) inset, 0 0 25px rgba(56, 189, 248, 0.35)" }}
                   />
                 )}
               </AnimatePresence>
 
               <div
-                className="h-24 flex items-center gap-4 px-5 relative overflow-hidden bg-[#0F1117]"
+                className="h-24 flex items-center gap-4 px-6 relative overflow-hidden border-b border-border"
               >
-                {/* Background Image Layer */}
-                {service.image && (
-                  <img
-                    src={service.image}
-                    alt={service.title}
-                    className="absolute inset-0 w-full h-full object-cover opacity-[0.95] mix-blend-overlay group-hover:opacity-[1] transition-all duration-700 group-hover:scale-105"
-                  />
-                )}
-
-                {/* Color overlay gradient */}
                 <div
-                  className="absolute inset-0 opacity-80"
-                  style={{ background: `linear-gradient(135deg, ${service.color}30 0%, #0F1117 100%)` }}
+                  className="absolute inset-0 opacity-70"
+                  style={{ background: `radial-gradient(120% 140% at 0% 0%, ${service.color}26 0%, transparent 60%)` }}
                 />
 
                 {/* Subtle radial grid */}
                 <div
-                  className="absolute inset-0 opacity-[0.03]"
+                  className="absolute inset-0 opacity-[0.04]"
                   style={{
-                    backgroundImage: "radial-gradient(circle, white 1px, transparent 1px)",
-                    backgroundSize: "20px 20px",
+                    backgroundImage: "linear-gradient(to right, white 1px, transparent 1px), linear-gradient(to bottom, white 1px, transparent 1px)",
+                    backgroundSize: "28px 28px",
                   }}
                 />
 
                 <div
-                  className="w-11 h-11 rounded-lg flex items-center justify-center shrink-0 relative z-10 transition-transform duration-200 group-hover:scale-110 group-hover:-rotate-3"
+                  className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0 relative z-10"
                   style={{ background: `${service.color}22`, border: `1px solid ${service.color}44` }}
                 >
                   <Icon size={22} style={{ color: service.color }} />
                 </div>
-                <h2 className="text-lg font-semibold text-white relative z-10">{service.title}</h2>
+                <h2 className="text-xl font-semibold tracking-tight text-text-1 relative z-10">{service.title}</h2>
               </div>
 
-              <div className="p-5 pt-4">
-                <p className="text-sm text-text-2 leading-relaxed mb-4">{service.desc}</p>
+              <div className="p-6">
+                <p className="text-[15px] text-text-2 leading-relaxed mb-5">{service.desc}</p>
 
                 <ul className="grid grid-cols-2 gap-1.5 mb-4">
                   {service.features.map((f) => (
-                    <li key={f} className="text-xs text-text-2 flex items-center gap-1.5">
+                    <li key={f} className="text-[13px] text-text-2 flex items-center gap-2">
                       <span className="w-1 h-1 rounded-full shrink-0" style={{ background: service.color }} />
                       {f}
                     </li>
@@ -180,7 +169,7 @@ export function ServiceCards() {
 
                 <div className="flex flex-wrap gap-1.5 mb-4">
                   {service.tech.map((t) => (
-                    <span key={t} className="text-[11px] px-2 py-0.5 rounded bg-surface-2 text-text-2">
+                    <span key={t} className="text-[11px] px-2 py-0.5 rounded-md border border-border bg-white/[0.03] text-text-2">
                       {t}
                     </span>
                   ))}

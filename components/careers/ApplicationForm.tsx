@@ -37,7 +37,7 @@
 
 // function inputClass(hasError?: boolean) {
 //   return `w-full px-4 py-3 rounded-lg bg-surface-2 border text-sm text-white placeholder-white/25 outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/15 ${
-//     hasError ? "border-coral/60" : "border-white/8 hover:border-white/16"
+//     hasError ? "border-coral/60" : "border-border hover:border-white/16"
 //   }`;
 // }
 
@@ -130,7 +130,7 @@
 //   return (
 //     <form
 //       onSubmit={handleSubmit(onSubmit)}
-//       className="rounded-2xl border border-white/8 bg-surface p-6 md:p-8 space-y-5"
+//       className="rounded-2xl border border-border bg-surface p-6 md:p-8 space-y-5"
 //       id="apply"
 //     >
 //       <div>
@@ -260,7 +260,7 @@
 //       <button
 //         type="submit"
 //         disabled={status === "sending"}
-//         className="w-full py-3.5 rounded-lg btn-primary text-white font-medium text-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
+//         className="w-full py-3.5 rounded-lg btn-primary font-medium text-sm flex items-center justify-center gap-2 disabled:opacity-60 disabled:cursor-not-allowed"
 //       >
 //         {status === "sending" ? (
 //           <>
@@ -317,7 +317,7 @@ type FormData = z.infer<typeof schema>;
 
 function inputClass(hasError?: boolean) {
   return `w-full px-4 py-3 rounded-lg bg-surface-2 border text-sm text-white placeholder-white/25 outline-none transition-all duration-200 focus:border-brand focus:ring-2 focus:ring-brand/15 ${
-    hasError ? "border-coral/60" : "border-white/8 hover:border-white/16"
+    hasError ? "border-coral/60" : "border-border hover:border-white/16"
   }`;
 }
 
@@ -390,7 +390,7 @@ export function ApplicationForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl border border-white/8 bg-surface p-6 md:p-8 space-y-5"
+      className="rounded-2xl border border-border bg-surface p-6 md:p-8 space-y-5"
     >
       <div>
         <h3 className="text-lg font-semibold text-white mb-1">
@@ -560,7 +560,7 @@ export function ApplicationForm() {
       <button
         type="submit"
         disabled={status === "sending"}
-        className="w-full py-3.5 rounded-lg btn-primary text-white font-medium text-sm flex items-center justify-center gap-2"
+        className="w-full py-3.5 rounded-lg btn-primary font-medium text-sm flex items-center justify-center gap-2"
       >
         {status === "sending" ? (
           <>

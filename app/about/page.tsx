@@ -1,202 +1,181 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { fadeUp, stagger, slideLeft, scaleIn } from "@/lib/animations";
-import { FEATURES } from "@/lib/constants";
+import CountUp from "react-countup";
+import { Target, Eye, Gem, ScanEye, Zap, Handshake, Lightbulb, MapPin } from "lucide-react";
+import { PageHero } from "@/components/layout/PageHero";
+import { GlobalMap } from "@/components/home/GlobalMap";
+import { StatsSection } from "@/components/home/StatsSection";
 import { CTAStrip } from "@/components/home/CTAStrip";
-import { CheckCircle2 } from "lucide-react";
+
+const ease = [0.22, 1, 0.36, 1] as const;
+
+const stats = [
+  { end: 2025, label: "Founded", plain: true },
+  { end: 15, suffix: "+", label: "Projects shipped" },
+  { end: 7, label: "Countries served" },
+  { end: 6, label: "Service lines" },
+];
+
+const milestones = [
+  { when: "2025", title: "Founded in Faisalabad", desc: "Started by software engineers who wanted to work directly with clients." },
+  { when: "2025", title: "First products shipped", desc: "Web apps, mobile apps and AI tools delivered for our first clients." },
+  { when: "2025", title: "Going international", desc: "First clients in the UAE, Saudi Arabia, the UK and North America." },
+  { when: "2026", title: "15+ projects, 7 countries", desc: "AI agents, RAG platforms, dashboards and SaaS products in production." },
+  { when: "Next", title: "Scaling our AI practice", desc: "More automation, more agents, and a bigger team in Pakistan.", next: true },
+];
+
+const values = [
+  { icon: Gem, title: "Quality", desc: "We don't ship until it's right." },
+  { icon: ScanEye, title: "Transparency", desc: "No hidden costs, no surprises." },
+  { icon: Zap, title: "Speed", desc: "We move fast without cutting corners." },
+  { icon: Handshake, title: "Partnership", desc: "Your success is our success." },
+  { icon: Lightbulb, title: "Innovation", desc: "Always learning, always improving." },
+];
+
+const reveal = {
+  initial: { opacity: 0, y: 24 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-60px" },
+  transition: { duration: 0.6, ease },
+};
 
 export default function AboutPage() {
-  const timeline = [
-    { year: "2025", desc: "Founded with a mission to deliver world-class tech solutions" },
-    { year: "2025", desc: "First 15+ projects delivered across web, mobile, and AI" },
-    { year: "2025", desc: "Serving clients in Pakistan and internationally" },
-  ];
-
-  const values = [
-    { title: "Quality", desc: "We don't ship until it's right" },
-    { title: "Transparency", desc: "No hidden costs, no surprises" },
-    { title: "Speed", desc: "We move fast without cutting corners" },
-    { title: "Partnership", desc: "Your success is our success" },
-    { title: "Innovation", desc: "Always learning, always improving" },
-  ];
-
-  const whyUs = [
-    "Fixed-price projects — know your cost upfront",
-    "Delivered on time — every time",
-    "Post-launch support included (30 days)",
-    "Direct communication — no account managers in the way",
-    "Modern tech stack — no outdated tools",
-    "Small team, big commitment — you're never just a ticket number",
-  ];
-
   return (
     <>
-      {/* Hero */}
-      <section className="pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto text-center">
-        <motion.div initial="hidden" animate="show" variants={stagger(0, 0.1)}>
-          <motion.div variants={fadeUp} className="inline-block px-3 py-1 rounded-full border border-brand/20 bg-brand/5 text-brand text-xs font-medium mb-6">
-            About us
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-white mb-6 max-w-4xl mx-auto">
-            We build technology that moves businesses forward
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-text-2 text-lg md:text-xl max-w-3xl mx-auto">
-            Founded in 2025 in Faisalabad, Pakistan — Elevare Tech is a full-service technology partner for businesses that want to grow through modern technology.
-          </motion.p>
-        </motion.div>
-      </section>
-
-      {/* Timeline */}
-      <section className="py-24 bg-surface-2/20 border-y border-border">
-        <div className="max-w-3xl mx-auto px-6 lg:px-12">
-          <motion.h2
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={fadeUp}
-            className="text-white mb-12 text-center"
-          >
-            Our story
-          </motion.h2>
-
-          <div className="relative border-l border-brand/30 ml-4 md:ml-1/2 space-y-12 pb-8">
-            {timeline.map((item, i) => (
-              <motion.div
-                key={i}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: "-50px" }}
-                variants={slideLeft}
-                className="relative pl-8 md:pl-12"
-              >
-                <div className="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-surface border-2 border-brand" />
-                <h3 className="text-brand text-xl md:text-2xl font-bold mb-2">{item.year}</h3>
-                <p className="text-text-1 text-base md:text-lg">{item.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+      <PageHero
+        label="About us"
+        title="We build technology that"
+        highlight="moves businesses forward."
+        description="Founded in 2025 in Faisalabad, Pakistan — Elevare Tech is a full-service technology partner for businesses that want to grow through modern software."
+      >
+        <div className="glass-strong mx-auto grid max-w-3xl grid-cols-2 overflow-hidden rounded-2xl sm:grid-cols-4">
+          {stats.map((s, i) => (
+            <div key={s.label} className={`flex flex-col-reverse px-5 py-5 ${i > 0 ? "sm:border-l" : ""} ${i % 2 ? "border-l" : ""} ${i > 1 ? "border-t sm:border-t-0" : ""} border-white/10`}>
+              <dt className="mt-1 text-xs text-text-3">{s.label}</dt>
+              <dd className="font-display text-2xl font-semibold tracking-tight text-text-1 sm:text-3xl">
+                {s.plain ? s.end : <CountUp end={s.end} duration={2} enableScrollSpy scrollSpyOnce />}
+                {s.suffix && <span className="text-brand">{s.suffix}</span>}
+              </dd>
+            </div>
+          ))}
         </div>
-      </section>
+      </PageHero>
 
-      {/* Optional CEO Message */}
-      {FEATURES.SHOW_CEO_MESSAGE && (
-        <section className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true }}
-            className="relative rounded-2xl border border-white/8 bg-surface p-8 md:p-10 my-16"
-          >
-            <div className="absolute left-0 top-8 bottom-8 w-1 rounded-full bg-brand" />
-            <div className="text-6xl text-brand/20 font-serif leading-none mb-4">&ldquo;</div>
-            <p className="text-lg text-white/80 leading-relaxed italic mb-6 max-w-2xl">
-              At Elevare Tech, we believe great technology should be accessible to every business —
-              not just enterprises. Every project we take on is a commitment to quality, transparency,
-              and long-term partnership. We started in 2025 with a simple idea: build things that
-              actually work for the people using them.
-            </p>
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-brand/20 flex items-center justify-center text-brand font-semibold text-sm">
-                ET
-              </div>
-              <div>
-                <p className="text-white font-medium text-sm">[Founder Name]</p>
-                <p className="text-slate-400 text-xs">Founder & CEO, Elevare Tech · Faisalabad, 2025</p>
-              </div>
+      {/* Story + milestones */}
+      <section className="py-20 lg:py-28">
+        <div className="container-x grid gap-14 lg:grid-cols-2 lg:gap-20">
+          <motion.div {...reveal}>
+            <span className="text-label">Our story</span>
+            <h2 className="mt-5">
+              <span className="text-silver">Engineers first. Partners always.</span>
+            </h2>
+            <div className="mt-6 space-y-5 text-lg text-text-2">
+              <p>
+                Elevare Tech began in Faisalabad in 2025 with a simple idea: businesses deserve software that actually works for the
+                people using it — built by engineers they can talk to directly.
+              </p>
+              <p>
+                Since then we&apos;ve shipped 15+ products across web, mobile, AI and data, for clients from Pakistan to the Gulf,
+                Europe, North America and Australia.
+              </p>
+              <p>
+                We stay small on purpose. Every project gets senior attention, a fixed price, and a team that cares how it turns out.
+              </p>
             </div>
           </motion.div>
-        </section>
-      )}
 
-      {/* Mission / Vision / Values */}
-      <section className="py-24 bg-bg border-y border-border">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="grid md:grid-cols-2 gap-12 mb-20">
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-              <h3 className="text-brand text-sm uppercase tracking-widest font-semibold mb-4">Mission</h3>
-              <p className="text-white text-xl md:text-2xl leading-relaxed">
-                To deliver world-class technology solutions that empower businesses of all sizes to compete in the digital age.
-              </p>
-            </motion.div>
-            <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp}>
-              <h3 className="text-brand text-sm uppercase tracking-widest font-semibold mb-4">Vision</h3>
-              <p className="text-white text-xl md:text-2xl leading-relaxed">
-                A future where every business has access to cutting-edge technology built to their exact needs.
-              </p>
-            </motion.div>
-          </div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger(0, 0.1)}
-            className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-6"
-          >
-            {values.map((val, i) => (
-              <motion.div key={i} variants={fadeUp} className="card bg-surface p-6 rounded-xl border border-border flex flex-col items-center text-center">
-                <h4 className="text-white mb-2">{val.title}</h4>
-                <p className="text-text-2 text-sm">{val.desc}</p>
-              </motion.div>
+          <motion.ol {...reveal} className="glass-strong relative rounded-3xl p-6 sm:p-8">
+            <div aria-hidden className="absolute bottom-12 left-[2.35rem] top-12 w-px bg-gradient-to-b from-brand via-indigo to-transparent sm:left-[2.85rem]" />
+            {milestones.map((m, i) => (
+              <motion.li
+                key={m.title}
+                initial={{ opacity: 0, x: -12 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative flex gap-5 py-4"
+              >
+                <span
+                  className={`relative z-10 mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border ${
+                    m.next ? "border-dashed border-text-3 bg-surface" : "border-brand/60 bg-surface shadow-[0_0_14px_rgba(56,189,248,0.6)]"
+                  }`}
+                >
+                  <span className={`h-2 w-2 rounded-full ${m.next ? "bg-text-3" : "bg-brand"}`} />
+                </span>
+                <div>
+                  <p className="font-mono text-xs text-brand">{m.when}</p>
+                  <h3 className="mt-1 text-lg text-text-1">{m.title}</h3>
+                  <p className="mt-1 text-[15px] text-text-2">{m.desc}</p>
+                </div>
+              </motion.li>
             ))}
+          </motion.ol>
+        </div>
+      </section>
+
+      {/* Mission / vision */}
+      <section className="border-t border-border py-20 lg:py-28">
+        <div className="container-x grid gap-4 md:grid-cols-2">
+          {[
+            { icon: Target, label: "Mission", text: "To deliver world-class technology solutions that empower businesses of all sizes to compete in the digital age." },
+            { icon: Eye, label: "Vision", text: "A future where every business has access to cutting-edge technology built to their exact needs." },
+          ].map((m, i) => {
+            const Icon = m.icon;
+            return (
+              <motion.div key={m.label} {...reveal} transition={{ ...reveal.transition, delay: i * 0.1 }} className="ring-conic card relative overflow-hidden rounded-3xl p-8 sm:p-10">
+                <div aria-hidden className="absolute -right-16 -top-16 h-56 w-56 rounded-full bg-brand/15 blur-3xl" />
+                <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-brand-deep to-indigo text-white shadow-[0_10px_30px_-8px_rgba(99,102,241,0.8)]">
+                  <Icon size={22} />
+                </span>
+                <p className="mt-8 font-mono text-xs text-brand">{m.label}</p>
+                <p className="mt-3 font-display text-2xl font-medium leading-snug tracking-tight text-text-1 sm:text-[1.75rem]">{m.text}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+
+        <div className="container-x mt-4 grid grid-cols-2 gap-4 md:grid-cols-5">
+          {values.map((v, i) => {
+            const Icon = v.icon;
+            return (
+              <motion.div
+                key={v.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.07 }}
+                data-tilt="8"
+                className={`tilt card rounded-3xl p-6 ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}
+              >
+                <Icon size={22} className="text-brand" />
+                <h3 className="mt-6 text-lg text-text-1">{v.title}</h3>
+                <p className="mt-1 text-sm text-text-2">{v.desc}</p>
+              </motion.div>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* Where we work */}
+      <section className="border-t border-border py-20 lg:py-28">
+        <div className="container-x">
+          <div className="mx-auto mb-12 max-w-2xl text-center">
+            <span className="text-label">
+              <MapPin size={12} /> Where we work
+            </span>
+            <h2 className="mt-5">
+              <span className="text-silver">Built in Pakistan.</span> <span className="text-electric">Used worldwide.</span>
+            </h2>
+            <p className="mt-4 text-lg text-text-2">Our team works from Faisalabad, with clients across seven countries and four continents.</p>
+          </div>
+          <motion.div {...reveal} className="glass-strong rounded-3xl px-2 py-8 sm:px-10 sm:py-12">
+            <GlobalMap />
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-24">
-        <div className="max-w-4xl mx-auto px-6 lg:px-12">
-          <motion.div initial="hidden" whileInView="show" viewport={{ once: true, margin: "-50px" }} variants={fadeUp} className="text-center mb-16">
-            <h2 className="text-white">Why choose us</h2>
-          </motion.div>
-          
-          <motion.div
-            initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, margin: "-50px" }}
-            variants={stagger(0, 0.1)}
-            className="grid md:grid-cols-2 gap-x-12 gap-y-6"
-          >
-            {whyUs.map((reason, i) => (
-              <motion.div key={i} variants={slideLeft} className="flex items-start gap-4">
-                <CheckCircle2 className="text-brand shrink-0 mt-1" size={20} />
-                <span className="text-text-1 text-lg">{reason}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Optional Team Section */}
-      {FEATURES.SHOW_TEAM_SECTION && (
-        <section className="py-24 bg-surface-2/20 border-t border-border">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 text-center">
-            <motion.h2 initial="hidden" whileInView="show" viewport={{ once: true }} variants={fadeUp} className="text-white mb-12">
-              Meet the team
-            </motion.h2>
-            <motion.div
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              variants={stagger(0, 0.1)}
-              className="grid grid-cols-2 md:grid-cols-4 gap-8"
-            >
-              {["Founder & CEO", "Lead Developer", "UI/UX Designer", "AI Engineer"].map((role, i) => (
-                <motion.div key={i} variants={fadeUp} className="flex flex-col items-center">
-                  <div className="w-24 h-24 rounded-full bg-surface border border-border flex items-center justify-center text-text-2 font-semibold text-2xl mb-4">
-                    {role.split(" ").map(w => w[0]).join("").substring(0,2)}
-                  </div>
-                  <h4 className="text-white mb-1">Team Member</h4>
-                  <p className="text-brand text-xs uppercase tracking-widest">{role}</p>
-                </motion.div>
-              ))}
-            </motion.div>
-          </div>
-        </section>
-      )}
-
+      <StatsSection />
       <CTAStrip />
     </>
   );

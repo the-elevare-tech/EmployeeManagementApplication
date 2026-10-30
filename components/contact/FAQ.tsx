@@ -32,7 +32,7 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="py-24 border-t border-white/5">
+    <section className="py-24 border-t border-border">
       <div className="max-w-3xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -57,7 +57,7 @@ export function FAQ() {
             <motion.div
               key={index}
               variants={fadeUp}
-              className="bg-[#161B24] border border-white/5 rounded-xl overflow-hidden"
+              className="bg-surface border border-border rounded-xl overflow-hidden"
             >
               <button
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
@@ -65,7 +65,7 @@ export function FAQ() {
               >
                 <span className="text-lg font-medium text-slate-200">{faq.q}</span>
                 <ChevronDown 
-                  className={`w-5 h-5 text-slate-500 transition-transform duration-300 ${openIndex === index ? "rotate-180 text-[#38BDF8]" : ""}`} 
+                  className={`w-5 h-5 text-text-3 transition-transform duration-300 ${openIndex === index ? "rotate-180 text-brand" : ""}`} 
                 />
               </button>
               <AnimatePresence>
@@ -76,7 +76,7 @@ export function FAQ() {
                     exit={{ height: 0, opacity: 0 }}
                     transition={{ duration: 0.3 }}
                   >
-                    <div className="px-6 pb-6 text-slate-400 leading-relaxed border-t border-white/5 pt-4">
+                    <div className="px-6 pb-6 text-text-2 leading-relaxed border-t border-border pt-4">
                       {faq.a}
                     </div>
                   </motion.div>

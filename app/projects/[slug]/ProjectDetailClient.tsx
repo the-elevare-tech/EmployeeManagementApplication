@@ -45,6 +45,18 @@ export default function ProjectDetailClient({ slug }: ProjectDetailClientProps) 
               {project.category}
             </span>
             <span className="text-text-3 text-sm">{project.year}</span>
+            {!project.confidential && (
+              <span className="inline-flex items-center gap-2 rounded-full border border-violet/30 bg-violet/10 px-2.5 py-1 text-xs font-medium text-violet">
+                <span className="h-1.5 w-1.5 rounded-full bg-violet" />
+                In-house product · built by our team
+              </span>
+            )}
+            {project.confidential && project.client && (
+              <span className="inline-flex items-center gap-2 rounded-full border border-green/30 bg-green/10 px-2.5 py-1 text-xs font-medium text-green">
+                {project.client.code ? <img src={`https://flagcdn.com/20x15/${project.client.code}.png`} alt="" width={16} height={12} className="rounded-[2px]" /> : <span className="h-1.5 w-1.5 rounded-full bg-brand" />}
+                Real client · {project.client.country} · identity kept confidential
+              </span>
+            )}
           </motion.div>
 
           <motion.h1 variants={fadeUp} className="text-white mb-4">

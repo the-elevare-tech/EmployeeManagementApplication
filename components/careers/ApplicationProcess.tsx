@@ -24,7 +24,7 @@ export function ApplicationProcess() {
   ];
 
   return (
-    <section className="py-24 bg-[#161B24]/50 border-t border-white/5">
+    <section className="py-24 bg-surface/50 border-t border-border">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           initial="hidden"
@@ -46,7 +46,7 @@ export function ApplicationProcess() {
           className="grid md:grid-cols-3 gap-8 relative"
         >
           {/* Connecting line for desktop */}
-          <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-[#38BDF8]/30 to-transparent" />
+          <div className="hidden md:block absolute top-8 left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-brand/30 to-transparent" />
 
           {steps.map((step, i) => (
             <motion.div
@@ -54,11 +54,11 @@ export function ApplicationProcess() {
               variants={fadeUp}
               className="text-center relative z-10"
             >
-              <div className="w-16 h-16 mx-auto bg-[#0F1117] border border-[#38BDF8]/30 rounded-full flex items-center justify-center mb-6 text-[#38BDF8] shadow-[0_0_20px_rgba(56,189,248,0.15)]">
+              <div className="w-16 h-16 mx-auto bg-bg border border-brand/30 rounded-full flex items-center justify-center mb-6 text-brand shadow-[0_0_20px_rgba(56,189,248,0.15)]">
                 <step.icon size={24} />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">{step.title}</h3>
-              <p className="text-slate-400">{step.desc}</p>
+              <p className="text-text-2">{step.desc}</p>
             </motion.div>
           ))}
         </motion.div>

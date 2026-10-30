@@ -16,9 +16,133 @@ export interface Project {
   gallery?: ProjectMedia[];
   highlights: string[];
   results: { label: string; value: string }[];
+  /** Real client work shown without the client's identity */
+  confidential?: boolean;
+  client?: { country: string; code?: string };
 }
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "uae-visa-consultancy-website",
+    title: "Multilingual Website for a UAE Visa & Residency Consultancy",
+    category: "Client Project · Web",
+    filterCategory: "Web",
+    year: "2026",
+    desc: "Rebuilt a consultancy's WordPress site as a fast Next.js platform in 8 languages, with an admin panel for publishing articles and automatic translation.",
+    longDesc:
+      "A complete rebuild of a UAE visa and residency consultancy's website, moving it from WordPress to a custom Next.js codebase. The new site serves visitors in 8 languages including Arabic (right-to-left), lets the client publish articles without a developer, and a GitHub Actions workflow automatically translates every new article into all site languages and redeploys on Vercel. Client details are kept confidential.",
+    tech: ["Next.js", "TypeScript", "Tailwind CSS", "next-intl", "Framer Motion", "GitHub Actions", "Vercel"],
+    accentColor: "#38BDF8",
+    preview: { type: "image", src: "/projects/uae-visa-cover.webp", alt: "UAE visa consultancy website" },
+    gallery: [
+      { type: "image", src: "/projects/uae-visa-home.webp", alt: "Home page with animated hero (client details removed)" },
+      { type: "image", src: "/projects/uae-visa-golden-visa.webp", alt: "Golden Visa page built from a shared service template" },
+      { type: "image", src: "/projects/uae-visa-mainland.webp", alt: "Business setup page with pricing and licence details" },
+    ],
+    highlights: [
+      "8 languages with a language switcher, including Arabic right-to-left",
+      "Admin panel for publishing articles without a developer",
+      "Automatic translation of new articles via GitHub Actions",
+      "Golden Visa hub and route pages built from one shared template",
+      "Animated sections, live counters and a daily-updating licence section",
+      "All company details kept in a single typed data file",
+    ],
+    results: [
+      { label: "Languages", value: "8" },
+      { label: "Delivered", value: "Sep – Oct 2026" },
+      { label: "Status", value: "Live & handed over" },
+    ],
+    confidential: true,
+    client: { country: "UAE", code: "ae" },
+  },
+  {
+    slug: "tyre-ecommerce-platform",
+    title: "E-commerce Store & Admin Panel for an Online Tyre Retailer",
+    category: "Client Project · E-commerce",
+    filterCategory: "Web",
+    year: "2026",
+    desc: "An online tyre store for a company based in France — Next.js storefront, Django backend and an admin panel the team uses to run the business.",
+    longDesc:
+      "An e-commerce platform for a company based in France that sells tyres online. The customer-facing storefront is built with Next.js, the business logic and data live in a Django backend, and an admin panel connected to the website lets the company's team manage products, prices, news and orders — every change appears on the storefront immediately. Client details are kept confidential.",
+    tech: ["Next.js", "React", "Django", "Python", "REST API"],
+    accentColor: "#FCD34D",
+    preview: { type: "image", src: "/projects/tyre-cover.webp", alt: "Online tyre store" },
+    gallery: [
+      { type: "image", src: "/projects/tyre-shop-home.webp", alt: "Home page: shop by tyre category (client details removed)" },
+      { type: "image", src: "/projects/tyre-shop-catalog.webp", alt: "Tyre catalogue with filters and add-to-cart" },
+      { type: "image", src: "/projects/tyre-shop-news.webp", alt: "News and promotions managed from the admin panel" },
+    ],
+    highlights: [
+      "Next.js storefront for browsing a large tyre catalogue",
+      "Django backend serving products and orders through an API",
+      "Admin panel connected to the website for day-to-day management",
+      "Changes in the admin panel appear on the storefront instantly",
+      "French-language storefront for the client's customers",
+    ],
+    results: [
+      { label: "Stack", value: "Next.js + Django" },
+      { label: "Delivered", value: "Nov 2025 – Feb 2026" },
+      { label: "Scope", value: "Store + backend + admin" },
+    ],
+    confidential: true,
+    client: { country: "France", code: "fr" },
+  },
+  {
+    slug: "shopify-email-marketing-automation",
+    title: "Shopify Email Marketing Automation",
+    category: "Client Project · Automation",
+    filterCategory: "AI & Automation",
+    year: "2025",
+    desc: "Zapier + Klaviyo lifecycle emails triggered by Shopify store events, built for a Shopify store owner in the USA.",
+    longDesc:
+      "A lifecycle email marketing automation for a US-based Shopify store owner. Shopify webhook events (cart creation, orders, customer inactivity) flow through Zapier and a Python transformation layer into Klaviyo, triggering personalised sequences for abandoned carts, post-purchase follow-ups, win-backs and browse abandonment — within minutes of each customer action. Client details are kept confidential.",
+    tech: ["Zapier", "Klaviyo", "Shopify API", "Python", "HTML email"],
+    accentColor: "#34D399",
+    preview: { type: "image", src: "/projects/shopify-automation-cover.webp", alt: "Shopify → Zapier → Klaviyo automation flow" },
+    highlights: [
+      "Real-time, event-driven email triggers via Shopify webhooks",
+      "Abandoned cart sequence with product reminders",
+      "Post-purchase follow-ups with cross-sell recommendations",
+      "Win-back campaigns at 30 / 60 / 90 days of inactivity",
+      "Python layer that normalises Shopify payloads and buffers events during flash sales",
+      "A/B-testable subject lines and send timing in Klaviyo",
+    ],
+    results: [
+      { label: "Abandoned carts recovered", value: "12%" },
+      { label: "Repeat purchase rate", value: "18%" },
+      { label: "Manual work", value: "Zero · runs 24/7" },
+    ],
+    confidential: true,
+    client: { country: "USA", code: "us" },
+  },
+  {
+    slug: "financial-model-kpi-dashboard",
+    title: "Financial Model & KPI Dashboard for a Steel Fabrication Company",
+    category: "Client Project · Data & Analytics",
+    filterCategory: "Custom",
+    year: "2025",
+    desc: "A “Financial X-Ray” model that turns a fabrication company's monthly P&L into margins, cash flow, a weighted sales pipeline, a what-if simulator and a 7-chart dashboard.",
+    longDesc:
+      "A financial decision-support model for an international steel fabrication and installation company with three divisions. From the company's Profit & Loss data across six cost categories, the model calculates monthly performance, forecasts the next 12 months, values the sales pipeline by win probability, and lets management test what-if changes to labor efficiency, material costs and headcount — all summarised on one KPI dashboard, with a data table ready for Power BI. Client details are kept confidential.",
+    tech: ["Excel", "Financial Modeling", "What-If Analysis", "Named Ranges", "Excel Charts", "Power BI-ready data"],
+    accentColor: "#FB923C",
+    preview: { type: "image", src: "/projects/financial-model-cover.webp", alt: "Financial X-Ray KPI dashboard (sample data)" },
+    highlights: [
+      "Monthly revenue and cost breakdown across six cost categories",
+      "Gross profit, margin %, breakeven revenue, cash flow and labor efficiency per month",
+      "Sales pipeline weighted by win probability, rolled up by quarter",
+      "What-if simulator for labor efficiency, material cost and headcount",
+      "Dashboard with 7 charts including a 12-month forecast",
+      "Long-format data table prepared for Power BI",
+    ],
+    results: [
+      { label: "Dashboard charts", value: "7" },
+      { label: "Forecast horizon", value: "12 months" },
+      { label: "Scenario testing", value: "Live what-if" },
+    ],
+    confidential: true,
+    client: { country: "International" },
+  },
   {
     slug: "ai-research-automation-platform",
     title: "AI Research Automation Platform",
@@ -128,8 +252,8 @@ export const PROJECTS: Project[] = [
 
     results: [
       {
-        label: "Resume screening time",
-        value: "-90%"
+        label: "Candidate ranking",
+        value: "Automated"
       },
       {
         label: "Resume processing",
@@ -219,44 +343,12 @@ export const PROJECTS: Project[] = [
     ]
   },
   {
-    slug: "e-commerce-platform",
-    title: "E-Commerce Platform",
-    category: "Web Development",
-    filterCategory: "Web",
-    year: "2025",
-    desc: "Full-featured online store with product management, Stripe payments, and custom admin dashboard.",
-    longDesc:
-      "A production-ready e-commerce platform built for a retail client in Pakistan. Includes inventory management, Stripe checkout, order tracking, and a custom admin dashboard for day-to-day operations.",
-    tech: ["Next.js", "Stripe", "PostgreSQL", "TailwindCSS"],
-    accentColor: "#38BDF8",
-    preview: {
-      type: "image",
-      src: "/projects/ecommerce.png",
-      alt: "E-Commerce Platform dashboard preview",
-    },
-    gallery: [
-      { type: "image", src: "/projects/ecommerce-preview.svg", alt: "Storefront view" },
-      { type: "image", src: "/projects/ecommerce-admin.svg", alt: "Admin dashboard" },
-    ],
-    highlights: [
-      "Stripe payment integration",
-      "Custom admin dashboard",
-      "SEO-optimized product pages",
-      "Mobile-first checkout flow",
-    ],
-    results: [
-      { label: "Page load", value: "<1.2s" },
-      { label: "Checkout conversion", value: "+34%" },
-      { label: "Admin tasks automated", value: "60%" },
-    ],
-  },
-  {
     slug: "operations-automation-dashboard",
     title: "Operations Automation Dashboard",
     category: "AI & Automation",
     filterCategory: "AI & Automation",
     year: "2025",
-    desc: "Automated lead qualification and reporting pipeline, reducing manual work by 60%.",
+    desc: "Automated lead qualification and reporting pipeline built with n8n, Python and Gmail.",
     longDesc:
       "An intelligent operations hub that connects Gmail, CRM data, and reporting tools via n8n. Leads are scored automatically and weekly reports are generated without manual effort.",
     tech: ["n8n", "Python", "React", "Gmail API"],
@@ -273,9 +365,9 @@ export const PROJECTS: Project[] = [
       "Real-time ops metrics",
     ],
     results: [
-      { label: "Manual work reduced", value: "60%" },
-      { label: "Report generation", value: "Automated" },
-      { label: "Lead response time", value: "<2h" },
+      { label: "Lead qualification", value: "Automated" },
+      { label: "Reporting", value: "Scheduled" },
+      { label: "Built with", value: "n8n + Python" },
     ],
   },
   {
@@ -442,9 +534,9 @@ export const PROJECTS: Project[] = [
       "Real-time data sync",
     ],
     results: [
-      { label: "Data sources", value: "5+" },
-      { label: "Report time saved", value: "8h/week" },
-      { label: "Decision speed", value: "+40%" },
+      { label: "Dashboards", value: "Retail & supply chain" },
+      { label: "Reporting", value: "Automated weekly" },
+      { label: "Built with", value: "Power BI + SQL" },
     ],
   },
 

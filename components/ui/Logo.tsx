@@ -55,8 +55,8 @@ export function Logo({
     <span className={`inline-flex items-center gap-3 ${className}`}>
       <LogoMark size={size} variant={variant} />
       {showWordmark && (
-        <span className={wordmarkClassName ?? "font-sans font-semibold text-[15px] tracking-[0.05em] text-white"}>
-          ELEVARE TECH
+        <span className={wordmarkClassName ?? "font-display font-semibold text-[17px] tracking-[-0.01em] text-text-1"}>
+          Elevare Tech
         </span>
       )}
     </span>

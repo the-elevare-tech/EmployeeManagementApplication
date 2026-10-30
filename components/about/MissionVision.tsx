@@ -24,7 +24,7 @@ export function MissionVision() {
   ];
 
   return (
-    <section className="py-24 bg-[#161B24]/50 border-y border-white/5">
+    <section className="py-24 bg-surface/50 border-y border-border">
       <div className="max-w-7xl mx-auto px-6">
         <motion.div
           variants={staggerContainer()}
@@ -37,13 +37,13 @@ export function MissionVision() {
             <motion.div
               key={i}
               variants={fadeUp}
-              className="card p-8 bg-[#0F1117] border border-white/5 rounded-2xl card-hover text-center"
+              className="card p-8 bg-bg border border-border rounded-2xl card-hover text-center"
             >
-              <div className="w-12 h-12 mx-auto bg-[#38BDF8]/10 rounded-full flex items-center justify-center mb-6">
-                <item.icon className="text-[#38BDF8] w-6 h-6 icon" />
+              <div className="w-12 h-12 mx-auto bg-brand/10 rounded-full flex items-center justify-center mb-6">
+                <item.icon className="text-brand w-6 h-6 icon" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-4">{item.title}</h3>
-              <p className="text-slate-400 leading-relaxed">{item.text}</p>
+              <p className="text-text-2 leading-relaxed">{item.text}</p>
             </motion.div>
           ))}
         </motion.div>

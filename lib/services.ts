@@ -1,0 +1,417 @@
+import type { LucideIcon } from "lucide-react";
+import { Code2, ShoppingCart, Layers, Smartphone, Palette, Bot, BrainCircuit, Workflow, BarChart3, Cloud } from "lucide-react";
+
+export type Service = {
+  slug: string;
+  title: string;
+  short: string; // card title
+  tagline: string;
+  summary: string; // one line for cards
+  description: string; // paragraph for the detail page
+  icon: LucideIcon;
+  category: "Build" | "Design" | "AI & Data" | "Operate";
+  image?: string; // illustration (duotoned)
+  shot: string; // real project screenshot shown inside a browser frame
+  shotLabel: string;
+  features: { title: string; desc: string }[];
+  deliverables: string[];
+  stack: { name: string; icon: string }[];
+  idealFor: string[];
+  timeline: string;
+  related: string[]; // project slugs
+  faqs: { q: string; a: string }[];
+};
+
+export const SERVICES: Service[] = [
+  {
+    slug: "web-development",
+    title: "Web Development",
+    short: "Web development",
+    tagline: "Fast, secure websites and web apps your team can actually update.",
+    summary: "Marketing sites, portals and web apps on Next.js.",
+    description:
+      "From high-converting company websites to complex customer portals, we build on Next.js and React for speed, SEO and long-term maintainability. Every site ships with a CMS or admin panel, analytics and performance budgets baked in.",
+    icon: Code2,
+    category: "Build",
+    image: "/services/web2.png",
+    shot: "/projects/wanderblaze.png",
+    shotLabel: "wanderblaze.app",
+    features: [
+      { title: "Company websites", desc: "Fast, multilingual marketing sites that rank and convert." },
+      { title: "Web applications", desc: "Dashboards, portals and booking systems with secure logins." },
+      { title: "CMS & admin panels", desc: "Edit pages, articles and products without touching code." },
+      { title: "SEO foundations", desc: "Semantic markup, metadata, sitemaps and Core Web Vitals." },
+      { title: "Performance", desc: "Image optimisation, caching and edge delivery for sub-second loads." },
+      { title: "Integrations", desc: "Payments, CRMs, email, maps and analytics wired in." },
+    ],
+    deliverables: ["Responsive website or web app", "CMS or admin panel", "SEO & analytics setup", "Deployment on Vercel or your cloud", "Handover docs & training"],
+    stack: [
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "React", icon: "react" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "PostgreSQL", icon: "postgresql" },
+    ],
+    idealFor: ["Businesses replacing an outdated website", "Startups launching their first product", "Teams moving off WordPress"],
+    timeline: "3–8 weeks",
+    related: ["uae-visa-consultancy-website", "wanderblaze", "resume-screener"],
+    faqs: [
+      { q: "Can I edit the website myself after launch?", a: "Yes. Every site comes with a CMS or admin panel, and we train your team to use it." },
+      { q: "Do you redesign existing websites?", a: "Yes — we can rebuild your current site on a modern stack while keeping your content and SEO rankings." },
+      { q: "Where will the site be hosted?", a: "Usually Vercel for speed and simplicity, or your own cloud (AWS, DigitalOcean) if you prefer." },
+    ],
+  },
+  {
+    slug: "ecommerce-development",
+    title: "E-commerce Development",
+    short: "E-commerce",
+    tagline: "Online stores built to sell — on day one and at scale.",
+    summary: "Custom storefronts, admin panels and payment integrations.",
+    description:
+      "We build custom online stores with fast product browsing, smooth checkout and an admin panel to manage products, orders and customers. Local and international payment gateways, delivery integrations and multi-language support included.",
+    icon: ShoppingCart,
+    category: "Build",
+    shot: "/projects/ecommerce.png",
+    shotLabel: "store.app",
+    features: [
+      { title: "Custom storefront", desc: "Fast product listing, search, filters and product pages." },
+      { title: "Checkout & payments", desc: "Stripe, PayPal and local gateways with secure checkout." },
+      { title: "Admin panel", desc: "Manage products, stock, orders, coupons and customers." },
+      { title: "Multi-language & currency", desc: "Sell across regions with localised content and pricing." },
+      { title: "Delivery integrations", desc: "Shipping rates, order tracking and notifications." },
+      { title: "Sales analytics", desc: "Revenue, best-sellers and customer insights in one view." },
+    ],
+    deliverables: ["Storefront", "Admin dashboard", "Payment & shipping integration", "Product import", "Launch checklist & training"],
+    stack: [
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "Stripe", icon: "stripe" },
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+      { name: "Vercel", icon: "vercel" },
+    ],
+    idealFor: ["Retailers moving online", "Brands outgrowing Shopify themes", "Marketplaces with custom rules"],
+    timeline: "4–10 weeks",
+    related: ["tyre-ecommerce-platform", "shopify-email-marketing-automation", "business-intelligence-dashboard"],
+    faqs: [
+      { q: "Why custom instead of Shopify?", a: "Custom stores give you full control over design, checkout rules and fees. If Shopify fits you better, we'll tell you." },
+      { q: "Which payment methods can you add?", a: "Cards via Stripe or PayPal, plus local gateways and cash on delivery depending on your market." },
+      { q: "Can you migrate my existing products?", a: "Yes, we import products, categories and customers from CSV or your current platform." },
+    ],
+  },
+  {
+    slug: "saas-development",
+    title: "SaaS Product Development",
+    short: "SaaS products",
+    tagline: "From idea to paying users — we build your SaaS end to end.",
+    summary: "MVPs and multi-tenant platforms with billing and dashboards.",
+    description:
+      "We turn product ideas into production-ready SaaS: authentication, multi-tenant data, subscriptions, admin tooling and analytics. Start with a focused MVP in weeks, then scale with a team that already knows your codebase.",
+    icon: Layers,
+    category: "Build",
+    shot: "/projects/rag.png",
+    shotLabel: "knowledge.app",
+    features: [
+      { title: "MVP in weeks", desc: "A focused first version to validate with real users." },
+      { title: "Auth & teams", desc: "Sign-up, SSO, roles and organisation workspaces." },
+      { title: "Subscriptions", desc: "Plans, trials, invoices and usage-based billing." },
+      { title: "Admin tooling", desc: "Internal dashboards to manage users and support." },
+      { title: "Product analytics", desc: "Track activation, retention and feature usage." },
+      { title: "Scalable architecture", desc: "Clean APIs and infrastructure that grows with you." },
+    ],
+    deliverables: ["Product roadmap", "MVP web app", "Billing & auth", "Admin dashboard", "CI/CD pipeline"],
+    stack: [
+      { name: "Next.js", icon: "nextdotjs" },
+      { name: "TypeScript", icon: "typescript" },
+      { name: "FastAPI", icon: "fastapi" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Stripe", icon: "stripe" },
+      { name: "Docker", icon: "docker" },
+    ],
+    idealFor: ["Founders validating an idea", "Businesses productising an internal tool", "Teams rebuilding a legacy product"],
+    timeline: "6–12 weeks for an MVP",
+    related: ["enterprise-knowledge-platform", "ai-research-automation-platform", "resume-screener"],
+    faqs: [
+      { q: "Do I own the code?", a: "Ownership and licensing are set out clearly in your agreement before work starts." },
+      { q: "Can you help define the MVP?", a: "Yes. Our discovery phase turns your idea into a prioritised feature list and clickable prototype." },
+      { q: "Do you support the product after launch?", a: "Yes — through a monthly retainer for new features, monitoring and fixes." },
+    ],
+  },
+  {
+    slug: "mobile-solutions",
+    title: "Mobile App Development",
+    short: "Mobile apps",
+    tagline: "iOS and Android apps from one codebase, published to both stores.",
+    summary: "Cross-platform apps in Flutter and React Native.",
+    description:
+      "We design and build cross-platform mobile apps with native performance — from customer-facing apps to internal field tools. We handle app store submission, push notifications, offline support and analytics.",
+    icon: Smartphone,
+    category: "Build",
+    image: "/services/mobile.avif",
+    shot: "/projects/fitai-preview.png",
+    shotLabel: "fitai — iOS",
+    features: [
+      { title: "Cross-platform", desc: "One Flutter or React Native codebase for iOS and Android." },
+      { title: "Native feel", desc: "Smooth animations, gestures and platform conventions." },
+      { title: "Offline support", desc: "Apps that keep working with patchy connections." },
+      { title: "Push notifications", desc: "Targeted, scheduled and event-driven alerts." },
+      { title: "In-app AI", desc: "Chat assistants, recommendations and smart features." },
+      { title: "Store submission", desc: "We publish to the App Store and Google Play for you." },
+    ],
+    deliverables: ["iOS & Android apps", "Backend & admin panel", "App store listings", "Crash & usage analytics", "Release pipeline"],
+    stack: [
+      { name: "Flutter", icon: "flutter" },
+      { name: "React Native", icon: "react" },
+      { name: "Firebase", icon: "firebase" },
+      { name: "Dart", icon: "dart" },
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "Supabase", icon: "supabase" },
+    ],
+    idealFor: ["Consumer apps", "Booking and delivery apps", "Internal tools for field teams"],
+    timeline: "6–12 weeks",
+    related: ["ai-fitness-app"],
+    faqs: [
+      { q: "Flutter or React Native?", a: "Both are excellent. We recommend one based on your team, existing code and features." },
+      { q: "Will you publish the app to the stores?", a: "Yes. We handle store listings, screenshots and review submission." },
+      { q: "Can the app share a backend with my website?", a: "Yes — we usually build one API that powers both." },
+    ],
+  },
+  {
+    slug: "ui-ux-design",
+    title: "UI/UX Design",
+    short: "UI/UX design",
+    tagline: "Interfaces grounded in research, built to convert.",
+    summary: "Research, wireframes, prototypes and design systems.",
+    description:
+      "Good design is how your product feels to use. We research your users, map their journeys and design clear, beautiful interfaces in Figma — delivered with a design system so every future screen stays consistent.",
+    icon: Palette,
+    category: "Design",
+    image: "/services/uiux.avif",
+    shot: "/projects/deepfake-detection.png",
+    shotLabel: "figma — prototype",
+    features: [
+      { title: "User research", desc: "Interviews and analytics to find what users really need." },
+      { title: "Wireframes & flows", desc: "Clear journeys mapped before any visual design." },
+      { title: "Visual design", desc: "Polished, on-brand screens for web and mobile." },
+      { title: "Clickable prototypes", desc: "Test the experience before writing code." },
+      { title: "Design systems", desc: "Reusable components, tokens and guidelines." },
+      { title: "Usability testing", desc: "Validate with real users and iterate quickly." },
+    ],
+    deliverables: ["User flows", "Wireframes", "High-fidelity Figma designs", "Clickable prototype", "Design system"],
+    stack: [
+      { name: "Figma", icon: "figma" },
+      { name: "FigJam", icon: "figma" },
+      { name: "Framer", icon: "framer" },
+      { name: "Adobe Illustrator", icon: "adobeillustrator" },
+      { name: "Storybook", icon: "storybook" },
+      { name: "Tailwind CSS", icon: "tailwindcss" },
+    ],
+    idealFor: ["New products", "Redesigns of hard-to-use software", "Teams needing a design system"],
+    timeline: "2–6 weeks",
+    related: ["uae-visa-consultancy-website", "deepfake-detection", "ai-fitness-app"],
+    faqs: [
+      { q: "Can you design only, without development?", a: "Yes. You get production-ready Figma files your own developers can build from." },
+      { q: "Do you design for mobile and web?", a: "Yes — responsive web, iOS and Android." },
+      { q: "Will the designs match our brand?", a: "We work from your brand guidelines, or create a light brand system if you don't have one." },
+    ],
+  },
+  {
+    slug: "ai-automation",
+    title: "AI Agents & Automation",
+    short: "AI & automation",
+    tagline: "AI that does real work — agents, assistants and automated workflows.",
+    summary: "AI agents, chat assistants, RAG and workflow automation.",
+    description:
+      "We build practical AI systems that save hours every week: assistants that answer from your documents, agents that research, qualify leads or process paperwork, and workflow automations that connect your tools. Always with human approval where it matters.",
+    icon: Bot,
+    category: "AI & Data",
+    image: "/services/ai.webp",
+    shot: "/projects/agents.png",
+    shotLabel: "agents — console",
+    features: [
+      { title: "AI agents", desc: "Multi-step agents that plan, use tools and report back." },
+      { title: "RAG assistants", desc: "Chat with your documents and knowledge base, with citations." },
+      { title: "Workflow automation", desc: "n8n and custom pipelines connecting your apps." },
+      { title: "Lead generation", desc: "Find, enrich, score and contact prospects automatically." },
+      { title: "Document processing", desc: "Extract data from PDFs, invoices and forms." },
+      { title: "Human-in-the-loop", desc: "Approval steps so AI never acts without oversight." },
+    ],
+    deliverables: ["Automation audit", "AI agent or assistant", "Integrations with your tools", "Monitoring & cost dashboard", "Team training"],
+    stack: [
+      { name: "Python", icon: "python" },
+      { name: "LangChain", icon: "langchain" },
+      { name: "OpenAI", icon: "openai" },
+      { name: "FastAPI", icon: "fastapi" },
+      { name: "n8n", icon: "n8n" },
+      { name: "Qdrant", icon: "qdrant" },
+    ],
+    idealFor: ["Teams drowning in repetitive tasks", "Support and sales teams", "Businesses with large document libraries"],
+    timeline: "2–8 weeks",
+    related: ["shopify-email-marketing-automation", "ai-research-automation-platform", "enterprise-knowledge-platform"],
+    faqs: [
+      { q: "Is our data safe with AI models?", a: "We use providers that don't train on your data, and can run open-source models privately when needed." },
+      { q: "What can be automated?", a: "Anything repetitive and rule-based: data entry, reporting, lead research, email triage, document handling." },
+      { q: "How do you measure results?", a: "We track hours saved, error rates and costs on a dashboard from day one." },
+    ],
+  },
+  {
+    slug: "machine-learning",
+    title: "Machine Learning & Computer Vision",
+    short: "ML & computer vision",
+    tagline: "Custom models that see, predict and explain.",
+    summary: "Computer vision, prediction models and explainable AI.",
+    description:
+      "When off-the-shelf AI isn't enough, we train custom models — image and video analysis, fraud and anomaly detection, demand forecasting — and deploy them behind clean APIs, with explainability so your team can trust the results.",
+    icon: BrainCircuit,
+    category: "AI & Data",
+    shot: "/projects/gradcam-result.png",
+    shotLabel: "model — grad-cam",
+    features: [
+      { title: "Computer vision", desc: "Detection, classification and analysis of images and video." },
+      { title: "Deepfake & fraud detection", desc: "Spot manipulated media and suspicious activity." },
+      { title: "Forecasting", desc: "Predict demand, sales and churn from your data." },
+      { title: "Explainable AI", desc: "Grad-CAM and feature attributions you can show stakeholders." },
+      { title: "Model deployment", desc: "Fast inference APIs on GPU or CPU." },
+      { title: "Evaluation", desc: "Rigorous metrics and monitoring for drift." },
+    ],
+    deliverables: ["Data audit", "Trained model", "Inference API", "Evaluation report", "Monitoring setup"],
+    stack: [
+      { name: "PyTorch", icon: "pytorch" },
+      { name: "Python", icon: "python" },
+      { name: "OpenCV", icon: "opencv" },
+      { name: "scikit-learn", icon: "scikitlearn" },
+      { name: "FastAPI", icon: "fastapi" },
+      { name: "Docker", icon: "docker" },
+    ],
+    idealFor: ["Media and security companies", "Retail and logistics forecasting", "Research and healthcare teams"],
+    timeline: "4–12 weeks",
+    related: ["deepfake-detection", "ai-research-automation-platform"],
+    faqs: [
+      { q: "How much data do we need?", a: "It depends on the problem. We start with a data audit and often use pre-trained models to reduce what's needed." },
+      { q: "Can the model run on our own servers?", a: "Yes — we package models in Docker for any cloud or on-premise environment." },
+      { q: "How do we know the model is accurate?", a: "You get an evaluation report on held-out data and live monitoring after launch." },
+    ],
+  },
+  {
+    slug: "custom-development",
+    title: "Custom Software & ERP",
+    short: "Custom software",
+    tagline: "Software shaped around how your business actually works.",
+    summary: "ERPs, internal tools, APIs and system integrations.",
+    description:
+      "Spreadsheets and disconnected tools slow teams down. We build custom ERPs, internal tools and APIs that match your processes — connecting sales, inventory, HR and finance in one system your team will actually use.",
+    icon: Workflow,
+    category: "Build",
+    shot: "/projects/automation1.png",
+    shotLabel: "ops — dashboard",
+    features: [
+      { title: "Custom ERP", desc: "Inventory, sales, purchasing and accounting in one place." },
+      { title: "Internal tools", desc: "Admin panels and dashboards for your operations team." },
+      { title: "HR & attendance", desc: "Employee, leave, payroll and attendance management." },
+      { title: "API development", desc: "Secure, documented REST and GraphQL APIs." },
+      { title: "System integration", desc: "Connect your CRM, ERP, payments and legacy systems." },
+      { title: "Legacy migration", desc: "Move old software to a modern, maintainable stack." },
+    ],
+    deliverables: ["Process mapping", "Custom web application", "Role-based access", "Data migration", "Training & documentation"],
+    stack: [
+      { name: "Python", icon: "python" },
+      { name: "Django", icon: "django" },
+      { name: "React", icon: "react" },
+      { name: "Node.js", icon: "nodedotjs" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Docker", icon: "docker" },
+    ],
+    idealFor: ["Growing SMEs running on spreadsheets", "Manufacturers and distributors", "Teams with legacy software"],
+    timeline: "6–16 weeks",
+    related: ["operations-automation-dashboard", "business-intelligence-dashboard"],
+    faqs: [
+      { q: "Can you connect to our existing software?", a: "Usually, yes — through APIs, database connections or scheduled imports." },
+      { q: "Do you build in phases?", a: "Yes. We ship the most valuable module first, then add the rest in planned phases." },
+      { q: "Can it be used on mobile?", a: "All our internal tools are responsive and can be packaged as mobile apps if needed." },
+    ],
+  },
+  {
+    slug: "data-analytics",
+    title: "Data Analytics & BI",
+    short: "Data & dashboards",
+    tagline: "All your numbers, live, in one dashboard.",
+    summary: "Data pipelines, KPI dashboards and automated reports.",
+    description:
+      "We pull data from your sales, finance and operations tools into one clean warehouse, then build live dashboards and automated reports — so decisions are based on today's numbers, not last month's spreadsheet.",
+    icon: BarChart3,
+    category: "AI & Data",
+    image: "/services/dataanalysis.jpg",
+    shot: "/projects/2.jpg",
+    shotLabel: "bi — retail dashboard",
+    features: [
+      { title: "Data pipelines", desc: "Automated ETL from your apps and databases." },
+      { title: "KPI dashboards", desc: "Live views of sales, stock, finance and operations." },
+      { title: "Automated reports", desc: "Weekly and monthly reports delivered to inboxes." },
+      { title: "Forecasting", desc: "Trend and demand forecasts built into dashboards." },
+      { title: "Data cleaning", desc: "One trusted source of truth for every metric." },
+      { title: "Self-serve analytics", desc: "Tools your team can explore without an analyst." },
+    ],
+    deliverables: ["Data audit", "Pipelines & warehouse", "Dashboards", "Scheduled reports", "Metric definitions"],
+    stack: [
+      { name: "Python", icon: "python" },
+      { name: "PostgreSQL", icon: "postgresql" },
+      { name: "Power BI", icon: "powerbi" },
+      { name: "Metabase", icon: "metabase" },
+      { name: "Pandas", icon: "pandas" },
+      { name: "Apache Airflow", icon: "apacheairflow" },
+    ],
+    idealFor: ["Retail and e-commerce", "Finance and operations teams", "Leadership reporting"],
+    timeline: "2–6 weeks",
+    related: ["financial-model-kpi-dashboard", "business-intelligence-dashboard", "operations-automation-dashboard"],
+    faqs: [
+      { q: "Which data sources can you connect?", a: "Databases, spreadsheets, CRMs, e-commerce platforms, accounting tools and most APIs." },
+      { q: "Power BI or Metabase?", a: "We recommend based on your budget and team; both work well." },
+      { q: "Can dashboards update automatically?", a: "Yes — pipelines refresh on a schedule, from hourly to daily." },
+    ],
+  },
+  {
+    slug: "cloud-devops",
+    title: "Cloud & DevOps",
+    short: "Cloud & DevOps",
+    tagline: "Reliable deployments, monitoring and infrastructure that scales.",
+    summary: "CI/CD, Docker, cloud hosting, monitoring and support.",
+    description:
+      "We set up the infrastructure behind great software: automated deployments, containerised services, monitoring and backups — plus ongoing maintenance so your product stays fast, secure and online.",
+    icon: Cloud,
+    category: "Operate",
+    shot: "/projects/r1.png",
+    shotLabel: "pipeline — deploy",
+    features: [
+      { title: "CI/CD pipelines", desc: "Every change tested and deployed automatically." },
+      { title: "Containers", desc: "Dockerised services that run the same everywhere." },
+      { title: "Cloud hosting", desc: "AWS, Vercel, DigitalOcean — set up and optimised." },
+      { title: "Monitoring & alerts", desc: "Uptime, errors and performance tracked 24/7." },
+      { title: "Security & backups", desc: "SSL, secrets management and automated backups." },
+      { title: "Maintenance retainers", desc: "Updates, fixes and improvements every month." },
+    ],
+    deliverables: ["Infrastructure setup", "CI/CD pipeline", "Monitoring dashboards", "Backup & recovery plan", "Monthly maintenance"],
+    stack: [
+      { name: "Docker", icon: "docker" },
+      { name: "GitHub Actions", icon: "githubactions" },
+      { name: "AWS", icon: "amazonwebservices" },
+      { name: "Vercel", icon: "vercel" },
+      { name: "Nginx", icon: "nginx" },
+      { name: "Linux", icon: "linux" },
+    ],
+    idealFor: ["Products with growing traffic", "Teams without in-house DevOps", "Apps that need 24/7 uptime"],
+    timeline: "1–4 weeks, then ongoing",
+    related: ["ai-research-automation-platform", "enterprise-knowledge-platform"],
+    faqs: [
+      { q: "Can you take over an existing server?", a: "Yes. We audit it, document it and bring it up to modern standards." },
+      { q: "Do you offer ongoing maintenance?", a: "Yes — monthly retainers cover updates, monitoring, fixes and small improvements." },
+      { q: "How do you keep costs down?", a: "Right-sized resources, caching and serverless where it makes sense." },
+    ],
+  },
+];
+
+export function getService(slug: string) {
+  return SERVICES.find((s) => s.slug === slug);
+}
+
+export const SERVICE_CATEGORIES = ["Build", "Design", "AI & Data", "Operate"] as const;

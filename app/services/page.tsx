@@ -1,31 +1,53 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { fadeUp, stagger } from "@/lib/animations";
+import { useEffect } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { PageHero } from "@/components/layout/PageHero";
 import { CTAStrip } from "@/components/home/CTAStrip";
 import { TechMarquee } from "@/components/home/TechMarquee";
 import { ProcessSection } from "@/components/home/ProcessSection";
-import { ServiceCards } from "@/components/services/ServiceCards";
+import { ServiceExplorer } from "@/components/services/ServiceExplorer";
+import { ServiceCatalog } from "@/components/services/ServiceCatalog";
 import { PricingTeaser } from "@/components/services/PricingTeaser";
+import { SERVICES, getService } from "@/lib/services";
 
 export default function ServicesPage() {
+  const router = useRouter();
+
+  // Old links like /services#ai-automation now go to the service's own page
+  useEffect(() => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash && getService(hash)) router.replace(`/services/${hash}`);
+  }, [router]);
+
   return (
     <>
-      <section className="pt-32 pb-20 px-6 lg:px-12 max-w-7xl mx-auto text-center">
-        <motion.div initial="hidden" animate="show" variants={stagger(0, 0.1)}>
-          <motion.div variants={fadeUp} className="text-label mb-6">
-            What we do
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-white mb-6 max-w-4xl mx-auto">
-            End-to-end technology services
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-text-2 text-lg md:text-xl max-w-3xl mx-auto">
-            From strategy and design to development and deployment — we handle every layer.
-          </motion.p>
-        </motion.div>
-      </section>
+      <PageHero
+        label="What we do"
+        title="End-to-end technology"
+        highlight="services that ship."
+        description="Strategy, design, engineering, AI and support — ten services, one senior team, from first idea to production."
+      >
+        <div className="mx-auto flex max-w-3xl flex-wrap justify-center gap-2">
+          {SERVICES.map((s) => {
+            const Icon = s.icon;
+            return (
+              <Link
+                key={s.slug}
+                href={`/services/${s.slug}`}
+                className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3.5 py-1.5 text-sm text-text-2 backdrop-blur transition-colors hover:border-brand/50 hover:text-text-1"
+              >
+                <Icon size={14} className="text-text-3 transition-colors group-hover:text-brand" />
+                {s.short}
+              </Link>
+            );
+          })}
+        </div>
+      </PageHero>
 
-      <ServiceCards />
+      <ServiceExplorer />
+      <ServiceCatalog />
       <TechMarquee />
       <ProcessSection />
       <PricingTeaser />

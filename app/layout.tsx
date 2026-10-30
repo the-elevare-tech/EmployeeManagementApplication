@@ -1,15 +1,16 @@
 import type React from "react";
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
+import { GeistMono } from "geist/font/mono";
+import { Spotlight } from "@/components/layout/Spotlight";
+import { ScrollProgress } from "@/components/layout/ScrollProgress";
+import { CommandMenu } from "@/components/layout/CommandMenu";
 import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
-import { CursorGlow } from "@/components/layout/CursorGlow";
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { PageTransition } from "@/components/layout/PageTransition";
 import { WhatsAppButton } from "@/components/layout/WhatsAppButton";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const SITE_URL = "https://www.elevaretech.site";
 
@@ -85,16 +86,26 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark scroll-smooth">
-      <body className={`${inter.variable} font-sans antialiased`}>
+    <html lang="en" className={`dark scroll-smooth ${GeistSans.variable} ${GeistMono.variable}`}>
+      <body className="grain font-sans antialiased">
+        <Spotlight />
+        <ScrollProgress />
+        <CommandMenu />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
-        <CursorGlow />
         <Navbar />
         <PageTransition>
-          <main className="flex-1 mt-16">{children}</main>
+          <main className="relative isolate flex-1 mt-16">
+            {/* ambient top glow + grid, shared by every page */}
+            <div aria-hidden className="pointer-events-none absolute inset-x-0 -top-16 -z-10 h-[820px] overflow-hidden">
+              <div className="absolute inset-0 bg-grid mask-radial opacity-70" />
+              <div className="aurora-drift absolute left-[10%] top-[-220px] h-[520px] w-[720px] rounded-full bg-[radial-gradient(closest-side,rgba(56,189,248,0.22),transparent)] blur-2xl" />
+              <div className="aurora-drift-2 absolute right-[5%] top-[-180px] h-[520px] w-[720px] rounded-full bg-[radial-gradient(closest-side,rgba(99,102,241,0.22),transparent)] blur-2xl" />
+            </div>
+            {children}
+          </main>
         </PageTransition>
         <Footer />
         <WhatsAppButton />

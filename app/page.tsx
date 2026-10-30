@@ -1,33 +1,23 @@
-"use client";
-
-import { useState } from "react";
-import PageLoader from "@/components/page-loader";
 import { HomeHero } from "@/components/home/HomeHero";
-import { TrustStrip } from "@/components/home/TrustStrip";
-import { ServicesGrid } from "@/components/home/ServicesGrid";
 import { TechMarquee } from "@/components/home/TechMarquee";
-import { StatsSection } from "@/components/home/StatsSection";
+import { ServicesGrid } from "@/components/home/ServicesGrid";
+import { FeaturedWork } from "@/components/home/FeaturedWork";
 import { ProcessSection } from "@/components/home/ProcessSection";
+import { StatsSection } from "@/components/home/StatsSection";
 import { CTAStrip } from "@/components/home/CTAStrip";
+import { Manifesto } from "@/components/home/Manifesto";
 
 export default function HomePage() {
-  const [loading, setLoading] = useState(true);
-
   return (
     <>
-      {loading && <PageLoader onFinish={() => setLoading(false)} />}
-
-      {!loading && (
-        <>
-          <HomeHero />
-          <TrustStrip />
-          <ServicesGrid />
-          <TechMarquee />
-          <StatsSection />
-          <ProcessSection />
-          <CTAStrip />
-        </>
-      )}
+      <HomeHero />
+      <TechMarquee />
+      <ServicesGrid />
+      <Manifesto />
+      <FeaturedWork />
+      <ProcessSection />
+      <StatsSection />
+      <CTAStrip />
     </>
   );
 }

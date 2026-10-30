@@ -42,7 +42,7 @@ export function CultureGrid() {
         <h2 className="text-3xl md:text-4xl font-semibold text-white tracking-tight mb-4">
           Life at Elevare Tech
         </h2>
-        <p className="text-slate-400 text-lg max-w-2xl mx-auto">
+        <p className="text-text-2 text-lg max-w-2xl mx-auto">
           We work hard, move fast, and take care of each other.
         </p>
       </motion.div>
@@ -58,14 +58,14 @@ export function CultureGrid() {
           <motion.div
             key={i}
             variants={fadeUp}
-            className="p-8 bg-[#161B24] border border-white/5 rounded-2xl flex items-start gap-6 card-hover"
+            className="p-8 bg-surface border border-border rounded-2xl flex items-start gap-6 card-hover"
           >
-            <div className="w-12 h-12 rounded-xl bg-[#38BDF8]/10 flex items-center justify-center shrink-0">
-              <culture.icon className="text-[#38BDF8] w-6 h-6 icon" />
+            <div className="w-12 h-12 rounded-xl bg-brand/10 flex items-center justify-center shrink-0">
+              <culture.icon className="text-brand w-6 h-6 icon" />
             </div>
             <div>
               <h3 className="text-xl font-semibold text-white mb-2">{culture.title}</h3>
-              <p className="text-slate-400">{culture.desc}</p>
+              <p className="text-text-2">{culture.desc}</p>
             </div>
           </motion.div>
         ))}
@@ -78,11 +78,11 @@ export function CultureGrid() {
         variants={fadeUp}
         className="text-center"
       >
-        <p className="text-sm font-medium text-slate-500 uppercase tracking-widest mb-6">Perks & Benefits</p>
+        <p className="text-sm font-medium text-text-3 uppercase tracking-widest mb-6">Perks & Benefits</p>
         <div className="flex flex-wrap justify-center gap-3">
           {perks.map((perk, i) => (
-            <div key={i} className="px-4 py-2 bg-white/5 border border-white/10 rounded-full flex items-center gap-2 text-slate-300 text-sm font-medium">
-              <CheckCircle2 size={14} className="text-[#38BDF8]" />
+            <div key={i} className="px-4 py-2 bg-white/5 border border-border rounded-full flex items-center gap-2 text-slate-300 text-sm font-medium">
+              <CheckCircle2 size={14} className="text-brand" />
               {perk}
             </div>
           ))}

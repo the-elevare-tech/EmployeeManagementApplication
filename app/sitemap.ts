@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { PROJECTS } from "@/lib/projects";
+import { SERVICES } from "@/lib/services";
 
 const baseUrl = "https://www.elevaretech.site";
 
@@ -29,5 +30,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.7,
   }));
 
-  return [...staticEntries, ...projectEntries];
+  const serviceEntries = SERVICES.map((service) => ({
+    url: `${baseUrl}/services/${service.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
+
+  return [...staticEntries, ...serviceEntries, ...projectEntries];
 }

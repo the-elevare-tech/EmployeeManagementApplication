@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { BackToTop } from "@/components/layout/BackToTop";
 
 const WhatsAppIcon = ({ className }: { className?: string }) => (
   <svg
@@ -25,7 +26,9 @@ export function WhatsAppButton() {
   const waUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex items-center gap-3">
+    <div className="fixed bottom-5 right-5 z-40 flex flex-col items-end gap-3">
+      <BackToTop />
+      <div className="flex items-center gap-3">
       {/* Tooltip */}
       <motion.div 
         initial={{ opacity: 0, x: 10, pointerEvents: "none" }}
@@ -33,7 +36,7 @@ export function WhatsAppButton() {
           opacity: isHovered ? 1 : 0, 
           x: isHovered ? 0 : 10,
         }}
-        className="hidden md:block bg-[#161B24] text-white text-sm font-medium px-3 py-2 rounded-lg border border-white/10 shadow-lg whitespace-nowrap"
+        className="hidden md:block bg-surface text-text-1 text-sm font-medium px-3 py-2 rounded-lg border border-border shadow-lg whitespace-nowrap"
       >
         Chat with us on WhatsApp
       </motion.div>
@@ -46,20 +49,6 @@ export function WhatsAppButton() {
         whileTap={{ scale: 0.9 }}
         className="relative"
       >
-        {/* Glow behind */}
-        <motion.div
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.5, 0.8, 0.5],
-          }}
-          transition={{
-            duration: 2,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute inset-0 bg-[#25D366] rounded-full blur-md"
-        />
-        
         <Link
           href={waUrl}
           target="_blank"
@@ -70,6 +59,7 @@ export function WhatsAppButton() {
           <WhatsAppIcon className="w-6 h-6 md:w-7 md:h-7" />
         </Link>
       </motion.div>
+      </div>
     </div>
   );
 }

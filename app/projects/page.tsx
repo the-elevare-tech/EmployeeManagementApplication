@@ -1,5 +1,7 @@
 "use client";
 
+import { PageHero } from "@/components/layout/PageHero";
+
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { fadeUp, stagger } from "@/lib/animations";
@@ -8,7 +10,7 @@ import { ProjectCard } from "@/components/projects/ProjectCard";
 import { ResultsStrip } from "@/components/projects/ResultsStrip";
 import { PROJECTS } from "@/lib/projects";
 
-const FILTER_TABS = ["All", "Web", "Mobile", "AI & Automation", "UI/UX", "Custom"] as const;
+const FILTER_TABS = ["All", "Client work", "In-house products", ...Array.from(new Set(PROJECTS.map((p) => p.filterCategory)))];
 
 export default function ProjectsPage() {
   const [activeTab, setActiveTab] = useState<string>("All");
@@ -16,48 +18,48 @@ export default function ProjectsPage() {
   const filteredProjects =
     activeTab === "All"
       ? PROJECTS
-      : PROJECTS.filter((p) => p.filterCategory === activeTab);
+      : activeTab === "Client work"
+        ? PROJECTS.filter((p) => p.confidential)
+        : activeTab === "In-house products"
+        ? PROJECTS.filter((p) => !p.confidential)
+        : PROJECTS.filter((p) => p.filterCategory === activeTab);
 
   return (
     <>
-      <section className="pt-32 pb-16 px-6 lg:px-12 max-w-7xl mx-auto text-center">
-        <motion.div initial="hidden" animate="show" variants={stagger(0, 0.1)}>
-          <motion.div variants={fadeUp} className="text-label mb-6">
-            Our work
-          </motion.div>
-          <motion.h1 variants={fadeUp} className="text-white mb-6 max-w-4xl mx-auto">
-            15+ projects. 1 year. Real results.
-          </motion.h1>
-          <motion.p variants={fadeUp} className="text-text-2 text-lg md:text-xl max-w-3xl mx-auto">
-            A selection of work delivered since our founding in 2025.
-          </motion.p>
-        </motion.div>
-      </section>
+      <PageHero
+        label="Our work"
+        title="15+ projects shipped."
+        highlight="Real products, real results."
+        description="A selection of AI platforms, web apps, mobile apps and dashboards delivered since 2025."
+      />
 
-      <section className="pb-24 max-w-7xl mx-auto px-6 lg:px-12">
-        <div className="relative flex flex-wrap items-center justify-center gap-1 mb-10 border-b border-border pb-4">
-          {FILTER_TABS.map((tab) => (
-            <button
-              key={tab}
-              type="button"
-              onClick={() => setActiveTab(tab)}
-              className={`relative px-4 py-2 text-sm font-medium transition-colors ${
-                activeTab === tab ? "text-brand" : "text-text-2 hover:text-white"
-              }`}
-            >
-              {tab}
-              {activeTab === tab && (
-                <motion.div
-                  layoutId="project-tab-underline"
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-brand"
-                  transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                />
-              )}
-            </button>
-          ))}
+      <section className="pb-24 container-x">
+        <div className="mb-10 flex justify-center">
+          <div className="inline-flex flex-wrap justify-center gap-1 rounded-2xl border border-border bg-white/[0.03] p-1.5 backdrop-blur">
+            {FILTER_TABS.map((tab) => (
+              <button
+                key={tab}
+                type="button"
+                onClick={() => setActiveTab(tab)}
+                aria-pressed={activeTab === tab}
+                className={`relative isolate rounded-xl px-4 py-2 text-sm font-medium transition-colors ${
+                  activeTab === tab ? "text-white" : "text-text-2 hover:text-text-1"
+                }`}
+              >
+                {activeTab === tab && (
+                  <motion.span
+                    layoutId="project-tab-pill"
+                    className="absolute inset-0 -z-10 rounded-xl bg-gradient-to-br from-brand-deep to-indigo shadow-[0_6px_20px_-6px_rgba(99,102,241,0.7)]"
+                    transition={{ type: "spring", stiffness: 400, damping: 32 }}
+                  />
+                )}
+                <span className="relative">{tab}</span>
+              </button>
+            ))}
+          </div>
         </div>
 
-        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div layout className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project) => (
               <motion.div
