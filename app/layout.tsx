@@ -17,21 +17,40 @@ const SITE_URL = "https://www.elevaretech.site";
 const structuredData = [
   {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "ProfessionalService"],
     "@id": `${SITE_URL}/#organization`,
     name: "Elevare Tech",
+    alternateName: ["ElevareTech", "Elevare Technologies"],
     url: SITE_URL,
     logo: `${SITE_URL}/logo.png`,
+    image: `${SITE_URL}/opengraph-image`,
+    description:
+      "Elevare Tech is a software development company in Faisalabad, Pakistan building websites, web apps, mobile apps, AI agents and automation for businesses worldwide.",
+    foundingDate: "2025",
     email: "hr@elevaretech.site",
+    telephone: "+92-346-0618820",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Faisalabad",
+      addressRegion: "Punjab",
+      addressCountry: "PK",
+    },
+    areaServed: ["Worldwide", "Pakistan", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Canada", "Australia"],
+    knowsAbout: [
+      "Web Development", "E-commerce Development", "SaaS Development", "Mobile App Development", "UI/UX Design",
+      "AI Agents", "Workflow Automation", "Machine Learning", "Data Analytics", "Cloud & DevOps",
+    ],
     sameAs: [
       "https://www.linkedin.com/company/elevare-tech",
       "https://www.facebook.com/people/Elevare-Tech/61579593726351/",
     ],
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "customer service",
+      contactType: "sales",
       email: "hr@elevaretech.site",
+      telephone: "+92-346-0618820",
       url: `${SITE_URL}/contact`,
+      availableLanguage: ["English", "Urdu"],
     },
   },
   {
@@ -39,45 +58,42 @@ const structuredData = [
     "@type": "WebSite",
     "@id": `${SITE_URL}/#website`,
     name: "Elevare Tech",
+    alternateName: "ElevareTech",
     url: SITE_URL,
     publisher: { "@id": `${SITE_URL}/#organization` },
   },
-  {
-    "@context": "https://schema.org",
-    "@type": "ItemList",
-    name: "Elevare Tech main pages",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "About Us", url: `${SITE_URL}/about` },
-      { "@type": "ListItem", position: 2, name: "Services", url: `${SITE_URL}/services` },
-      { "@type": "ListItem", position: 3, name: "Projects", url: `${SITE_URL}/projects` },
-      { "@type": "ListItem", position: 4, name: "Careers", url: `${SITE_URL}/careers` },
-      { "@type": "ListItem", position: 5, name: "Contact Us", url: `${SITE_URL}/contact` },
-    ],
-  },
 ];
 
+const DEFAULT_TITLE = "Elevare Tech | Software, Web & AI Development Company";
+const DEFAULT_DESC =
+  "Elevare Tech is a software development company in Pakistan building websites, web apps, mobile apps, AI agents and automation for businesses worldwide. Book a free consultation.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.elevaretech.site"),
-  title: {
-    default: "Elevare Tech - Innovative Technology Solutions",
-    template: "%s | Elevare Tech",
-  },
-  description:
-    "Elevare Tech empowers businesses with innovative technology solutions — web development, UI/UX design, AI automation, and custom software.",
+  metadataBase: new URL(SITE_URL),
+  title: { default: DEFAULT_TITLE, template: "%s | Elevare Tech" },
+  description: DEFAULT_DESC,
+  applicationName: "Elevare Tech",
+  keywords: [
+    "Elevare Tech", "ElevareTech", "software development company Pakistan", "web development company Faisalabad",
+    "AI automation agency", "AI agents development", "mobile app development", "e-commerce development",
+    "SaaS development", "Next.js development", "custom software development", "UI/UX design agency",
+  ],
+  authors: [{ name: "Elevare Tech", url: SITE_URL }],
+  creator: "Elevare Tech",
+  publisher: "Elevare Tech",
+  alternates: { canonical: "/" },
+  robots: { index: true, follow: true, googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 } },
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: SITE_URL,
     siteName: "Elevare Tech",
-    title: "Elevare Tech - Innovative Technology Solutions",
-    description:
-      "We empower businesses with innovative technology solutions, transforming digital challenges into seamless, scalable experiences.",
+    title: DEFAULT_TITLE,
+    description: DEFAULT_DESC,
   },
-  twitter: {
-    card: "summary_large_image",
-    title: "Elevare Tech - Innovative Technology Solutions",
-    description:
-      "We empower businesses with innovative technology solutions, transforming digital challenges into seamless, scalable experiences.",
-  },
+  twitter: { card: "summary_large_image", title: DEFAULT_TITLE, description: DEFAULT_DESC },
+  verification: { google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION || undefined },
+  category: "technology",
 };
 
 export default function RootLayout({

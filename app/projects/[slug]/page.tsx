@@ -18,9 +18,12 @@ export async function generateMetadata({
     return { title: "Project Not Found" };
   }
 
+  const image = project.preview.type === "image" ? project.preview.src : undefined;
   return {
-    title: project.title,
+    title: { absolute: `${project.title} | Elevare Tech` },
     description: project.desc,
+    alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: { title: `${project.title} | Elevare Tech`, description: project.desc, url: `/projects/${project.slug}`, ...(image ? { images: [image] } : {}) },
   };
 }
 
