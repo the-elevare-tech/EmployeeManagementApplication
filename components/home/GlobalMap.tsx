@@ -248,13 +248,13 @@ export function GlobalMap({ className = "" }: { className?: string }) {
         {offices.map((o) => (
           <div key={o.id} className="pointer-events-none absolute z-10" style={pct(o.x, o.y)}>
             <span
-              className={`absolute flex items-center gap-1.5 whitespace-nowrap rounded-full border border-brand/40 bg-ink/85 px-2 py-0.5 font-mono text-[9px] text-brand shadow-[0_0_24px_-4px_rgba(56,189,248,0.7)] backdrop-blur sm:gap-2 sm:px-3 sm:py-1 sm:text-[11px] ${
+              className={`absolute flex w-max max-w-none items-center gap-1.5 whitespace-nowrap rounded-full border border-brand/40 bg-ink/85 px-2 py-0.5 font-mono text-[9px] text-brand shadow-[0_0_24px_-4px_rgba(56,189,248,0.7)] backdrop-blur sm:gap-2 sm:px-3 sm:py-1 sm:text-[11px] ${
                 o.id === "lahore" ? "bottom-3 left-2 sm:bottom-4 sm:left-3" : "bottom-3 right-2 sm:bottom-4 sm:right-3"
               }`}
             >
-              <img src={`https://flagcdn.com/20x15/${o.flag}.png`} alt="" width={14} height={10} className="rounded-[2px]" />
-              <span className="sm:hidden">{o.city}</span>
-              <span className="hidden sm:inline">{o.label}</span>
+              <img src={`https://flagcdn.com/20x15/${o.flag}.png`} alt="" width={14} height={10} className="shrink-0 rounded-[2px]" />
+              <span className="shrink-0 sm:hidden">{o.city}</span>
+              <span className="hidden shrink-0 sm:inline">{o.label}</span>
             </span>
           </div>
         ))}
