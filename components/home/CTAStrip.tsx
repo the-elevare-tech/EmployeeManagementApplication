@@ -99,7 +99,7 @@ function BookingConsole() {
             {now && !sameAsPKT(now) ? (
               <div className="grid grid-cols-2 gap-4 sm:block sm:space-y-3">
                 <div>
-                  <p className="font-mono text-[11px] text-text-3">Faisalabad · PKT</p>
+                  <p className="font-mono text-[11px] text-text-3">Lahore · PKT</p>
                   <p className="mt-0.5 font-display text-xl font-semibold tabular-nums text-text-1">{formatTime(now, "Asia/Karachi")}</p>
                 </div>
                 <div>
@@ -109,7 +109,7 @@ function BookingConsole() {
               </div>
             ) : (
               <div>
-                <p className="font-mono text-[11px] text-text-3">Faisalabad · PKT</p>
+                <p className="font-mono text-[11px] text-text-3">Lahore · PKT</p>
                 <p className="mt-1 font-display text-3xl font-semibold tabular-nums tracking-tight text-text-1">{now ? formatTime(now, "Asia/Karachi") : "--:--"}</p>
                 <p className="mt-1 font-mono text-[10px] text-brand">same time as you</p>
               </div>

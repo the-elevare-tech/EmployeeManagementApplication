@@ -8,12 +8,13 @@ export const CLOSE_UTC_HOUR = 19;
 export const HOURS_LABEL = "2:00 PM to 12:00 AM PKT (UTC+5)";
 
 export const CITIES = [
-  { city: "Faisalabad", zone: "Asia/Karachi", code: "PKT" },
+  { city: "Lahore", zone: "Asia/Karachi", code: "PKT" },
   { city: "UTC / GMT", zone: "UTC", code: "UTC" },
   { city: "Dubai", zone: "Asia/Dubai", code: "GST" },
   { city: "Riyadh", zone: "Asia/Riyadh", code: "AST" },
   { city: "London", zone: "Europe/London", code: "UK" },
   { city: "New York", zone: "America/New_York", code: "ET" },
+  { city: "San Francisco", zone: "America/Los_Angeles", code: "PT" },
   { city: "Sydney", zone: "Australia/Sydney", code: "AET" },
 ] as const;
 

@@ -35,7 +35,7 @@ export default function OgImage() {
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#9BA8C7" }}>
           <div>www.elevaretech.site</div>
-          <div>Faisalabad, Pakistan · Clients in 7 countries</div>
+          <div>Lahore · San Francisco</div>
         </div>
       </div>
     ),

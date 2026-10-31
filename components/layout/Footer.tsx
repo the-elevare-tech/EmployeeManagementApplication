@@ -7,6 +7,7 @@ import { countdown, formatTime, HOURS_LABEL } from "@/lib/hours";
 import { useNow } from "@/components/layout/useNow";
 import { Logo } from "@/components/ui/Logo";
 import { COMPANY, CONTACT } from "@/lib/constants";
+import { OFFICES, mapsLink, officeStatus } from "@/lib/offices";
 import { SERVICES } from "@/lib/services";
 
 const company = [
@@ -25,14 +26,18 @@ const pad = (n: number) => String(n).padStart(2, "0");
 
 function StatusLine() {
   const now = useNow(1000);
-  const c = now ? countdown(now) : null;
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-      <span className={`flex items-center gap-1.5 ${!c || c.open ? "text-green" : "text-amber"}`}>
-        <span className={`h-1.5 w-1.5 rounded-full ${!c || c.open ? "bg-green shadow-[0_0_8px_#34D399]" : "bg-amber"}`} />
-        {!c ? "Status" : c.open ? `Online · closes in ${pad(c.h)}:${pad(c.m)}:${pad(c.s)}` : `Offline · opens in ${pad(c.h)}:${pad(c.m)}:${pad(c.s)}`}
-      </span>
-      <span className="hidden sm:inline">Hours {HOURS_LABEL}</span>
+      {OFFICES.map((o) => {
+        const st = now ? officeStatus(o, now) : null;
+        return (
+          <span key={o.id} className={`flex items-center gap-1.5 ${!st || st.open ? "text-green" : "text-amber"}`}>
+            <span className={`h-1.5 w-1.5 rounded-full ${!st || st.open ? "bg-green shadow-[0_0_8px_#34D399]" : "bg-amber"}`} />
+            {o.city}: {st ? (st.open ? "open" : "closed") : "..."}
+            <span className="hidden text-text-3 md:inline">· {o.hours.text} {o.tz}</span>
+          </span>
+        );
+      })}
     </div>
   );
 }
@@ -64,32 +69,34 @@ function FooterContact() {
   );
 }
 
-function OfficeCard() {
+function OfficeList() {
   const now = useNow(1000);
   return (
-    <div className="glass-strong mt-7 overflow-hidden rounded-2xl">
-      <div className="relative h-24 overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-grid opacity-60" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_62%_55%,rgba(56,189,248,0.35),transparent_45%)]" />
-        <span className="absolute left-[62%] top-[55%] -translate-x-1/2 -translate-y-1/2">
-          <span className="absolute -inset-3 animate-ping rounded-full bg-brand/30" />
-          <span className="relative block h-3 w-3 rounded-full border-2 border-white bg-brand shadow-[0_0_14px_#38BDF8]" />
-        </span>
-        <span className="absolute left-4 top-3 font-mono text-[10px] text-text-3">31.4504° N · 73.1350° E</span>
-      </div>
-      <div className="flex items-center justify-between gap-3 p-4">
-        <div className="flex items-center gap-2.5">
-          <MapPin size={16} className="text-brand" />
-          <div>
-            <p className="text-sm text-text-1">Faisalabad, Pakistan</p>
-            <p className="text-xs text-text-3">Serving clients in 7 countries</p>
-          </div>
-        </div>
-        <div className="text-right">
-          <p className="font-mono text-sm tabular-nums text-text-1">{now ? formatTime(now, "Asia/Karachi") : "--:--"}</p>
-          <p className="font-mono text-[10px] text-text-3">local time</p>
-        </div>
-      </div>
+    <div className="mt-7 space-y-3">
+      {OFFICES.map((o) => (
+        <a
+          key={o.id}
+          href={mapsLink(o)}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="card group flex items-start gap-3 rounded-2xl p-4"
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-brand/15 to-indigo/15 text-brand">
+            <MapPin size={16} />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="flex items-center gap-2 text-sm font-medium text-text-1">
+              <img src={`https://flagcdn.com/20x15/${o.flag}.png`} alt="" width={14} height={10} className="rounded-[2px]" />
+              {o.label}
+            </span>
+            <span className="mt-0.5 block text-[13px] leading-snug text-text-3">{o.full}</span>
+          </span>
+          <span className="shrink-0 text-right">
+            <span className="block font-mono text-xs tabular-nums text-text-1">{now ? formatTime(now, o.timeZone) : "--:--"}</span>
+            <span className="block font-mono text-[10px] text-text-3">{o.tz}</span>
+          </span>
+        </a>
+      ))}
     </div>
   );
 }
@@ -115,7 +122,7 @@ export function Footer() {
             </Link>
             <p className="mt-5 max-w-[36ch] text-text-2">A software studio building websites, apps and AI tools for businesses worldwide.</p>
             <FooterContact />
-            <OfficeCard />
+            <OfficeList />
           </div>
 
           <div className="lg:col-span-5">

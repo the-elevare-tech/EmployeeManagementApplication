@@ -1,9 +1,12 @@
 "use client";
 
 import { Clock } from "lucide-react";
-import { CITIES, HOURS_LABEL, humanDuration, isOpen, minutesUntilClose, minutesUntilOpen, rangeIn, visitorZone } from "@/lib/hours";
+import { humanDuration, isOpen, minutesUntilClose, minutesUntilOpen } from "@/lib/hours";
+import { OFFICES, officeStatus } from "@/lib/offices";
+import { formatTime } from "@/lib/hours";
 import { useNow } from "@/components/layout/useNow";
 
+/** Status of the Lahore engineering team (used by the booking console). */
 export function StatusPill({ now, compact = false }: { now: Date | null; compact?: boolean }) {
   if (!now) return <span className="h-6 w-28 animate-pulse rounded-full bg-white/5" />;
   const open = isOpen(now);
@@ -22,42 +25,61 @@ export function StatusPill({ now, compact = false }: { now: Date | null; compact
   );
 }
 
+export function OfficeStatusDot({ open }: { open: boolean }) {
+  return (
+    <span className="relative flex h-1.5 w-1.5">
+      {open && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />}
+      <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${open ? "bg-green" : "bg-amber"}`} />
+    </span>
+  );
+}
+
+/** Office hours: each office shown in its own local time. */
 export function WorkingHours() {
   const now = useNow(30000);
-  const you = now ? visitorZone() : null;
 
   return (
     <div className="glass-strong rounded-2xl p-5">
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <div className="flex items-center gap-3">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-brand/15 to-indigo/15 text-brand">
-            <Clock size={18} />
-          </span>
-          <div>
-            <p className="font-medium text-text-1">Working hours</p>
-            <p className="font-mono text-xs text-text-3">{HOURS_LABEL} · every day</p>
-          </div>
+      <div className="flex items-center gap-3">
+        <span className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-brand/15 to-indigo/15 text-brand">
+          <Clock size={18} />
+        </span>
+        <div>
+          <p className="font-medium text-text-1">Office hours</p>
+          <p className="text-xs text-text-3">Each office in its local time</p>
         </div>
-        <StatusPill now={now} />
       </div>
 
-      <ul className="mt-5 divide-y divide-white/[0.06] border-t border-white/[0.06] text-sm">
-        {you && (
-          <li className="flex items-center justify-between gap-4 py-2.5">
-            <span className="flex items-center gap-2 text-brand">
-              <span className="h-1.5 w-1.5 rounded-full bg-brand" /> Your time ({you.city})
-            </span>
-            <span className="whitespace-nowrap font-mono text-[12px] text-text-1 sm:text-[13px]">{rangeIn(undefined, now!)}</span>
-          </li>
-        )}
-        {CITIES.map((c) => (
-          <li key={c.zone} className="flex items-center justify-between gap-3 py-2.5">
-            <span className="text-text-2">
-              {c.city} <span className="font-mono text-[11px] text-text-3">{c.code}</span>
-            </span>
-            <span className="whitespace-nowrap font-mono text-[12px] text-text-1 sm:text-[13px]">{now ? rangeIn(c.zone, now) : "-"}</span>
-          </li>
-        ))}
+      <ul className="mt-5 space-y-3">
+        {OFFICES.map((o) => {
+          const st = now ? officeStatus(o, now) : null;
+          return (
+            <li key={o.id} className="rounded-xl border border-white/[0.08] bg-ink/40 p-4">
+              <div className="flex items-start justify-between gap-3">
+                <div className="min-w-0">
+                  <p className="flex items-center gap-2 text-sm font-medium text-text-1">
+                    <img src={`https://flagcdn.com/20x15/${o.flag}.png`} alt="" width={14} height={10} className="rounded-[2px]" />
+                    {o.label}
+                  </p>
+                  <p className="mt-1.5 font-mono text-[13px] text-text-1">
+                    {o.hours.text} <span className="text-text-3">{o.tz}</span>
+                  </p>
+                  <p className="text-xs text-text-3">{o.hours.daysText}</p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <p className="font-mono text-xs tabular-nums text-text-2">{now ? formatTime(now, o.timeZone) : "--:--"}</p>
+                  <p className="font-mono text-[10px] text-text-3">local time</p>
+                </div>
+              </div>
+              {st && (
+                <p className={`mt-3 flex items-center gap-2 font-mono text-[11px] ${st.open ? "text-green" : "text-amber"}`}>
+                  <OfficeStatusDot open={st.open} />
+                  {st.text}
+                </p>
+              )}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

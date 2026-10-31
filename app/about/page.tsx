@@ -7,6 +7,11 @@ import { PageHero } from "@/components/layout/PageHero";
 import { GlobalMap } from "@/components/home/GlobalMap";
 import { StatsSection } from "@/components/home/StatsSection";
 import { CTAStrip } from "@/components/home/CTAStrip";
+import Link from "next/link";
+import { ArrowUpRight, Check } from "lucide-react";
+import { SERVICES, SERVICE_CATEGORIES } from "@/lib/services";
+import { OFFICES } from "@/lib/offices";
+import { OfficeMapCard } from "@/components/layout/OfficeCard";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -115,7 +120,7 @@ const chapters = [
   {
     title: "Who we are",
     body: [
-      "Elevare Tech is a software development company headquartered in Faisalabad, Pakistan. Founded in August 2025 by two software engineers, we design, build and maintain websites, web applications, mobile apps and AI systems for businesses in North America, Europe and the Middle East.",
+      "Elevare Tech is a software development company with offices in Lahore, Pakistan and San Francisco, USA. Founded in August 2025 by two software engineers, we design, build and maintain websites, web applications, mobile apps and AI systems for businesses in North America, Europe and the Middle East.",
     ],
   },
   {
@@ -156,7 +161,7 @@ export default function AboutPage() {
         label="About us"
         title="We build technology that"
         highlight="moves businesses forward."
-        description="Founded in 2025 in Faisalabad, Pakistan, Elevare Tech is a full-service technology partner for businesses that want to grow through modern software."
+        description="Elevare Tech is a full-service software development company with offices in Lahore and San Francisco. We design, build and support websites, apps, AI systems and automation for businesses worldwide."
       >
         <div className="glass-strong mx-auto grid max-w-3xl grid-cols-2 overflow-hidden rounded-2xl sm:grid-cols-4">
           {stats.map((s, i) => (
@@ -188,7 +193,7 @@ export default function AboutPage() {
               <dl className="glass-strong mt-8 grid grid-cols-2 overflow-hidden rounded-2xl">
                 {[
                   { k: "Founded", v: "Aug 2025" },
-                  { k: "Headquarters", v: "Faisalabad" },
+                  { k: "Offices", v: "Lahore · SF" },
                   { k: "Service lines", v: "10" },
                   { k: "Client regions", v: "3 continents" },
                 ].map((x, i) => (
@@ -213,6 +218,125 @@ export default function AboutPage() {
               </motion.article>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* What we do */}
+      <section className="border-t border-border py-20 lg:py-28">
+        <div className="container-x">
+          <motion.div {...reveal} className="grid gap-8 lg:grid-cols-12 lg:items-end">
+            <div className="lg:col-span-7">
+              <span className="text-label">What we do</span>
+              <h2 className="mt-5">
+                <span className="text-silver">Everything a business needs</span>{" "}
+                <span className="text-electric">to build and grow with software</span>
+              </h2>
+            </div>
+            <p className="text-lg text-text-2 lg:col-span-5">
+              We plan, design, develop, launch and maintain digital products end to end. Clients come to us with an idea, a process
+              to automate or an outdated system, and leave with software that is live, documented and supported.
+            </p>
+          </motion.div>
+
+          {/* delivery model */}
+          <motion.ol {...reveal} className="mt-12 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-border bg-border md:grid-cols-5">
+            {[
+              { t: "Consult", d: "Understand your goals and define the right solution." },
+              { t: "Design", d: "User flows, interfaces and prototypes you approve." },
+              { t: "Build", d: "Engineering in weekly sprints with live demos." },
+              { t: "Launch", d: "Deployment, testing, documentation and training." },
+              { t: "Support", d: "Maintenance, monitoring and new features." },
+            ].map((x, i) => (
+              <li key={x.t} className={`bg-bg p-5 ${i === 4 ? "col-span-2 md:col-span-1" : ""}`}>
+                <span className="font-mono text-xs text-brand">0{i + 1}</span>
+                <p className="mt-2 font-medium text-text-1">{x.t}</p>
+                <p className="mt-1 text-sm text-text-2">{x.d}</p>
+              </li>
+            ))}
+          </motion.ol>
+
+          {/* services by category: Build on the left, the rest stacked on the right */}
+          {(() => {
+            const blurb: Record<string, string> = {
+              Build: "Websites, platforms and applications engineered for performance and scale.",
+              Design: "Research-led product and interface design that users understand instantly.",
+              "AI & Data": "AI agents, automation, machine learning and analytics that save time and reveal insight.",
+              Operate: "Hosting, deployment pipelines, monitoring and ongoing maintenance.",
+            };
+            const Group = ({ cat, ci }: { cat: string; ci: number }) => {
+              const items = SERVICES.filter((x) => x.category === cat);
+              return (
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: ci * 0.08 }}
+                  className="card h-full rounded-3xl p-6 sm:p-7"
+                >
+                  <div className="flex items-baseline justify-between gap-4">
+                    <h3 className="text-xl text-text-1">{cat}</h3>
+                    <span className="font-mono text-xs text-text-3">{items.length} {items.length === 1 ? "service" : "services"}</span>
+                  </div>
+                  <p className="mt-2 text-[15px] text-text-2">{blurb[cat]}</p>
+                  <ul className="mt-5 divide-y divide-white/[0.06] border-t border-white/[0.06]">
+                    {items.map((sv) => {
+                      const Icon = sv.icon;
+                      return (
+                        <li key={sv.slug}>
+                          <Link href={`/services/${sv.slug}`} className="group flex items-start gap-3 py-3.5">
+                            <span className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-brand">
+                              <Icon size={15} />
+                            </span>
+                            <span className="min-w-0 flex-1">
+                              <span className="block font-medium text-text-1 group-hover:text-brand">{sv.title}</span>
+                              <span className="block text-sm text-text-2">{sv.summary}</span>
+                            </span>
+                            <ArrowUpRight size={16} className="mt-1 shrink-0 text-text-3 transition-colors group-hover:text-brand" />
+                          </Link>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </motion.div>
+              );
+            };
+            const [first, ...rest] = SERVICE_CATEGORIES;
+            return (
+              <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+                <Group cat={first} ci={0} />
+                <div className="flex flex-col gap-4">
+                  {rest.map((c, i) => (
+                    <Group key={c} cat={c} ci={i + 1} />
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
+          {/* who we work with */}
+          <motion.div {...reveal} className="glass-strong mt-4 grid gap-6 rounded-3xl p-6 sm:p-8 md:grid-cols-[1fr_2fr] md:items-center">
+            <div>
+              <h3 className="text-xl text-text-1">Who we work with</h3>
+              <p className="mt-2 text-[15px] text-text-2">From first-time founders to established companies.</p>
+            </div>
+            <ul className="grid gap-2.5 sm:grid-cols-2">
+              {[
+                "Startups launching their first product",
+                "Small and medium businesses going digital",
+                "E-commerce and retail brands",
+                "Consultancies and professional services",
+                "Teams automating repetitive operations",
+                "Companies replacing outdated software",
+              ].map((x) => (
+                <li key={x} className="flex items-center gap-2 text-[15px] text-text-2">
+                  <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-green/15 text-green">
+                    <Check size={12} />
+                  </span>
+                  {x}
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
       </section>
 
@@ -328,19 +452,28 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Where we work */}
+      {/* Offices + reach */}
       <section className="border-t border-border py-20 lg:py-28">
         <div className="container-x">
           <div className="mx-auto mb-12 max-w-2xl text-center">
             <span className="text-label">
-              <MapPin size={12} /> Where we work
+              <MapPin size={12} /> Our offices
             </span>
             <h2 className="mt-5">
-              <span className="text-silver">Built in Pakistan.</span> <span className="text-electric">Used worldwide.</span>
+              <span className="text-silver">Two offices.</span> <span className="text-electric">Clients worldwide.</span>
             </h2>
-            <p className="mt-4 text-lg text-text-2">Our team works from Faisalabad, with clients across seven countries and four continents.</p>
+            <p className="mt-4 text-lg text-text-2">
+              Our engineering team is based in Lahore, with a presence in San Francisco for our clients in North America.
+            </p>
           </div>
-          <motion.div {...reveal} className="glass-strong rounded-3xl px-2 py-8 sm:px-10 sm:py-12">
+          <div className="grid gap-4 md:grid-cols-2">
+            {OFFICES.map((o) => (
+              <motion.div key={o.id} {...reveal}>
+                <OfficeMapCard office={o} height="h-64" />
+              </motion.div>
+            ))}
+          </div>
+          <motion.div {...reveal} className="glass-strong mt-4 rounded-3xl px-2 py-8 sm:px-10 sm:py-12">
             <GlobalMap />
           </motion.div>
         </div>

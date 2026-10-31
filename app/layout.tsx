@@ -25,16 +25,27 @@ const structuredData = [
     logo: `${SITE_URL}/logo.png`,
     image: `${SITE_URL}/opengraph-image`,
     description:
-      "Elevare Tech is a software development company in Faisalabad, Pakistan building websites, web apps, mobile apps, AI agents and automation for businesses worldwide.",
+      "Elevare Tech is a software development company with offices in Lahore, Pakistan and San Francisco, USA, building websites, web apps, mobile apps, AI agents and automation for businesses worldwide.",
     foundingDate: "2025",
     email: "hr@elevaretech.site",
     telephone: "+92-346-0618820",
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Faisalabad",
-      addressRegion: "Punjab",
-      addressCountry: "PK",
-    },
+    address: [
+      {
+        "@type": "PostalAddress",
+        streetAddress: "Pace Shopping Mall, Model Town Link Road",
+        addressLocality: "Lahore",
+        addressRegion: "Punjab",
+        addressCountry: "PK",
+      },
+      {
+        "@type": "PostalAddress",
+        streetAddress: "680 Folsom Street",
+        addressLocality: "San Francisco",
+        addressRegion: "CA",
+        postalCode: "94107",
+        addressCountry: "US",
+      },
+    ],
     areaServed: ["Worldwide", "Pakistan", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Canada", "Australia"],
     knowsAbout: [
       "Web Development", "E-commerce Development", "SaaS Development", "Mobile App Development", "UI/UX Design",
@@ -66,7 +77,7 @@ const structuredData = [
 
 const DEFAULT_TITLE = "Elevare Tech | Software, Web & AI Development Company";
 const DEFAULT_DESC =
-  "Elevare Tech is a software development company in Pakistan building websites, web apps, mobile apps, AI agents and automation for businesses worldwide. Book a free consultation.";
+  "Elevare Tech is a software development company in Lahore and San Francisco building websites, web apps, mobile apps, AI agents and automation for businesses worldwide. Book a free consultation.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -74,7 +85,7 @@ export const metadata: Metadata = {
   description: DEFAULT_DESC,
   applicationName: "Elevare Tech",
   keywords: [
-    "Elevare Tech", "ElevareTech", "software development company Pakistan", "web development company Faisalabad",
+    "Elevare Tech", "ElevareTech", "software development company Pakistan", "web development company Lahore", "software company San Francisco",
     "AI automation agency", "AI agents development", "mobile app development", "e-commerce development",
     "SaaS development", "Next.js development", "custom software development", "UI/UX design agency",
   ],

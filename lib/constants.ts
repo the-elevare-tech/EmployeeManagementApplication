@@ -10,7 +10,7 @@ export const COMPANY = {
   name: "Elevare Tech",
   phone: "+92 346 0618820",
   phoneHref: "tel:+923460618820",
-  location: "Faisalabad, Pakistan",
+  location: "Lahore, Pakistan · San Francisco, USA",
   foundedYear: 2025,
   copyrightYear: new Date().getFullYear(),
   hours: "2:00 PM to 12:00 AM PKT (UTC+5)",

@@ -3,6 +3,7 @@
 import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { BORDERS, LAND, MAP_H, MAP_W, project } from "@/lib/worldMap";
 import * as SHAPES from "@/lib/countryShapes";
+import { OFFICES } from "@/lib/offices";
 
 type City = { id: string; name: string; country: string; lon: number; lat: number; flag: string };
 
@@ -15,11 +16,11 @@ const CITIES: City[] = [
   { id: "toronto", name: "Toronto", country: "Canada", lon: -79.38, lat: 43.65, flag: "ca" },
   { id: "sydney", name: "Sydney", country: "Australia", lon: 151.2, lat: -33.87, flag: "au" },
   { id: "karachi", name: "Karachi", country: "Pakistan", lon: 67.0, lat: 24.86, flag: "pk" },
-  { id: "lahore", name: "Lahore", country: "Pakistan", lon: 74.34, lat: 31.55, flag: "pk" },
   { id: "islamabad", name: "Islamabad", country: "Pakistan", lon: 73.05, lat: 33.68, flag: "pk" },
+  { id: "faisalabad", name: "Faisalabad", country: "Pakistan", lon: 73.08, lat: 31.42, flag: "pk" },
 ];
 
-const HQ = { lon: 73.08, lat: 31.42 }; // Faisalabad
+const HUB = { lon: 73.08, lat: 31.42 }; // Faisalabad, where Elevare Tech started
 const AUTOPLAY_MS = 2800;
 
 const CLIENT_SHAPES = [SHAPES.AE, SHAPES.SA, SHAPES.GB, SHAPES.US, SHAPES.CA, SHAPES.AU];
@@ -41,8 +42,10 @@ export function GlobalMap({ className = "" }: { className?: string }) {
   const [inView, setInView] = useState(false);
   const [reduced, setReduced] = useState(false);
 
+  const offices = useMemo(() => OFFICES.map((o) => { const [x, y] = project(o.lon, o.lat); return { ...o, x, y }; }), []);
+
   const { hub, cities } = useMemo(() => {
-    const h = project(HQ.lon, HQ.lat);
+    const h = project(HUB.lon, HUB.lat);
     return {
       hub: h,
       cities: CITIES.map((c) => {
@@ -76,7 +79,7 @@ export function GlobalMap({ className = "" }: { className?: string }) {
       <div
         ref={rootRef}
         role="group"
-        aria-label="Map of Elevare Tech's clients, from our headquarters in Faisalabad, Pakistan to the UAE, Saudi Arabia, the UK, the US, Canada and Australia"
+        aria-label="Map of Elevare Tech's offices in Lahore and San Francisco and our clients across the UAE, Saudi Arabia, the UK, the US, Canada and Australia"
         className="relative w-full select-none"
         style={{ aspectRatio: `${MAP_W} / ${MAP_H}` }}
       >
@@ -169,7 +172,33 @@ export function GlobalMap({ className = "" }: { className?: string }) {
             );
           })}
 
-          {/* HQ */}
+          {/* office routes + markers */}
+          {offices.map((o) => (
+            <path
+              key={`r-${o.id}`}
+              d={`M ${hub[0]} ${hub[1]} Q ${(o.x + hub[0]) / 2} ${(o.y + hub[1]) / 2 - Math.max(18, Math.hypot(o.x - hub[0], o.y - hub[1]) * 0.3)} ${o.x} ${o.y}`}
+              fill="none"
+              stroke="#38BDF8"
+              strokeOpacity="0.45"
+              strokeWidth="1.4"
+              strokeDasharray="3 4"
+              vectorEffect="non-scaling-stroke"
+            />
+          ))}
+          {offices.map((o) => (
+            <g key={o.id}>
+              {[0, 1.2].map((begin) => (
+                <circle key={begin} cx={o.x} cy={o.y} r="6" fill="none" stroke="#38BDF8" strokeWidth="1.3">
+                  <animate attributeName="r" values="6;26" dur="2.4s" begin={`${begin}s`} repeatCount="indefinite" />
+                  <animate attributeName="opacity" values="0.7;0" dur="2.4s" begin={`${begin}s`} repeatCount="indefinite" />
+                </circle>
+              ))}
+              <rect x={o.x - 5} y={o.y - 5} width="10" height="10" rx="2.5" fill="#38BDF8" filter={`url(#${uid}-glow)`} transform={`rotate(45 ${o.x} ${o.y})`} />
+              <rect x={o.x - 2.2} y={o.y - 2.2} width="4.4" height="4.4" rx="1" fill="#fff" transform={`rotate(45 ${o.x} ${o.y})`} />
+            </g>
+          ))}
+
+          {/* origin hub (Faisalabad) */}
           <circle cx={hub[0]} cy={hub[1]} r="46" fill={`url(#${uid}-hub)`} />
           {[0, 1.2].map((begin) => (
             <circle key={begin} cx={hub[0]} cy={hub[1]} r="7" fill="none" stroke="#38BDF8" strokeWidth="1.4">
@@ -215,13 +244,20 @@ export function GlobalMap({ className = "" }: { className?: string }) {
           </div>
         )}
 
-        {/* HQ label */}
-        <div className="pointer-events-none absolute z-10" style={pct(hub[0], hub[1])}>
-          <span className="absolute right-2 top-3 flex items-center gap-2 whitespace-nowrap rounded-full border border-brand/40 bg-ink/80 px-2.5 py-1 font-mono text-[10px] text-brand shadow-[0_0_24px_-4px_rgba(56,189,248,0.7)] backdrop-blur sm:right-4 sm:top-5 sm:px-3 sm:text-[11px]">
-            <span className="h-1.5 w-1.5 rounded-full bg-brand" />
-            HQ<span className="hidden sm:inline"> · Faisalabad,</span> Pakistan
-          </span>
-        </div>
+        {/* office labels */}
+        {offices.map((o) => (
+          <div key={o.id} className="pointer-events-none absolute z-10" style={pct(o.x, o.y)}>
+            <span
+              className={`absolute flex items-center gap-1.5 whitespace-nowrap rounded-full border border-brand/40 bg-ink/85 px-2 py-0.5 font-mono text-[9px] text-brand shadow-[0_0_24px_-4px_rgba(56,189,248,0.7)] backdrop-blur sm:gap-2 sm:px-3 sm:py-1 sm:text-[11px] ${
+                o.id === "lahore" ? "bottom-3 left-2 sm:bottom-4 sm:left-3" : "bottom-3 right-2 sm:bottom-4 sm:right-3"
+              }`}
+            >
+              <img src={`https://flagcdn.com/20x15/${o.flag}.png`} alt="" width={14} height={10} className="rounded-[2px]" />
+              <span className="sm:hidden">{o.city}</span>
+              <span className="hidden sm:inline">{o.label}</span>
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );

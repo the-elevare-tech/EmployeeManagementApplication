@@ -414,4 +414,4 @@ export function getService(slug: string) {
   return SERVICES.find((s) => s.slug === slug);
 }
 
-export const SERVICE_CATEGORIES = ["Build", "Design", "AI & Data", "Operate"] as const;
+export const SERVICE_CATEGORIES = ["Build", "AI & Data", "Design", "Operate"] as const;
