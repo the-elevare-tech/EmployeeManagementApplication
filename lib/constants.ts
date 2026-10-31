@@ -15,11 +15,11 @@ export const COMPANY = {
   copyrightYear: new Date().getFullYear(),
   hours: "2:00 PM to 12:00 AM PKT (UTC+5)",
   linkedin: "https://linkedin.com/company/elevare-tech",
-  email: "hr@elevaretech.site",
+  email: "support@elevaretech.site",
   facebook: "https://facebook.com/people/Elevare-Tech/61579593726351",
 };
 
 export const CONTACT = {
-  email: "hr@elevaretech.site",
+  email: "support@elevaretech.site",
   whatsapp: "https://wa.me/923460618820?text=" + encodeURIComponent("Hi, I'd like to know more about Elevare Tech's services."),
 };

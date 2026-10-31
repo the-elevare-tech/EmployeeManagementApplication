@@ -27,7 +27,7 @@ const structuredData = [
     description:
       "Elevare Tech is a software development company with offices in Lahore, Pakistan and San Francisco, USA, building websites, web apps, mobile apps, AI agents and automation for businesses worldwide.",
     foundingDate: "2025",
-    email: "hr@elevaretech.site",
+    email: "support@elevaretech.site",
     telephone: "+92-346-0618820",
     address: [
       {
@@ -59,7 +59,7 @@ const structuredData = [
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
-      email: "hr@elevaretech.site",
+      email: "support@elevaretech.site",
       telephone: "+92-346-0618820",
       url: `${SITE_URL}/contact`,
       availableLanguage: ["English", "Urdu"],
