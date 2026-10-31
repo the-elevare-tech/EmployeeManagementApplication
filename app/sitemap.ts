@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { PROJECTS } from "@/lib/projects";
 import { SERVICES } from "@/lib/services";
 
-const baseUrl = "https://www.elevaretech.site";
+const baseUrl = "https://www.elevaretech.net";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const publicPages = [

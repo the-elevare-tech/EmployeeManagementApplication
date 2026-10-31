@@ -34,7 +34,7 @@ export default function OgImage() {
           <div style={{ marginTop: 28, fontSize: 28, color: "#9BA8C7" }}>Web · Mobile · AI Agents & Automation · E-commerce · SaaS</div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontSize: 24, color: "#9BA8C7" }}>
-          <div>www.elevaretech.site</div>
+          <div>www.elevaretech.net</div>
           <div>Lahore · San Francisco</div>
         </div>
       </div>
