@@ -12,6 +12,8 @@ export type Office = {
   tz: string;
   /** Office hours in the office's own local time (minutes from midnight; 1440 = midnight). */
   hours: { start: number; end: number; days: number[]; text: string; daysText: string };
+  /** Office phone (also on WhatsApp). */
+  phone?: { display: string; tel: string; whatsapp: string };
 };
 
 export const OFFICES: Office[] = [
@@ -29,6 +31,7 @@ export const OFFICES: Office[] = [
     tz: "PKT",
     // 2:00 PM to 12:00 AM, every day
     hours: { start: 14 * 60, end: 24 * 60, days: [0, 1, 2, 3, 4, 5, 6], text: "2:00 PM to 12:00 AM", daysText: "Every day" },
+    phone: { display: "+92 346 0618820", tel: "tel:+923460618820", whatsapp: "https://wa.me/923460618820" },
   },
   {
     id: "san-francisco",

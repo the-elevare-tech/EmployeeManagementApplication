@@ -36,6 +36,7 @@ const structuredData = [
         addressLocality: "Lahore",
         addressRegion: "Punjab",
         addressCountry: "PK",
+        telephone: "+92-346-0618820",
       },
       {
         "@type": "PostalAddress",

@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowUpRight, MapPin } from "lucide-react";
+import { ArrowUpRight, MapPin, Phone } from "lucide-react";
 import { formatTime } from "@/lib/hours";
 import { useNow } from "@/components/layout/useNow";
 import { mapsEmbed, mapsLink, officeStatus, type Office } from "@/lib/offices";
@@ -58,14 +58,21 @@ export function OfficeMapCard({ office, height = "h-56" }: { office: Office; hei
             </span>
           )}
         </div>
-        <a
-          href={mapsLink(office)}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-auto inline-flex items-center gap-1.5 pt-4 text-sm text-brand hover:underline"
-        >
-          Get directions <ArrowUpRight size={14} />
-        </a>
+        <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
+          <a
+            href={mapsLink(office)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm text-brand hover:underline"
+          >
+            Get directions <ArrowUpRight size={14} />
+          </a>
+          {office.phone && (
+            <a href={office.phone.tel} className="inline-flex items-center gap-1.5 font-mono text-sm text-text-1 transition-colors hover:text-brand">
+              <Phone size={14} className="text-brand" /> {office.phone.display}
+            </a>
+          )}
+        </div>
       </div>
     </div>
   );

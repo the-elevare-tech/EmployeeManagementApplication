@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Linkedin, Facebook, ArrowUpRight, ArrowUp, Mail, MessageCircle, CalendarCheck, Copy, Check, MapPin } from "lucide-react";
+import { Linkedin, Facebook, ArrowUpRight, ArrowUp, Mail, MessageCircle, Phone, CalendarCheck, Copy, Check, MapPin } from "lucide-react";
 import { countdown, formatTime, HOURS_LABEL } from "@/lib/hours";
 import { useNow } from "@/components/layout/useNow";
 import { Logo } from "@/components/ui/Logo";
@@ -60,11 +60,6 @@ function FooterContact() {
         {CONTACT.email}
         <span className="font-mono text-[11px] text-text-3">{copied ? "copied ✓" : "copy"}</span>
       </button>
-      <a href={CONTACT.whatsapp} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-2.5 text-text-1 transition-colors hover:text-brand">
-        <MessageCircle size={15} className="text-text-3 group-hover:text-brand" />
-        {COMPANY.phone}
-        <span className="font-mono text-[11px] text-text-3">WhatsApp</span>
-      </a>
     </div>
   );
 }
@@ -90,6 +85,11 @@ function OfficeList() {
               {o.label}
             </span>
             <span className="mt-0.5 block text-[13px] leading-snug text-text-3">{o.full}</span>
+            {o.phone && (
+              <span className="mt-1.5 flex items-center gap-1.5 font-mono text-[12px] text-text-2">
+                <Phone size={12} className="text-brand" /> {o.phone.display}
+              </span>
+            )}
           </span>
           <span className="shrink-0 text-right">
             <span className="block font-mono text-xs tabular-nums text-text-1">{now ? formatTime(now, o.timeZone) : "--:--"}</span>
@@ -169,7 +169,7 @@ export function Footer() {
 
         <div className="mt-14 flex flex-col gap-5 border-t border-border py-7 md:flex-row md:items-center md:justify-between">
           <p className="text-sm text-text-3">
-            © {COMPANY.copyrightYear} {COMPANY.name}. Built in Pakistan for the world.
+            © 2025 {COMPANY.name}. All rights reserved.
           </p>
           <div className="flex items-center gap-2">
             {[

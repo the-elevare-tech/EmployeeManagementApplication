@@ -13,8 +13,8 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const channels = [
   { icon: Mail, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, external: false, wide: true },
-  { icon: MessageCircle, label: "WhatsApp", value: COMPANY.phone, href: CONTACT.whatsapp, external: true },
-  { icon: Phone, label: "Phone", value: COMPANY.phone, href: COMPANY.phoneHref, external: false },
+  { icon: MessageCircle, label: "Lahore · WhatsApp", value: COMPANY.phone, href: CONTACT.whatsapp, external: true },
+  { icon: Phone, label: "Lahore · Phone", value: COMPANY.phone, href: COMPANY.phoneHref, external: false },
   ...OFFICES.map((o) => ({ icon: MapPin, label: o.label, value: o.full, href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.full)}`, external: true, wide: true })),
 ];
 

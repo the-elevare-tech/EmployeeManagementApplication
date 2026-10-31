@@ -26,8 +26,21 @@ function DayTimeline({ now }: { now: Date | null }) {
   const isWorking = (h: number) => (start < end ? h >= start && h < end : h >= start || h < end);
   const nowPos = now ? ((now.getHours() + now.getMinutes() / 60) / 24) * 100 : -10;
 
+  // keep the "now" label inside the strip near either edge
+  const labelShift = nowPos < 6 ? "0%" : nowPos > 94 ? "-100%" : "-50%";
+
   return (
     <div>
+      <div className="relative mb-2 h-4">
+        {now && (
+          <span
+            className="absolute top-0 whitespace-nowrap font-mono text-[10px] uppercase tracking-wider text-text-1"
+            style={{ left: `${nowPos}%`, transform: `translateX(${labelShift})` }}
+          >
+            Now · {formatTime(now)}
+          </span>
+        )}
+      </div>
       <div className="relative flex h-9 gap-[3px]">
         {Array.from({ length: 24 }, (_, h) => (
           <div
@@ -38,9 +51,7 @@ function DayTimeline({ now }: { now: Date | null }) {
           />
         ))}
         {now && (
-          <div className="absolute -bottom-1.5 -top-1.5 w-[2px] rounded-full bg-white shadow-[0_0_10px_#fff]" style={{ left: `${nowPos}%` }}>
-            <span className="absolute -top-5 left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] text-text-1">now</span>
-          </div>
+          <div className="absolute -bottom-1.5 -top-1.5 w-[2px] rounded-full bg-white shadow-[0_0_10px_#fff]" style={{ left: `${nowPos}%` }} />
         )}
       </div>
       <div className="mt-2 flex justify-between font-mono text-[10px] text-text-3">
@@ -127,9 +138,9 @@ function BookingConsole() {
 
         {/* availability strip */}
         <div>
-          <div className="mb-3 flex items-baseline justify-between gap-3">
-            <p className="text-sm text-text-1">Our hours in your day</p>
-            <p className="font-mono text-xs text-brand">{now ? rangeIn(undefined, now) : ""}</p>
+          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
+            <p className="whitespace-nowrap text-sm text-text-1">Our hours in your day</p>
+            <p className="whitespace-nowrap font-mono text-xs text-brand">{now ? rangeIn(undefined, now) : ""}</p>
           </div>
           <DayTimeline now={now} />
         </div>
