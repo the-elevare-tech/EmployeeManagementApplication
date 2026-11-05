@@ -3,9 +3,7 @@
 import Link from "next/link";
 import { ArrowRight, Code2, Bot, Smartphone, Workflow, ShoppingCart, Layers, Check } from "lucide-react";
 import { CONTACT } from "@/lib/constants";
-import { CLOSE_UTC_HOUR, OPEN_UTC_HOUR, countdown, formatTime, rangeIn, sameAsPKT, visitorZone } from "@/lib/hours";
-import { useNow } from "@/components/layout/useNow";
-import { StatusPill } from "@/components/contact/WorkingHours";
+import { Globe } from "@/components/home/Globe";
 
 const projectTypes = [
   { label: "Website", value: "web-development", icon: Code2 },
@@ -16,133 +14,39 @@ const projectTypes = [
   { label: "Custom software", value: "custom-development", icon: Workflow },
 ];
 
-/** 24-hour strip of the visitor's day, with our working window lit up and a live "now" marker. */
-function DayTimeline({ now }: { now: Date | null }) {
-  // offset (hours) of the visitor's zone from UTC
-  const offset = now ? -now.getTimezoneOffset() / 60 : 0;
-  const localHourOfUtc = (h: number) => (((h + offset) % 24) + 24) % 24;
-  const start = localHourOfUtc(OPEN_UTC_HOUR);
-  const end = localHourOfUtc(CLOSE_UTC_HOUR);
-  const isWorking = (h: number) => (start < end ? h >= start && h < end : h >= start || h < end);
-  const nowPos = now ? ((now.getHours() + now.getMinutes() / 60) / 24) * 100 : -10;
-
-  // keep the "now" label inside the strip near either edge
-  const labelShift = nowPos < 6 ? "0%" : nowPos > 94 ? "-100%" : "-50%";
-
-  return (
-    <div>
-      <div className="relative mb-2 h-4">
-        {now && (
-          <span
-            className="absolute top-0 whitespace-nowrap font-mono text-[10px] uppercase tracking-wider text-text-1"
-            style={{ left: `${nowPos}%`, transform: `translateX(${labelShift})` }}
-          >
-            Now · {formatTime(now)}
-          </span>
-        )}
-      </div>
-      <div className="relative flex h-9 gap-[3px]">
-        {Array.from({ length: 24 }, (_, h) => (
-          <div
-            key={h}
-            className={`flex-1 rounded-[3px] transition-colors ${
-              now && isWorking(Math.floor(h)) ? "bg-gradient-to-t from-brand/50 to-indigo/60 shadow-[0_0_10px_-2px_rgba(56,189,248,0.6)]" : "bg-white/[0.05]"
-            }`}
-          />
-        ))}
-        {now && (
-          <div className="absolute -bottom-1.5 -top-1.5 w-[2px] rounded-full bg-white shadow-[0_0_10px_#fff]" style={{ left: `${nowPos}%` }} />
-        )}
-      </div>
-      <div className="mt-2 flex justify-between font-mono text-[10px] text-text-3">
-        <span>12 AM</span>
-        <span>6 AM</span>
-        <span>12 PM</span>
-        <span>6 PM</span>
-        <span>12 AM</span>
-      </div>
-    </div>
-  );
-}
-
-function Countdown({ now }: { now: Date | null }) {
-  const c = now ? countdown(now) : null;
-  const pad = (n: number) => String(n).padStart(2, "0");
-  const units = c ? [pad(c.h), pad(c.m), pad(c.s)] : ["--", "--", "--"];
-  return (
-    <div className="flex items-end gap-1.5 sm:gap-2">
-      {units.map((u, i) => (
-        <div key={i} className="flex items-end gap-1.5 sm:gap-2">
-          <div className="text-center">
-            <div className="min-w-[3.2rem] rounded-xl border border-white/10 bg-ink/60 px-2 py-2 font-mono text-2xl font-semibold tabular-nums text-text-1 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] sm:min-w-[3.8rem] sm:text-3xl">
-              {u}
-            </div>
-            <div className="mt-1 font-mono text-[10px] text-text-3">{["hrs", "min", "sec"][i]}</div>
-          </div>
-          {i < 2 && <span className="mb-6 font-mono text-xl text-text-3">:</span>}
-        </div>
-      ))}
-    </div>
-  );
-}
+const REGIONS = ["UAE", "Saudi Arabia", "UK", "USA", "Canada", "Australia"];
 
 function BookingConsole() {
-  const now = useNow(1000);
-  const you = now ? visitorZone() : null;
-
   return (
-    <div data-tilt="3" className="tilt glass-strong ring-conic relative overflow-hidden rounded-3xl">
+    <div className="glass-strong ring-conic relative overflow-hidden rounded-3xl">
       {/* title bar */}
       <div className="flex items-center justify-between gap-3 border-b border-white/10 px-5 py-3">
-        <div className="flex items-center gap-2">
+        <div className="flex min-w-0 items-center gap-2">
           <span className="h-2.5 w-2.5 rounded-full bg-coral/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-amber/80" />
           <span className="h-2.5 w-2.5 rounded-full bg-green/80" />
-          <span className="ml-2 font-mono text-xs text-text-3">elevare / book-a-call</span>
+          <span className="ml-2 hidden truncate font-mono text-xs text-text-3 sm:inline">elevare / global-delivery</span>
         </div>
-        <StatusPill now={now} compact />
+        <span className="inline-flex shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border border-green/30 bg-green/10 px-2.5 py-1 font-mono text-[11px] text-green">
+          <span className="relative flex h-1.5 w-1.5">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />
+            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green" />
+          </span>
+          Accepting new projects
+        </span>
       </div>
 
-      <div className="space-y-6 p-5 sm:p-6">
-        {/* clock(s) + live countdown */}
-        <div className="grid gap-3 sm:grid-cols-[auto_1fr]">
-          <div className="rounded-2xl border border-white/[0.08] bg-ink/40 p-4">
-            {now && !sameAsPKT(now) ? (
-              <div className="grid grid-cols-2 gap-4 sm:block sm:space-y-3">
-                <div>
-                  <p className="font-mono text-[11px] text-text-3">Lahore · PKT</p>
-                  <p className="mt-0.5 font-display text-xl font-semibold tabular-nums text-text-1">{formatTime(now, "Asia/Karachi")}</p>
-                </div>
-                <div>
-                  <p className="truncate font-mono text-[11px] text-text-3">You · {you?.city}</p>
-                  <p className="mt-0.5 font-display text-xl font-semibold tabular-nums text-text-1">{formatTime(now)}</p>
-                </div>
-              </div>
-            ) : (
-              <div>
-                <p className="font-mono text-[11px] text-text-3">Lahore · PKT</p>
-                <p className="mt-1 font-display text-3xl font-semibold tabular-nums tracking-tight text-text-1">{now ? formatTime(now, "Asia/Karachi") : "--:--"}</p>
-                <p className="mt-1 font-mono text-[10px] text-brand">same time as you</p>
-              </div>
-            )}
+      <div className="space-y-5 p-5 sm:p-6">
+        {/* globe */}
+        <div className="relative">
+          <div className="relative mx-auto aspect-square w-full max-w-[250px] sm:max-w-[270px]">
+            <Globe />
           </div>
-          <div className="rounded-2xl border border-white/[0.08] bg-ink/40 p-4">
-            <p className={`font-mono text-[11px] ${now && countdown(now).open ? "text-green" : "text-amber"}`}>
-              {now ? (countdown(now).open ? "● Closes in" : "● Opens in") : "Loading"}
-            </p>
-            <div className="mt-2">
-              <Countdown now={now} />
-            </div>
+          <div className="mt-2 flex flex-wrap items-center justify-center gap-x-5 gap-y-1.5 font-mono text-[10.5px] text-text-3">
+            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-brand shadow-[0_0_8px_#38BDF8]" /> Lahore office</span>
+            <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-violet shadow-[0_0_8px_#A78BFA]" /> San Francisco office</span>
+            <span className="hidden sm:inline">· drag to spin</span>
           </div>
-        </div>
-
-        {/* availability strip */}
-        <div>
-          <div className="mb-3 flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1">
-            <p className="whitespace-nowrap text-sm text-text-1">Our hours in your day</p>
-            <p className="whitespace-nowrap font-mono text-xs text-brand">{now ? rangeIn(undefined, now) : ""}</p>
-          </div>
-          <DayTimeline now={now} />
         </div>
 
         {/* project type */}
@@ -173,7 +77,7 @@ export function CTAStrip() {
   return (
     <section className="relative py-20 lg:py-28">
       <div className="container-x">
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,24,48,0.9),rgba(6,10,24,0.95))] px-6 py-14 sm:px-10 lg:px-14 lg:py-16">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(15,24,48,0.9),rgba(6,10,24,0.95))] px-6 py-12 sm:px-10 lg:px-14 lg:py-12">
           {/* background: grid, aurora, falling beams */}
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <div className="absolute inset-0 bg-grid opacity-50 [mask-image:radial-gradient(ellipse_70%_80%_at_70%_50%,#000,transparent)]" />
@@ -223,6 +127,16 @@ export function CTAStrip() {
                 >
                   Message us on WhatsApp
                 </a>
+              </div>
+              <div className="mt-9 border-t border-white/10 pt-6">
+                <p className="font-mono text-[11px] uppercase tracking-wider text-text-3">Delivering to clients in</p>
+                <div className="mt-3 flex flex-wrap justify-center gap-1.5 lg:justify-start">
+                  {REGIONS.map((r) => (
+                    <span key={r} className="rounded-full border border-white/[0.08] bg-white/[0.03] px-2.5 py-1 font-mono text-[11px] text-text-2">
+                      {r}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
             <BookingConsole />

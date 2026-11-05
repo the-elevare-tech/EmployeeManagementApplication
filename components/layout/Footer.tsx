@@ -3,11 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Linkedin, Facebook, ArrowUpRight, ArrowUp, Mail, MessageCircle, Phone, CalendarCheck, Copy, Check, MapPin } from "lucide-react";
-import { countdown, formatTime, HOURS_LABEL } from "@/lib/hours";
-import { useNow } from "@/components/layout/useNow";
 import { Logo } from "@/components/ui/Logo";
 import { COMPANY, CONTACT } from "@/lib/constants";
-import { OFFICES, mapsLink, officeStatus } from "@/lib/offices";
+import { OFFICES, mapsLink } from "@/lib/offices";
 import { SERVICES } from "@/lib/services";
 
 const company = [
@@ -25,20 +23,11 @@ const legal = [
 const pad = (n: number) => String(n).padStart(2, "0");
 
 function StatusLine() {
-  const now = useNow(1000);
   return (
-    <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
-      {OFFICES.map((o) => {
-        const st = now ? officeStatus(o, now) : null;
-        return (
-          <span key={o.id} className={`flex items-center gap-1.5 ${!st || st.open ? "text-green" : "text-amber"}`}>
-            <span className={`h-1.5 w-1.5 rounded-full ${!st || st.open ? "bg-green shadow-[0_0_8px_#34D399]" : "bg-amber"}`} />
-            {o.city}: {st ? (st.open ? "open" : "closed") : "..."}
-            <span className="hidden text-text-3 md:inline">· {o.hours.text} {o.tz}</span>
-          </span>
-        );
-      })}
-    </div>
+    <span className="flex items-center gap-1.5 text-green">
+      <span className="h-1.5 w-1.5 rounded-full bg-green shadow-[0_0_8px_#34D399]" />
+      Accepting new projects <span className="text-text-3">· We reply within 24 hours</span>
+    </span>
   );
 }
 
@@ -65,7 +54,6 @@ function FooterContact() {
 }
 
 function OfficeList() {
-  const now = useNow(1000);
   return (
     <div className="mt-7 space-y-3">
       {OFFICES.map((o) => (
@@ -91,10 +79,7 @@ function OfficeList() {
               </span>
             )}
           </span>
-          <span className="shrink-0 text-right">
-            <span className="block font-mono text-xs tabular-nums text-text-1">{now ? formatTime(now, o.timeZone) : "--:--"}</span>
-            <span className="block font-mono text-[10px] text-text-3">{o.tz}</span>
-          </span>
+          <ArrowUpRight size={14} className="mt-0.5 shrink-0 text-text-3 transition-colors group-hover:text-brand" />
         </a>
       ))}
     </div>

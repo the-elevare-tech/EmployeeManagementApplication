@@ -45,6 +45,7 @@ const structuredData = [
         addressRegion: "CA",
         postalCode: "94107",
         addressCountry: "US",
+        telephone: "+1-628-271-0322",
       },
     ],
     areaServed: ["Worldwide", "Pakistan", "United Arab Emirates", "Saudi Arabia", "United Kingdom", "United States", "Canada", "Australia"],

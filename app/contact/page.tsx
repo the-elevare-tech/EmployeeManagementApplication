@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Mail, MapPin, Phone, MessageCircle, Linkedin, Facebook, ArrowUpRight } from "lucide-react";
+import { Mail, MapPin, Linkedin, Facebook, ArrowUpRight, Clock } from "lucide-react";
 import { ContactForm } from "@/components/contact/ContactForm";
-import { WorkingHours } from "@/components/contact/WorkingHours";
+import { OfficeLocations } from "@/components/contact/OfficeLocations";
 import { FAQ } from "@/components/contact/FAQ";
 import { COMPANY, CONTACT } from "@/lib/constants";
 import { OFFICES } from "@/lib/offices";
@@ -13,9 +13,6 @@ const ease = [0.22, 1, 0.36, 1] as const;
 
 const channels = [
   { icon: Mail, label: "Email", value: CONTACT.email, href: `mailto:${CONTACT.email}`, external: false, wide: true },
-  { icon: MessageCircle, label: "Lahore · WhatsApp", value: COMPANY.phone, href: CONTACT.whatsapp, external: true },
-  { icon: Phone, label: "Lahore · Phone", value: COMPANY.phone, href: COMPANY.phoneHref, external: false },
-  ...OFFICES.map((o) => ({ icon: MapPin, label: o.label, value: o.full, href: `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.full)}`, external: true, wide: true })),
 ];
 
 const nextSteps = [
@@ -83,7 +80,19 @@ export default function ContactPage() {
               })}
             </div>
 
-            <WorkingHours />
+            <OfficeLocations />
+
+            <div className="glass-strong flex items-start gap-4 rounded-2xl p-5">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-green/30 bg-green/10 text-green">
+                <Clock size={17} />
+              </span>
+              <div>
+                <p className="font-medium text-text-1">We reply within 24 hours</p>
+                <p className="mt-1 text-sm text-text-2">
+                  Messages are read every day, wherever you are. For a quick question, WhatsApp is usually the fastest way to reach us.
+                </p>
+              </div>
+            </div>
 
             <div className="glass-strong rounded-2xl p-5">
               <p className="font-medium text-text-1">What happens next</p>

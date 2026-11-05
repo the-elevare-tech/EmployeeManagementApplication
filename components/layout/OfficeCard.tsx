@@ -1,13 +1,10 @@
 "use client";
 
 import { ArrowUpRight, MapPin, Phone } from "lucide-react";
-import { formatTime } from "@/lib/hours";
-import { useNow } from "@/components/layout/useNow";
-import { mapsEmbed, mapsLink, officeStatus, type Office } from "@/lib/offices";
+import { mapsEmbed, mapsLink, type Office } from "@/lib/offices";
 
 /** Office card with a live, dark-styled Google Map. */
 export function OfficeMapCard({ office, height = "h-56" }: { office: Office; height?: string }) {
-  const now = useNow(1000);
   return (
     <div className="card flex h-full flex-col overflow-hidden rounded-3xl">
       <div className={`relative ${height} overflow-hidden border-b border-white/10 bg-surface-2`}>
@@ -43,20 +40,6 @@ export function OfficeMapCard({ office, height = "h-56" }: { office: Office; hei
               ))}
             </address>
           </div>
-          <div className="shrink-0 text-right">
-            <p className="font-mono text-sm tabular-nums text-text-1">{now ? formatTime(now, office.timeZone) : "--:--"}</p>
-            <p className="font-mono text-[10px] text-text-3">local time · {office.tz}</p>
-          </div>
-        </div>
-        <div className="mt-4 flex flex-wrap items-center justify-between gap-2 border-t border-white/[0.07] pt-4">
-          <p className="text-sm text-text-2">
-            <span className="text-text-1">{office.hours.text}</span> {office.tz} · {office.hours.daysText}
-          </p>
-          {now && (
-            <span className={`font-mono text-[11px] ${officeStatus(office, now).open ? "text-green" : "text-amber"}`}>
-              {officeStatus(office, now).open ? "● Open now" : "● Closed"}
-            </span>
-          )}
         </div>
         <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-4">
           <a

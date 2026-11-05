@@ -10,7 +10,7 @@ const items = [
   { icon: MonitorPlay, title: "Weekly demos", desc: "Every sprint ends with something you can click through, not a status report.", span: "" },
   { icon: LifeBuoy, title: "30 days of support", desc: "Bug fixes and small changes after launch are included. Retainers are optional.", span: "" },
   { icon: ShieldCheck, title: "Built to scale", desc: "Clean, documented code on modern infrastructure that grows with you.", span: "" },
-  { icon: Globe2, title: "Works in your time zone", desc: "PKT overlaps the Gulf, Europe and US mornings, so meetings fit your day.", span: "md:col-span-3" },
+  { icon: Globe2, title: "Works in your time zone", desc: "With teams in Pakistan and the US, we find a meeting time that fits your day, wherever you are.", span: "md:col-span-3" },
 ];
 
 export function StatsSection() {

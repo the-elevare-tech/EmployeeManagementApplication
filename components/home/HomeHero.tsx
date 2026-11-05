@@ -6,8 +6,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import CountUp from "react-countup";
 import { ArrowRight, Sparkles, Rocket, MessageSquarePlus, Bot, Gauge } from "lucide-react";
 import { GlobalMap } from "@/components/home/GlobalMap";
-import { isOpen } from "@/lib/hours";
-import { useNow } from "@/components/layout/useNow";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -19,29 +17,15 @@ const stats = [
 ];
 
 function HeroStatus() {
-  const now = useNow(30000);
-  const open = now ? isOpen(now) : true;
   return (
     <span className="flex items-center gap-1.5">
       <span className="relative flex h-1.5 w-1.5">
-        {open && <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />}
-        <span className={`relative inline-flex h-1.5 w-1.5 rounded-full ${open ? "bg-green" : "bg-amber"}`} />
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green opacity-70" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-green" />
       </span>
-      {open ? "Team online" : "Team offline"}
+      Accepting new projects
     </span>
   );
-}
-
-function PktClock() {
-  const [now, setNow] = useState<string | null>(null);
-  useEffect(() => {
-    const fmt = () =>
-      new Intl.DateTimeFormat("en-GB", { timeZone: "Asia/Karachi", hour: "2-digit", minute: "2-digit", second: "2-digit" }).format(new Date());
-    setNow(fmt());
-    const id = setInterval(() => setNow(fmt()), 1000);
-    return () => clearInterval(id);
-  }, []);
-  return <span className="tabular-nums">{now ?? "--:--:--"}</span>;
 }
 
 const words = ["business", "startup", "store", "clinic", "agency"];
@@ -194,9 +178,7 @@ export function HomeHero() {
                 <span className="hidden sm:flex">
                   <HeroStatus />
                 </span>
-                <span>
-                  PKT <PktClock />
-                </span>
+                <span>Lahore · San Francisco</span>
               </div>
             </div>
 

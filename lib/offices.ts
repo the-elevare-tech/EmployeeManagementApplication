@@ -47,6 +47,7 @@ export const OFFICES: Office[] = [
     tz: "PT",
     // 9:00 AM to 5:00 PM, Monday to Friday (change here to update the whole site)
     hours: { start: 9 * 60, end: 17 * 60, days: [1, 2, 3, 4, 5], text: "9:00 AM to 5:00 PM", daysText: "Monday to Friday" },
+    phone: { display: "+1 (628) 271-0322", tel: "tel:+16282710322", whatsapp: "https://wa.me/16282710322" },
   },
 ];
 
@@ -89,4 +90,37 @@ export function officeStatus(o: Office, now: Date): OfficeStatus {
     return { open: false, text: `Closed · opens ${when} at ${fmtMins(start)}` };
   }
   return { open: false, text: "Closed" };
+}
+
+/** Weekday, minutes and seconds for `now` in a time zone. */
+function localPartsS(now: Date, timeZone: string) {
+  const parts = new Intl.DateTimeFormat("en-US", { timeZone, weekday: "short", hour: "2-digit", minute: "2-digit", second: "2-digit", hourCycle: "h23" }).formatToParts(now);
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? "0";
+  return { day: WD[get("weekday")] ?? 0, mins: Number(get("hour")) * 60 + Number(get("minute")), secs: Number(get("second")) };
+}
+
+/** Is the office open at this instant? */
+export function isOfficeOpen(o: Office, at: Date) {
+  const { day, mins } = localParts(at, o.timeZone);
+  return o.hours.days.includes(day) && mins >= o.hours.start && mins < o.hours.end;
+}
+
+/** Open state plus seconds until it next changes (closes if open, opens if closed). */
+export function officeClock(o: Office, now: Date): { open: boolean; seconds: number } {
+  const { day, mins, secs } = localPartsS(now, o.timeZone);
+  const { start, end, days } = o.hours;
+  if (days.includes(day) && mins >= start && mins < end) return { open: true, seconds: (end - mins) * 60 - secs };
+  for (let k = 0; k < 8; k++) {
+    const d = (day + k) % 7;
+    if (!days.includes(d)) continue;
+    if (k === 0 && mins >= start) continue;
+    return { open: false, seconds: (k * 1440 + start - mins) * 60 - secs };
+  }
+  return { open: false, seconds: 0 };
+}
+
+/** The office to feature right now: an open one (Lahore first), else whichever opens soonest. */
+export function featuredOffice(now: Date) {
+  const clocks = OFFICES.map((o) => ({ office: o, ...officeClock(o, now) }));
+  return clocks.find((c) => c.open) ?? [...clocks].sort((a, b) => a.seconds - b.seconds)[0];
 }
