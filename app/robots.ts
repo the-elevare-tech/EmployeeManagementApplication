@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
         "/login/",
       ],
     },
-    sitemap: "https://www.elevaretech.site/sitemap.xml",
+    sitemap: "https://www.elevaretech.net/sitemap.xml",
   };
 }

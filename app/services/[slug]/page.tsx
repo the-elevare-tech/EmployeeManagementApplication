@@ -29,9 +29,9 @@ export default async function ServicePage({ params }: { params: Promise<{ slug: 
     "@type": "Service",
     name: s.title,
     description: s.description,
-    provider: { "@type": "Organization", name: "Elevare Tech", url: "https://www.elevaretech.site" },
+    provider: { "@type": "Organization", name: "Elevare Tech", url: "https://www.elevaretech.net" },
     areaServed: "Worldwide",
-    url: `https://www.elevaretech.site/services/${s.slug}`,
+    url: `https://www.elevaretech.net/services/${s.slug}`,
   };
 
   return (

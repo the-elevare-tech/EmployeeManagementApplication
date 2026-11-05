@@ -243,3 +243,13 @@
 /* scanning line for TechImage */
 .scanline { animation: scan 5s ease-in-out infinite; top: -6rem; }
 @keyframes scan { 0% { top: -6rem; } 100% { top: 100%; } }
+
+/* route fade-in (see PageTransition) */
+@keyframes page-enter {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: none; }
+}
+.page-enter { animation: page-enter 0.35s ease-out both; }
+@media (prefers-reduced-motion: reduce) {
+  .page-enter { animation: none; }
+}

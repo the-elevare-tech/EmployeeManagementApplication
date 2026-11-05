@@ -1,24 +1,19 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 
+/**
+ * Light fade-in on every route change.
+ * Pure CSS on purpose: a JS exit/enter animation (AnimatePresence) can get
+ * stuck at opacity 0 with the App Router, leaving a blank page until refresh.
+ * A CSS animation always runs to the end, even before JavaScript loads.
+ */
 export function PageTransition({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={pathname}
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -10 }}
-        transition={{ duration: 0.28, ease: "easeInOut" }}
-        className="flex flex-col min-h-screen"
-      >
-        {children}
-      </motion.div>
-    </AnimatePresence>
+    <div key={pathname} className="page-enter flex min-h-screen flex-col">
+      {children}
+    </div>
   );
 }
